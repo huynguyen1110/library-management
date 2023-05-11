@@ -1,8 +1,8 @@
 # library-management
 dự quán demo bộ môn công nghệ phần mềm
 ## Công nghệ sử dụng
-  -java 11
+\t-java 11
   
-  -mariadb Database
+\t-mariadb Database
   
-  -Spring boot 3.0.6
+\t-Spring boot 3.0.6

@@ -3,6 +3,7 @@ package com.example.library.code.models.entities;
 import com.example.library.code.models.enums.HinhThucMuonTra;
 import com.example.library.code.models.enums.HinhThucThanhToan;
 import jakarta.persistence.*;
+import jakarta.persistence.criteria.CriteriaBuilder;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
@@ -23,6 +24,7 @@ public class PhieuTra {
     @Enumerated(EnumType.STRING)
     public HinhThucMuonTra hinhThucTra;
     public Double tongTien;
+    public Integer soLuong;
     @OneToOne
     public NhanVien nhanVien;
     @OneToOne

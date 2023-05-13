@@ -5,6 +5,7 @@ import jakarta.persistence.criteria.CriteriaBuilder;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -18,7 +19,7 @@ public class Sach {
     public Integer maSach;
     public String tenSach;
     public Integer soLuong;
-    public Date ngayXuatBan;
+    public LocalDate ngayXuatBan;
     public Double giaTien;
     @OneToOne
     public TheLoai theLoai;

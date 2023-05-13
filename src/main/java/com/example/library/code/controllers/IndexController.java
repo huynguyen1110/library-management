@@ -20,4 +20,5 @@ public class IndexController {
         ModelAndView modelAndView = new ModelAndView("shop-grid");
         return modelAndView;
     }
+
 }

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Book Management System</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <div class="dropdown">
+                    <a class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Member
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="addMember.html">Add New</a>
+                        <a class="dropdown-item" href="listMember.html">List</a>
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item">
+                <div class="dropdown">
+                    <a class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Books
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="../books/addBook.html">Add New</a>
+                        <a class="dropdown-item" href="../books/listBook.html">List</a>
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item">
+                <div class="dropdown">
+                    <a class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Categories
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="../categories/addCategori.html">Add New</a>
+                        <a class="dropdown-item" href="../categories/listCategori.html">List</a>
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item">
+                <div class="dropdown">
+                    <a class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Book Issue
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="../issue/issueNew.html">Issue New</a>
+                        <a class="dropdown-item" href="../issue/listIssue.html">List</a>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="container">
+    <h2>List Books</h2>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Mã độc giả</th>
+            <th>Tên độc giả</th>
+            <th>Địa chỉ</th>
+            <th>Ngày sinh</th>
+            <th>SĐT</th>
+            <th>Mã tài khoản</th>
+            <th>Mã thẻ thư viện</th>
+            <th>Sự kiện</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Duyệt qua danh sách sách và hiển thị thông tin -->
+        <tr th:each="book : ${books}">
+            <td th:text="${book.ma_sach}"></td>
+            <td th:text="${book.ten_sach}"></td>
+            <td th:text="${book.tac_gia}"></td>
+            <td th:text="${book.nha_xuat_ban}"></td>
+            <td th:text="${book.ma}"></td>
+            <td th:text="${book.nha_xuat_ban}"></td>
+            <td th:text="${book.nha_xuat_ban}"></td>
+            <td>
+                <a href="#">Cập nhập</a>
+                <a href="#">Xóa</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</body>
+</html>

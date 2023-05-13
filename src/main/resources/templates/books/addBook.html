@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Add Book</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Book Management System</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <div class="dropdown">
+          <a class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Member
+          </a>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="../members/addMember.html">Add New</a>
+            <a class="dropdown-item" href="../members/listMember.html">List</a>
+          </div>
+        </div>
+      </li>
+      <li class="nav-item">
+        <div class="dropdown">
+          <a class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Books
+          </a>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="addBook.html">Add New</a>
+            <a class="dropdown-item" href="listBook.html">List</a>
+          </div>
+        </div>
+      </li>
+      <li class="nav-item">
+        <div class="dropdown">
+          <a class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Categories
+          </a>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="../categories/addCategori.html">Add New</a>
+            <a class="dropdown-item" href="../categories/listCategori.html">List</a>
+          </div>
+        </div>
+      </li>
+      <li class="nav-item">
+        <div class="dropdown">
+          <a class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Book Issue
+          </a>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="../issue/issueNew.html">Issue New</a>
+            <a class="dropdown-item" href="../issue/listIssue.html">List</a>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>
+<div class="container">
+  <h2>Add Book</h2>
+
+  <form th:action="@{/templates/books}" th:object="${book}" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+      <label for="ma_sach">Mã sách:</label>
+      <input type="text" class="form-control" id="ma_sach" th:field="*{ma_sach}">
+    </div>
+    <div class="form-group">
+      <label for="image">Ảnh:</label>
+      <input type="file" class="form-control-file" id="image" name="image">
+    </div>
+    <div class="form-group">
+      <label for="ngay_xuat_ban">Ngày xuất bản:</label>
+      <input type="text" class="form-control" id="ngay_xuat_ban" th:field="*{ngay_xuat_ban}">
+    </div>
+    <div class="form-group">
+      <label for="so_luong">Số lượng:</label>
+      <input type="number" class="form-control" id="so_luong" th:field="*{so_luong}">
+    </div>
+    <div class="form-group">
+      <label for="ten_sach">Tên sách:</label>
+      <input type="text" class="form-control" id="ten_sach" th:field="*{ten_sach}">
+    </div>
+    <div class="form-group">
+      <label for="the_loai_ma_the_loai">Nhà xuất bản:</label>
+      <select class="form-control" id="nha_xuat_ban_ma_nha_xuat_ban" name="" th:field="*{nha_xuat_ban_ma_nha_xuat_ban}" >
+        <option th:each="nhaXuatBan : ${nha_xuat_ban}" th:value="123123" th:text="${nhaXuatBan.ten_nha_xuat_ban}"></option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="the_loai_ma_the_loai">Thể loại:</label>
+      <select class="form-control" id="the_loai_ma_the_loai" name="" th:field="*{the_loai_ma_the_loai}" >
+        <option th:each="theLoai : ${the_loai}" th:value="123123" th:text="${theLoai.ten_the_loai}"></option>
+      </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Thêm sách</button>
+  </form>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</body>
+</html>

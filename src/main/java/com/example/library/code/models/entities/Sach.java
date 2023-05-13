@@ -19,6 +19,7 @@ public class Sach {
     public String tenSach;
     public Integer soLuong;
     public Date ngayXuatBan;
+    public Double giaTien;
     @OneToOne
     public TheLoai theLoai;
     @OneToOne
@@ -34,4 +35,7 @@ public class Sach {
     public Set<PhieuMuon> phieuMuons = new HashSet<>();
     @ManyToMany(mappedBy = "sachs")
     public Set<PhieuTra> phieuTras = new HashSet<>();
+    @ManyToMany(mappedBy = "sachs")
+    public Set<GioHang> gioHangs = new HashSet<>();
+
 }

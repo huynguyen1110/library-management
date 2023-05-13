@@ -25,4 +25,6 @@ public class DocGia {
     public TheThuVien theThuVien;
     @OneToOne
     public TaiKhoan taiKhoan;
+    @OneToOne
+    public GioHang gioHang;
 }

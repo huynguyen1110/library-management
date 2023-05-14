@@ -105,7 +105,9 @@ function hienThiSachTheoTheLoai (theLoai) {
         method: "GET",
         success: function(response) {
             var truyenNganBody = $(".truyen-ngan")
+            truyenNganBody.empty()
             var thoBody = $(".tho")
+            thoBody.empty()
             var result = ``
             if (theLoai == 'Truyện Ngắn') {
                 response.forEach(function (item) {
@@ -139,6 +141,7 @@ function hienThiSachTheoTheLoai (theLoai) {
                                 </div>
                             </div>
                         `
+
                     truyenNganBody.append(result)
                 })
             }

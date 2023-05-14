@@ -16,7 +16,7 @@ public class SachService implements ISachService {
     private SachRepository sachRepository;
 
     @Override
-    public List<Sach> timSachMoi(LocalDate ngayBatDau, LocalDate ngayKetThuc) {
-        return sachRepository.timSachMoi(ngayBatDau, ngayKetThuc);
+    public List<Sach> timSachMoi(LocalDate ngayBatDau) {
+        return sachRepository.timSachMoi(ngayBatDau);
     }
 }

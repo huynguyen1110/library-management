@@ -12,6 +12,6 @@ import java.util.List;
 @Repository
 public interface SachRepository extends JpaRepository<Sach, Integer> {
 
-    @Query("select s from Sach s where s.ngayXuatBan >= :startDate and s.ngayXuatBan <= :endDate")
-    public List<Sach> timSachMoi(@Param("startDate") LocalDate ngayBatDau, @Param("endDate") LocalDate ngayKetThuc);
+    @Query("select s from Sach s where s.ngayXuatBan >= :ngayBatDau")
+    List<Sach> timSachMoi(LocalDate ngayBatDau);
 }

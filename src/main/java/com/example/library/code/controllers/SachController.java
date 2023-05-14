@@ -8,11 +8,12 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDate;
 import java.util.List;
 
-@Controller
+@RestController
 @RequestMapping("/api/v1/")
 public class SachController {
 
@@ -23,6 +24,6 @@ public class SachController {
     public List<Sach> sachMoi() {
         LocalDate ngayKetThuc = LocalDate.now();
         LocalDate ngayBatDau = ngayKetThuc.minusDays(10);
-        return  SachService.timSachMoi(ngayBatDau, ngayKetThuc);
+        return  SachService.timSachMoi(ngayBatDau);
     }
 }

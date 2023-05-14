@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -17,6 +18,45 @@ public class SachService implements ISachService {
 
     @Override
     public List<Sach> timSachMoi(LocalDate ngayBatDau) {
-        return sachRepository.timSachMoi(ngayBatDau);
+        List<Sach> sachMoi = sachRepository.timSachMoi(ngayBatDau);
+        List<Sach> results = new ArrayList<>();
+        if ( (sachMoi != null || sachMoi.size() != 0)) {
+            if (sachMoi.size() >= 8) {
+                for (int i = 0; i < 8; i++) {
+                    results.add(sachMoi.get(i));
+                }
+            } else {
+                return sachMoi;
+            }
+        }
+        return results;
+    }
+
+    @Override
+    public List<Sach> timTatCa() {
+        List<Sach> tatCaSach = sachRepository.findAllByMaSachIsNotNull();
+        List<Sach> results = new ArrayList<>();
+        if (tatCaSach != null && tatCaSach.size() != 0 && tatCaSach.size() >=8) {
+            for (int i = 0; i < 8; i++) {
+                results.add(tatCaSach.get(i));
+            }
+        } else {
+            return tatCaSach;
+        }
+        return  results;
+    }
+
+    @Override
+    public List<Sach> timTheLoaiTruyenNgan(String theLoai) {
+        List<Sach> sachTheoTheLoai = sachRepository.timTheoTheLoai(theLoai);
+        List<Sach> results = new ArrayList<>();
+        if (sachTheoTheLoai != null && sachTheoTheLoai.size() != 0 && sachTheoTheLoai.size() >=8) {
+            for (int i = 0; i < 8; i++) {
+                results.add(sachTheoTheLoai.get(i));
+            }
+        } else {
+            return sachTheoTheLoai;
+        }
+        return  results;
     }
 }

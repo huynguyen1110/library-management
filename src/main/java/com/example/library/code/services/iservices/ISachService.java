@@ -9,5 +9,9 @@ import java.util.List;
 @Service
 public interface ISachService {
 
-    public List<Sach> timSachMoi(LocalDate ngayBatDau);
+    List<Sach> timSachMoi(LocalDate ngayBatDau);
+
+    public List<Sach> timTatCa();
+
+    public List<Sach> timTheLoaiTruyenNgan(String theLoai);
 }

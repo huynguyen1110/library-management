@@ -1,5 +1,6 @@
 package com.example.library.code.controllers;
 
+import com.example.library.code.data.GetChiTietSachDto;
 import com.example.library.code.models.entities.Sach;
 import com.example.library.code.services.serviceimp.SachService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,5 +35,10 @@ public class SachController {
     @GetMapping("sach")
     public List<Sach> sachTheoTheLoai(@RequestParam("the-loai") String theLoai) {
         return sachService.timTheLoaiTruyenNgan(theLoai);
+    }
+
+    @GetMapping("chi-tiet-sach")
+    public GetChiTietSachDto timSachTheoId(@RequestParam("id") int id) {
+            return sachService.timSachTheoId(id);
     }
 }

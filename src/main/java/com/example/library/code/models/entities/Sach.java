@@ -27,11 +27,9 @@ public class Sach {
     public NhaXuatBan nhaXuatBan;
     @Lob
     private byte[] image;
-    @ManyToMany
-    @JoinTable(name = "sach_tacgia",
-            joinColumns = @JoinColumn(name = "ma_sach"),
-            inverseJoinColumns = @JoinColumn(name = "ma_tac_gia"))
-    public Set<TacGia> tacGias = new HashSet<>();
+    @ManyToOne
+    @JoinColumn()
+    public TacGia tacGia ;
     @ManyToMany(mappedBy = "sachs")
     public Set<PhieuMuon> phieuMuons = new HashSet<>();
     @ManyToMany(mappedBy = "sachs")

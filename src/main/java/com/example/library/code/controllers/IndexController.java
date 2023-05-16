@@ -9,6 +9,8 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/api/v1/")
 public class IndexController {
 
+
+
     @GetMapping("index")
     public ModelAndView index() {
         ModelAndView modelAndView = new ModelAndView("index");
@@ -18,6 +20,18 @@ public class IndexController {
     @GetMapping("shop")
     public ModelAndView cuaHang() {
         ModelAndView modelAndView = new ModelAndView("shop-grid");
+        return modelAndView;
+    }
+
+    @GetMapping("login")
+    public ModelAndView dangNhap() {
+        ModelAndView modelAndView = new ModelAndView("/login/login-form");
+        return modelAndView;
+    }
+
+    @GetMapping("register")
+    public ModelAndView dangKy() {
+        ModelAndView modelAndView = new ModelAndView("/login/register-form");
         return modelAndView;
     }
 

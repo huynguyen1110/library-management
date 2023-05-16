@@ -1,6 +1,6 @@
 package com.example.library.code.services.iservices;
 
-import com.example.library.code.data.GetChiTietSachDto;
+import com.example.library.code.data.sach.GetChiTietSachDto;
 import com.example.library.code.models.entities.Sach;
 import org.springframework.stereotype.Service;
 

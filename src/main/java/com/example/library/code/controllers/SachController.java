@@ -1,10 +1,9 @@
 package com.example.library.code.controllers;
 
-import com.example.library.code.data.GetChiTietSachDto;
+import com.example.library.code.data.sach.GetChiTietSachDto;
 import com.example.library.code.models.entities.Sach;
 import com.example.library.code.services.serviceimp.SachService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;

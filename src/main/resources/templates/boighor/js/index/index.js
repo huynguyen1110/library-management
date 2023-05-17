@@ -24,7 +24,7 @@ function hienThiSachMoi () {
                         <div class="product__content content--center">
                             <h4 ><a href="single-product.html" >${item.tenSach}</a></h4>
                             <ul class="price d-flex">
-                                <li >${item.giaTien}</li>
+                                <li >${formatTienMat(item.giaTien)}</li>
                             </ul>
 
                             <div class="product__hover--content">
@@ -75,7 +75,7 @@ function tatCaSach () {
                                     <div class="product__content content--center">
                                         <h4><a href="/api/v1/single-product">${item.tenSach}</a></h4>
                                         <ul class="price d-flex">
-                                            <li>${item.giaTien}</li>
+                                            <li>${formatTienMat(item.giaTien)}</li>
                                         </ul>
 
                                         <div class="product__hover--content">
@@ -131,7 +131,7 @@ function hienThiSachTheoTheLoai (theLoai) {
                                     <div class="product__content content--center">
                                         <h4><a href="/api/v1/single-product">${item.tenSach}</a></h4>
                                         <ul class="price d-flex">
-                                            <li>${item.giaTien}</li>
+                                            <li>${formatTienMat(item.giaTien)} </li>
                                         </ul>
 
                                         <div class="product__hover--content">
@@ -168,7 +168,7 @@ function hienThiSachTheoTheLoai (theLoai) {
                                     <div class="product__content content--center">
                                         <h4><a href="/api/v1/single-product">${item.tenSach}</a></h4>
                                         <ul class="price d-flex">
-                                            <li>${item.giaTien}</li>
+                                            <li>${formatTienMat(item.giaTien)}</li>
                                         </ul>
 
                                         <div class="product__hover--content">
@@ -193,6 +193,15 @@ function hienThiSachTheoTheLoai (theLoai) {
             alert("Đã xảy ra lỗi khi lấy dữ liệu từ API.");
         }
     });
+}
+
+function formatTienMat(tien) {
+
+    var formattedAmount = tien.toLocaleString('vi-VN', {
+        style: 'currency',
+        currency: 'VND'
+    });
+    return formattedAmount
 }
 
 

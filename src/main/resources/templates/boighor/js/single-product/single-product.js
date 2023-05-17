@@ -2,7 +2,6 @@ function hienThiChiTieSach() {
     var urlParams = new URLSearchParams(window.location.search);
     var maSach = urlParams.get('maSach');
     var maTk = urlParams.get('maTk');
-
     $.ajax({
             url: "/api/v1/chi-tiet-sach?id="+ maSach,
             method: "GET",
@@ -34,11 +33,9 @@ function hienThiChiTieSach() {
                                         <span>${item.giaTien}</span>
                                     </div>
                                     <div class="box-tocart d-flex">
-<!--                                         <form>-->
                                             <div class="addtocart__actions">
                                                 <button id="them-vao-gio-hang" onclick="themSachVaoGioHang(${maSach}, ${maTk})" class="tocart"  title="Add to Cart">Thêm vào giỏ hàng </button>
                                             </div>
-<!--                                        </form>-->
                                         <div class="product-addto-links clearfix">
                                             <a class="wishlist" href="#"></a>
                                             <a class="compare" href="#"></a>
@@ -102,3 +99,107 @@ function themSachVaoGioHang(maSach, maTk) {
             }
         });
 }
+
+function hienThiGioHang() {
+    var urlParams = new URLSearchParams(window.location.search);
+    var maSach = urlParams.get('maSach');
+    var maTk = urlParams.get('maTk');
+    var gioHangBody = $(".gio-hang-body")
+    gioHangBody.empty()
+    var result = ``
+    $.ajax({
+        url: '/api/v1/lay-gio-hang?maSach=' + maSach + '&maTk=' + maTk,
+        type: 'GET',
+        success: function(response) {
+            result = `
+                                    <div class="micart__close">
+                                        <span>close</span>
+                                    </div>
+                                    <div class="items-total d-flex justify-content-between">
+                                        <span>${response.sachList.length} items</span>
+                                        <span>Tổng tiền</span>
+                                    </div>
+                                    <div class="total_amount text-end">
+                                        <span>${formatTienMat(response.tongTien)}</span>
+                                    </div>
+                                    <div class="mini_action checkout">
+                                        <a class="checkout__btn" href="/api/v1/cart?maSach=${maSach}&maTk=${maTk}">Thanh toán</a>
+                                    </div>
+                                    <div class="single__items">
+                                        <div class="miniproduct chi-tiet-sach-trong-gio-hang">
+                                            
+                                        </div>
+                                    </div>
+                                    <div class="mini_action cart">
+                                        <a class="cart__btn" href="/api/v1/cart?maSach=${maSach}&maTk=${maTk}">Xem và chỉnh sửa</a>
+                                    </div>
+                                `
+            gioHangBody.append(result)
+            hienThiSachTrongGioHang(maSach, maTk)
+        },
+        error: function(xhr, status, error) {
+            alert("That bai")
+            console.log('Error sending POST request');
+            console.log(error);
+        }
+    });
+}
+
+function hienThiSachTrongGioHang(maSach, maTk) {
+    var sachTrongGioHangBody = $(".chi-tiet-sach-trong-gio-hang")
+    var result = ``
+    sachTrongGioHangBody.empty()
+    $.ajax({
+        url: '/api/v1/lay-gio-hang?maSach=' + maSach + '&maTk=' + maTk,
+        type: 'GET',
+        success: function(response) {
+            var count = 0
+            response.sachList.forEach(function (item) {
+                result = `<!-- item trong giỏ hàng -->
+                                            <div class="item01 d-flex mt--20">
+                                                <div class="thumb"><img
+                                                        src="/images/product/sm-img/2.jpg"
+                                                        alt="product images"></a>
+                                                </div>
+                                                <div class="content">
+                                                    <h6>${item.tenSach}</h6>
+                                                    <span class="price">${formatTienMat(item.giaTien)}</span>
+                                                    <div class="product_price d-flex justify-content-between">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- item trong giỏ hàng -->`
+                count ++
+                if (count < 5) {
+                    sachTrongGioHangBody.append(result)
+                }
+
+            })
+        },
+        error: function(xhr, status, error) {
+            console.log('Error sending POST request');
+            console.log(error);
+        }
+    });
+}
+
+function troLaiTrangChu() {
+    var urlParams = new URLSearchParams(window.location.search);
+    var maTk = urlParams.get('maTk');
+    $(".tro-lai-trang-chu").on("click", function(event) {
+        event.preventDefault();
+        window.location.href = '/api/v1/index?id-nguoi-dung=' + maTk;
+    });
+}
+
+troLaiTrangChu()
+
+function formatTienMat(tien) {
+
+    var formattedAmount = tien.toLocaleString('vi-VN', {
+        style: 'currency',
+        currency: 'VND'
+    });
+    return formattedAmount
+}
+

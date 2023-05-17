@@ -1,3 +1,4 @@
+$(document).ready(function() {
     $('#register-form').submit(function (event) {
         event.preventDefault()
         var username = $('#username').val()
@@ -5,33 +6,31 @@
         var confirmPassword = $('#confirm-password').val()
 
         if (validate(username, password, confirmPassword) == false) {
-            var formdd = $(this).serialize()
             var formData = {
-                "tenTk": username,
-                "matKhau": password,
-                "nhapLaiMk": confirmPassword
+                tenTk: username,
+                matKhau: password,
+                nhapLaiMk: confirmPassword
             }
-            // $.ajax({
-            //     url: '/api/v1/them-tai-khoan',
-            //     type: 'POST',
-            //     data: formData,
-            //     contentType: 'application/json',
-            // }).done(function(response) {
-            //     // Xử lý khi request thành công
-            //     console.log('POST thành công!');
-            //     console.log(response); // Dữ liệu response từ backend
-            // }).fail(function(xhr, status, error) {
-            //     // Xử lý khi có lỗi xảy ra
-            //     console.log('Lỗi khi gửi POST request!');
-            //     console.log(error);
-            // });
 
+            var formDataJson = JSON.stringify(formData);
 
-            $.post('/api/v1/them-tai-khoan',   // url
-                { myData: formData }, // data to be submit
-                function(data, status, jqXHR) {// success callback
-                $('p').append('status: ' + status + ', data: ' + data);
-            }).done(function() { alert('Request done!'); }).fail(function(jqxhr, settings, ex) { alert('failed, ' + ex); });
+            $.ajax({
+                url: '/api/v1/them-tai-khoan',
+                type: 'POST',
+                data: formDataJson,
+                contentType: 'application/json',
+                success: function(response) {
+                    if (response == "") {
+                        alert("Tài khoản đã tồn tại")
+                    } else {
+                        alert("Tạo tài khoản thành công.")
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.log('Error sending POST request');
+                    console.log(error);
+                }
+            });
 
         }
 
@@ -64,3 +63,56 @@
         }
         return hasError
     }
+
+    function validateLogin(username, password) {
+        var hasError = false;
+        if (username.trim() === '') {
+            $('#username-error-msg').text('Vui lòng nhập tên tài khoản');
+            hasError = true;
+        } else {
+            $('#username-error-msg').text('');
+        }
+
+        if (password.trim() === '') {
+            $('#password-error-msg').text('Vui lòng nhập mật khẩu');
+            hasError = true;
+        } else {
+            $('#password-error-msg').text('');
+        }
+        return hasError
+    }
+
+    $("#login-form-input").submit(function (event) {
+        event.preventDefault()
+        var username = $('#username').val()
+        var password = $('#password').val()
+        if (validateLogin(username, password) == false) {
+            var formData = {
+                tenTk: username,
+                matKhau: password
+            }
+            var formDataJson = JSON.stringify(formData);
+
+            $.ajax({
+                url: '/api/v1/dang-nhap',
+                type: 'POST',
+                data: formDataJson,
+                contentType: 'application/json',
+                success: function(response) {
+                    if (response == "") {
+                        alert("Tên đăng nhập hoặc mật khẩu không đúng")
+                    } else {
+                        alert("Đăng nhập thành công, xin chào: " + username)
+                        window.location.href = '/api/v1/index?id-nguoi-dung=' + response.maTk;
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.log('Error sending POST request');
+                    console.log(error);
+                }
+            });
+        }
+    })
+});
+
+

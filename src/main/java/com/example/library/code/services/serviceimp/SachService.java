@@ -65,6 +65,7 @@ public class SachService implements ISachService {
     public GetChiTietSachDto timSachTheoId(int id) {
         Sach sach = sachRepository.timSachTheoId(id);
         GetChiTietSachDto getChiTietSachDto = new GetChiTietSachDto();
+        getChiTietSachDto.maSach = sach.maSach;
         getChiTietSachDto.tenSach = sach.tenSach;
         getChiTietSachDto.giaTien = sach.giaTien;
         getChiTietSachDto.ngayXuatBan = sach.ngayXuatBan;

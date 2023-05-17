@@ -1,12 +1,10 @@
 function hienThiChiTieSach() {
-    var currentUrl = window.location.href;
+    var urlParams = new URLSearchParams(window.location.search);
+    var maSach = urlParams.get('maSach');
+    var maTk = urlParams.get('maTk');
 
-    var urlParts = currentUrl.split("?");
-
-    var id = urlParts[urlParts.length - 1];
-
-        $.ajax({
-            url: "/api/v1/chi-tiet-sach?id="+ id,
+    $.ajax({
+            url: "/api/v1/chi-tiet-sach?id="+ maSach,
             method: "GET",
             success: function(item) {
 
@@ -36,10 +34,11 @@ function hienThiChiTieSach() {
                                         <span>${item.giaTien}</span>
                                     </div>
                                     <div class="box-tocart d-flex">
-                                        <div class="addtocart__actions">
-                                            <button class="tocart" type="submit" title="Add to Cart">Thêm vào giỏ hàng
-                                            </button>
-                                        </div>
+<!--                                         <form>-->
+                                            <div class="addtocart__actions">
+                                                <button id="them-vao-gio-hang" onclick="themSachVaoGioHang(${maSach}, ${maTk})" class="tocart"  title="Add to Cart">Thêm vào giỏ hàng </button>
+                                            </div>
+<!--                                        </form>-->
                                         <div class="product-addto-links clearfix">
                                             <a class="wishlist" href="#"></a>
                                             <a class="compare" href="#"></a>
@@ -89,3 +88,17 @@ function hienThiChiTieSach() {
         });
 }
 hienThiChiTieSach()
+
+function themSachVaoGioHang(maSach, maTk) {
+        $.ajax({
+            url: '/api/v1/them-vao-gio-hang?maSach=' + maSach + '&maTk=' + maTk,
+            type: 'POST',
+            success: function(response) {
+                alert("Đã thêm sách vào giỏ hàng")
+            },
+            error: function(xhr, status, error) {
+                console.log('Error sending POST request');
+                console.log(error);
+            }
+        });
+}

@@ -1,3 +1,9 @@
+var currentURL = window.location.href;
+
+var searchParams = new URLSearchParams(new URL(currentURL).search);
+
+var idNguoiDung = searchParams.get('id-nguoi-dung');
+
 function hienThiSachMoi () {
     $.ajax({
         url: "/api/v1/sach-moi",
@@ -9,7 +15,7 @@ function hienThiSachMoi () {
                 result = `
                 <div class="product product__style--3 col-3">
                         <div class="product__thumb">
-                            <a class="first__img" href="/api/v1/single-product?${item.maSach}"><img src="/images/books/1.jpg"
+                            <a class="first__img" href="/api/v1/single-product?maSach=${item.maSach}&maTk=${idNguoiDung}"><img src="/images/books/1.jpg"
                                                                                      alt="product image"></a>
                             <div class="hot__box">
                                 <span class="hot-label">BEST SALLER</span>
@@ -60,7 +66,7 @@ function tatCaSach () {
                             <div class="single__product__inner ">
                                 <div class="product product__style--3">
                                     <div class="product__thumb">
-                                        <a class="first__img" href="/api/v1/single-product?${item.maSach}"><img
+                                        <a class="first__img" href="/api/v1/single-product?maSach=${item.maSach}&maTk=${idNguoiDung}"><img
                                                 src="/images/books/8.jpg" alt="product image"></a>
                                         <div class="hot__box">
                                             <span class="hot-label">BEST SALLER</span>
@@ -116,7 +122,7 @@ function hienThiSachTheoTheLoai (theLoai) {
                             <div class="single__product__inner  col-3">
                                 <div class="product product__style--3">
                                     <div class="product__thumb">
-                                        <a class="first__img" href="/api/v1/single-product?${item.maSach}"><img
+                                        <a class="first__img" href="/api/v1/single-product?maSach=${item.maSach}&maTk=${idNguoiDung}"><img
                                                 src="/images/books/8.jpg" alt="product image"></a>
                                         <div class="hot__box">
                                             <span class="hot-label">BEST SALLER</span>
@@ -153,7 +159,7 @@ function hienThiSachTheoTheLoai (theLoai) {
                             <div class="single__product__inner  col-3">
                                 <div class="product product__style--3">
                                     <div class="product__thumb">
-                                        <a class="first__img" href="/api/v1/single-product?${item.maSach}"><img
+                                        <a class="first__img" href="/api/v1/single-product?maSach=${item.maSach}&maTk=${idNguoiDung}"><img
                                                 src="/images/books/8.jpg" alt="product image"></a>
                                         <div class="hot__box">
                                             <span class="hot-label">BEST SALLER</span>

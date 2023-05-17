@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 @NoArgsConstructor
 @Component
 public class ThemTaiKhoanDto {
+    public Integer maTk;
     public String tenTk;
     public String matKhau;
     public String nhapLaiMk;

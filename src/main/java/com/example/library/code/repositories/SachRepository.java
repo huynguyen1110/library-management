@@ -23,4 +23,11 @@ public interface SachRepository extends JpaRepository<Sach, Integer> {
 
     @Query("select s from Sach s where s.maSach = :id")
     Sach timSachTheoId(int id);
+
+    @Query("SELECT s FROM Sach s " +
+        "JOIN s.gioHangs gh " +
+        "JOIN gh.docGia dg " +
+        "WHERE dg.taiKhoan.maTk = :maTk")
+    List<Sach> findSachTrongGioHangByMaTk(@Param("maTk") int maTk);
+
 }

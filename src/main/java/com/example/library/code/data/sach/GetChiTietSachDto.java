@@ -14,6 +14,7 @@ import java.time.LocalDate;
 @Component
 public class GetChiTietSachDto {
 
+    public Integer maSach;
     public String tenSach;
     public Integer soLuong;
     public LocalDate ngayXuatBan;

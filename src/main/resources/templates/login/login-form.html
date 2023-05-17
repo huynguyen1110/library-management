@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Đăng nhập</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
         body {
             background-color: #f8f9fa;
@@ -42,14 +43,16 @@
         <div class="row justify-content-center">
             <div class="col-md-6 mt-5 login-container">
                 <h2>Đăng nhập</h2>
-                <form>
+                <form id="login-form-input">
                     <div class="form-group">
                         <label for="username">Tên tài khoản</label>
                         <input type="text" class="form-control" id="username" placeholder="tên tài khoản">
+                        <small class="error-msg" id="username-error-msg"></small>
                     </div>
                     <div class="form-group">
                         <label for="password">Mật khẩu</label>
                         <input type="password" class="form-control" id="password" placeholder="Mật khẩu">
+                        <small class="error-msg" id="password-error-msg"></small>
                     </div>
                     <div class="text-right">
                         <a href="/api/v1/register">Đến trang đăng ký</a>
@@ -62,9 +65,9 @@
 </div>
 
 
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="/js/validate/LoginAndRegisterValidate.js"></script>
 </body>
 </html>
 

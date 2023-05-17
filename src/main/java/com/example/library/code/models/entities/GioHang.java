@@ -16,6 +16,9 @@ public class GioHang {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Integer maGioHang;
     public Double tongTien;
+    public Boolean daThanhToan;
+    @OneToOne
+    public DocGia docGia;
     @ManyToMany
     @JoinTable(name = "gio_hang_sach",
             joinColumns = @JoinColumn(name = "ma_gio_hang"),

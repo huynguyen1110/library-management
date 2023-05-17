@@ -107,7 +107,7 @@ tatCaSach()
 
 function hienThiSachTheoTheLoai (theLoai) {
     $.ajax({
-        url: "/api/v1/sach?the-loai=" + theLoai,
+        url: "/api/v1/sach-theo-the-loai?the-loai=" + theLoai,
         method: "GET",
         success: function(response) {
             var truyenNganBody = $(".truyen-ngan")

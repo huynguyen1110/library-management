@@ -10,6 +10,8 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <!-- Favicons -->
     <link rel="shortcut icon" href="boighor/images/favicon.ico">
     <link rel="apple-touch-icon" href="boighor/images/icon.png">
@@ -52,6 +54,8 @@
 
     <!-- Modernizer js -->
     <script src="/js/vendor/modernizr-3.5.0.min.js"></script>
+
+
 </head>
 
 <body>
@@ -267,37 +271,16 @@
             </div>
 
             <!-- Start Single Tab Content -->
-            <div class="furniture--4 border--round arrows_style owl-carousel owl-theme mt--50">
+<!--            <div class="furniture&#45;&#45;4 border&#45;&#45;round arrows_style owl-carousel owl-theme mt&#45;&#45;50 container san-pham-moi row">-->
+            <div class="container san-pham-moi row">
                 <!-- Start Single Product -->
 <!--                sản phẩm mới-->
-                <div class="product product__style--3">
-                    <div class="product__thumb">
-                        <a class="first__img" href="/api/v1/single-product"><img src="/images/books/1.jpg"
-                                                                                      alt="product image"></a>
-                        <div class="hot__box">
-                            <span class="hot-label">BEST SALLER</span>
-                        </div>
-                    </div>
-                    <div class="product__content content--center">
-                        <h4><a href="single-product.html">robin parrish</a></h4>
-                        <ul class="price d-flex">
-                            <li>$35.00</li>
-                        </ul>
+<!--                <div class="">-->
 
-                        <div class="product__hover--content">
-                            <ul class="rating d-flex">
-                                <li class="on"><i class="fa fa-star-o"></i></li>
-                                <li class="on"><i class="fa fa-star-o"></i></li>
-                                <li class="on"><i class="fa fa-star-o"></i></li>
-                                <li><i class="fa fa-star-o"></i></li>
-                                <li><i class="fa fa-star-o"></i></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+<!--                </div>-->
+            </div>
 
 <!--                sản phẩm mới-->
-            </div>
             <!-- End Single Tab Content -->
         </div>
     </section>
@@ -319,49 +302,24 @@
                     <div class="product__nav nav justify-content-center" role="tablist">
                         <a class="nav-item nav-link active" data-bs-toggle="tab" href="#nav-all" role="tab">ALL</a>
                         <a class="nav-item nav-link" data-bs-toggle="tab" href="#nav-biographic"
-                           role="tab">TRUYỆN NGẮN</a>
+                           role="tab" onclick="hienThiSachTheoTheLoai('Truyện Ngắn')">TRUYỆN NGẮN</a>
                         <a class="nav-item nav-link" data-bs-toggle="tab" href="#nav-adventure"
-                           role="tab">THƠ</a>
+                           role="tab" onclick="hienThiSachTheoTheLoai('Thơ')">THƠ</a>
                     </div>
                 </div>
             </div>
             <div class="tab__container tab-content mt--60">
                 <!-- Start Single Tab Content -->
                 <div class=" single__tab tab-pane fade show active" id="nav-all" role="tabpanel">
-                    <div class="product__indicator--4 arrows_style owl-carousel owl-theme">
+<!--                    <div class="product__indicator&#45;&#45;4 arrows_style owl-carousel owl-theme tat-ca-sach row">-->
+                    <div class="container tat-ca-sach row">
                             <!-- lấy <= 8 sản phẩm -->
                             <!-- Start Single Product -->
                         <!-- -------tất cả -->
-                        <div class="single__product">
-                            <!-- Start Single Product -->
-                            <div class="single__product__inner">
-                                <div class="product product__style--3">
-                                    <div class="product__thumb">
-                                        <a class="first__img" href="/api/v1/single-product"><img
-                                                src="/images/books/8.jpg" alt="product image"></a>
-                                        <div class="hot__box">
-                                            <span class="hot-label">BEST SALLER</span>
-                                        </div>
-                                    </div>
-                                    <div class="product__content content--center">
-                                        <h4><a href="/api/v1/single-product">Bowen Greenwood</a></h4>
-                                        <ul class="price d-flex">
-                                            <li>$40.00</li>
-                                        </ul>
+<!--                            <div class="tat-ca-sach row">-->
 
-                                        <div class="product__hover--content">
-                                            <ul class="rating d-flex">
-                                                <li class="on"><i class="fa fa-star-o"></i></li>
-                                                <li class="on"><i class="fa fa-star-o"></i></li>
-                                                <li class="on"><i class="fa fa-star-o"></i></li>
-                                                <li><i class="fa fa-star-o"></i></li>
-                                                <li><i class="fa fa-star-o"></i></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+
+<!--                            </div>-->
 
 
                         <!-- -------------------------------------- -->
@@ -370,542 +328,24 @@
                 <!-- End Single Tab Content -->
                 <!-- Start Single Tab Content -->
                 <div class=" single__tab tab-pane fade" id="nav-biographic" role="tabpanel">
-                    <div class="product__indicator--4 arrows_style owl-carousel owl-theme">
+<!--                    <div class="product__indicator&#45;&#45;4 arrows_style owl-carousel owl-theme">-->
+                    <div class="container truyen-ngan row">
                         <!-- truyên ngắn -->
-                        <div class="single__product">
-                            <!-- Start Single Product -->
-                            <div class="single__product__inner">
-                                <div class="product product__style--3">
-                                    <div class="product__thumb">
-                                        <a class="first__img" href="single-product.html"><img
-                                                src="boighor/images/books/8.jpg" alt="product image"></a>
-                                        <a class="second__img animation1" href="single-product.html"><img
-                                                src="boighor/images/books/4.jpg" alt="product image"></a>
-                                        <div class="hot__box">
-                                            <span class="hot-label">BEST SALLER</span>
-                                        </div>
-                                    </div>
-                                    <div class="product__content content--center">
-                                        <h4><a href="single-product.html">Bowen Greenwood</a></h4>
-                                        <ul class="price d-flex">
-                                            <li>$40.00</li>
-                                            <li class="old_price">$35.00</li>
-                                        </ul>
-                                        <div class="action">
-                                            <div class="actions_inner">
-                                                <ul class="add_to_links">
-                                                    <li><a class="cart" href="cart.html"><i
-                                                            class="bi bi-shopping-bag4"></i></a></li>
-                                                    <li><a class="wishlist" href="boighor/wishlist.html"><i
-                                                            class="bi bi-shopping-cart-full"></i></a></li>
-                                                    <li><a class="compare" href="#"><i
-                                                            class="bi bi-heart-beat"></i></a></li>
-                                                    <li><a data-bs-toggle="modal" title="Quick View"
-                                                           class="quickview modal-view detail-link"
-                                                           href="#productmodal"><i class="bi bi-search"></i></a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="product__hover--content">
-                                            <ul class="rating d-flex">
-                                                <li class="on"><i class="fa fa-star-o"></i></li>
-                                                <li class="on"><i class="fa fa-star-o"></i></li>
-                                                <li class="on"><i class="fa fa-star-o"></i></li>
-                                                <li><i class="fa fa-star-o"></i></li>
-                                                <li><i class="fa fa-star-o"></i></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+
+
+
+
+<!--                        truyện ngắn-->
                     </div>
                 </div>
                 <!-- End Single Tab Content -->
                 <!-- Start Single Tab Content -->
                 <div class=" single__tab tab-pane fade" id="nav-adventure" role="tabpanel">
-                    <div class="product__indicator--4 arrows_style owl-carousel owl-theme">
-                        <div class="single__product">
-                            <!-- Start Single Product -->
-                            <div class="single__product__inner">
-                                <div class="product product__style--3">
-                                    <div class="product__thumb">
-                                        <a class="first__img" href="single-product.html"><img
-                                                src="boighor/images/books/8.jpg" alt="product image"></a>
-                                        <a class="second__img animation1" href="single-product.html"><img
-                                                src="boighor/images/books/2.jpg" alt="product image"></a>
-                                        <div class="hot__box">
-                                            <span class="hot-label">BEST SALLER</span>
-                                        </div>
-                                    </div>
-                                    <div class="product__content content--center">
-                                        <h4><a href="single-product.html">Bowen Greenwood</a></h4>
-                                        <ul class="price d-flex">
-                                            <li>$40.00</li>
-                                            <li class="old_price">$35.00</li>
-                                        </ul>
-                                        <div class="action">
-                                            <div class="actions_inner">
-                                                <ul class="add_to_links">
-                                                    <li><a class="cart" href="cart.html"><i
-                                                            class="bi bi-shopping-bag4"></i></a></li>
-                                                    <li><a class="wishlist" href="boighor/wishlist.html"><i
-                                                            class="bi bi-shopping-cart-full"></i></a></li>
-                                                    <li><a class="compare" href="#"><i
-                                                            class="bi bi-heart-beat"></i></a></li>
-                                                    <li><a data-bs-toggle="modal" title="Quick View"
-                                                           class="quickview modal-view detail-link"
-                                                           href="#productmodal"><i class="bi bi-search"></i></a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="product__hover--content">
-                                            <ul class="rating d-flex">
-                                                <li class="on"><i class="fa fa-star-o"></i></li>
-                                                <li class="on"><i class="fa fa-star-o"></i></li>
-                                                <li class="on"><i class="fa fa-star-o"></i></li>
-                                                <li><i class="fa fa-star-o"></i></li>
-                                                <li><i class="fa fa-star-o"></i></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Start Single Product -->
-                            <!-- Start Single Product -->
-                            <div class="single__product__inner">
-                                <div class="product product__style--3">
-                                    <div class="product__thumb">
-                                        <a class="first__img" href="single-product.html"><img
-                                                src="boighor/images/books/12.jpg" alt="product image"></a>
-                                        <a class="second__img animation1" href="single-product.html"><img
-                                                src="boighor/images/books/6.jpg" alt="product image"></a>
-                                        <div class="hot__box">
-                                            <span class="hot-label">BEST SALLER</span>
-                                        </div>
-                                    </div>
-                                    <div class="product__content content--center">
-                                        <h4><a href="single-product.html">Bowen Greenwood</a></h4>
-                                        <ul class="price d-flex">
-                                            <li>$40.00</li>
-                                            <li class="old_price">$35.00</li>
-                                        </ul>
-                                        <div class="action">
-                                            <div class="actions_inner">
-                                                <ul class="add_to_links">
-                                                    <li><a class="cart" href="cart.html"><i
-                                                            class="bi bi-shopping-bag4"></i></a></li>
-                                                    <li><a class="wishlist" href="boighor/wishlist.html"><i
-                                                            class="bi bi-shopping-cart-full"></i></a></li>
-                                                    <li><a class="compare" href="#"><i
-                                                            class="bi bi-heart-beat"></i></a></li>
-                                                    <li><a data-bs-toggle="modal" title="Quick View"
-                                                           class="quickview modal-view detail-link"
-                                                           href="#productmodal"><i class="bi bi-search"></i></a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="product__hover--content">
-                                            <ul class="rating d-flex">
-                                                <li class="on"><i class="fa fa-star-o"></i></li>
-                                                <li class="on"><i class="fa fa-star-o"></i></li>
-                                                <li class="on"><i class="fa fa-star-o"></i></li>
-                                                <li><i class="fa fa-star-o"></i></li>
-                                                <li><i class="fa fa-star-o"></i></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Start Single Product -->
-                        </div>
-                        <div class="single__product">
-                            <!-- Start Single Product -->
-                            <div class="single__product__inner">
-                                <div class="product product__style--3">
-                                    <div class="product__thumb">
-                                        <a class="first__img" href="single-product.html"><img
-                                                src="boighor/images/books/11.jpg" alt="product image"></a>
-                                        <a class="second__img animation1" href="single-product.html"><img
-                                                src="boighor/images/books/1.jpg" alt="product image"></a>
-                                        <div class="hot__box">
-                                            <span class="hot-label">BEST SALLER</span>
-                                        </div>
-                                    </div>
-                                    <div class="product__content content--center">
-                                        <h4><a href="single-product.html">Bowen Greenwood</a></h4>
-                                        <ul class="price d-flex">
-                                            <li>$40.00</li>
-                                            <li class="old_price">$35.00</li>
-                                        </ul>
-                                        <div class="action">
-                                            <div class="actions_inner">
-                                                <ul class="add_to_links">
-                                                    <li><a class="cart" href="cart.html"><i
-                                                            class="bi bi-shopping-bag4"></i></a></li>
-                                                    <li><a class="wishlist" href="boighor/wishlist.html"><i
-                                                            class="bi bi-shopping-cart-full"></i></a></li>
-                                                    <li><a class="compare" href="#"><i
-                                                            class="bi bi-heart-beat"></i></a></li>
-                                                    <li><a data-bs-toggle="modal" title="Quick View"
-                                                           class="quickview modal-view detail-link"
-                                                           href="#productmodal"><i class="bi bi-search"></i></a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="product__hover--content">
-                                            <ul class="rating d-flex">
-                                                <li class="on"><i class="fa fa-star-o"></i></li>
-                                                <li class="on"><i class="fa fa-star-o"></i></li>
-                                                <li class="on"><i class="fa fa-star-o"></i></li>
-                                                <li><i class="fa fa-star-o"></i></li>
-                                                <li><i class="fa fa-star-o"></i></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Start Single Product -->
-                            <!-- Start Single Product -->
-                            <div class="single__product__inner">
-                                <div class="product product__style--3">
-                                    <div class="product__thumb">
-                                        <a class="first__img" href="single-product.html"><img
-                                                src="boighor/images/books/5.jpg" alt="product image"></a>
-                                        <a class="second__img animation1" href="single-product.html"><img
-                                                src="boighor/images/books/11.jpg" alt="product image"></a>
-                                        <div class="hot__box">
-                                            <span class="hot-label">BEST SALLER</span>
-                                        </div>
-                                    </div>
-                                    <div class="product__content content--center">
-                                        <h4><a href="single-product.html">Bowen Greenwood</a></h4>
-                                        <ul class="price d-flex">
-                                            <li>$40.00</li>
-                                            <li class="old_price">$35.00</li>
-                                        </ul>
-                                        <div class="action">
-                                            <div class="actions_inner">
-                                                <ul class="add_to_links">
-                                                    <li><a class="cart" href="cart.html"><i
-                                                            class="bi bi-shopping-bag4"></i></a></li>
-                                                    <li><a class="wishlist" href="boighor/wishlist.html"><i
-                                                            class="bi bi-shopping-cart-full"></i></a></li>
-                                                    <li><a class="compare" href="#"><i
-                                                            class="bi bi-heart-beat"></i></a></li>
-                                                    <li><a data-bs-toggle="modal" title="Quick View"
-                                                           class="quickview modal-view detail-link"
-                                                           href="#productmodal"><i class="bi bi-search"></i></a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="product__hover--content">
-                                            <ul class="rating d-flex">
-                                                <li class="on"><i class="fa fa-star-o"></i></li>
-                                                <li class="on"><i class="fa fa-star-o"></i></li>
-                                                <li class="on"><i class="fa fa-star-o"></i></li>
-                                                <li><i class="fa fa-star-o"></i></li>
-                                                <li><i class="fa fa-star-o"></i></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Start Single Product -->
-                        </div>
-                        <div class="single__product">
-                            <!-- Start Single Product -->
-                            <div class="single__product__inner">
-                                <div class="product product__style--3">
-                                    <div class="product__thumb">
-                                        <a class="first__img" href="single-product.html"><img
-                                                src="boighor/images/books/4.jpg" alt="product image"></a>
-                                        <a class="second__img animation1" href="single-product.html"><img
-                                                src="boighor/images/books/10.jpg" alt="product image"></a>
-                                        <div class="hot__box">
-                                            <span class="hot-label">BEST SALLER</span>
-                                        </div>
-                                    </div>
-                                    <div class="product__content content--center">
-                                        <h4><a href="single-product.html">Bowen Greenwood</a></h4>
-                                        <ul class="price d-flex">
-                                            <li>$40.00</li>
-                                            <li class="old_price">$35.00</li>
-                                        </ul>
-                                        <div class="action">
-                                            <div class="actions_inner">
-                                                <ul class="add_to_links">
-                                                    <li><a class="cart" href="cart.html"><i
-                                                            class="bi bi-shopping-bag4"></i></a></li>
-                                                    <li><a class="wishlist" href="boighor/wishlist.html"><i
-                                                            class="bi bi-shopping-cart-full"></i></a></li>
-                                                    <li><a class="compare" href="#"><i
-                                                            class="bi bi-heart-beat"></i></a></li>
-                                                    <li><a data-bs-toggle="modal" title="Quick View"
-                                                           class="quickview modal-view detail-link"
-                                                           href="#productmodal"><i class="bi bi-search"></i></a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="product__hover--content">
-                                            <ul class="rating d-flex">
-                                                <li class="on"><i class="fa fa-star-o"></i></li>
-                                                <li class="on"><i class="fa fa-star-o"></i></li>
-                                                <li class="on"><i class="fa fa-star-o"></i></li>
-                                                <li><i class="fa fa-star-o"></i></li>
-                                                <li><i class="fa fa-star-o"></i></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Start Single Product -->
-                            <!-- Start Single Product -->
-                            <div class="single__product__inner">
-                                <div class="product product__style--3">
-                                    <div class="product__thumb">
-                                        <a class="first__img" href="single-product.html"><img
-                                                src="boighor/images/books/3.jpg" alt="product image"></a>
-                                        <a class="second__img animation1" href="single-product.html"><img
-                                                src="boighor/images/books/1.jpg" alt="product image"></a>
-                                        <div class="hot__box">
-                                            <span class="hot-label">BEST SALLER</span>
-                                        </div>
-                                    </div>
-                                    <div class="product__content content--center">
-                                        <h4><a href="single-product.html">Bowen Greenwood</a></h4>
-                                        <ul class="price d-flex">
-                                            <li>$40.00</li>
-                                            <li class="old_price">$35.00</li>
-                                        </ul>
-                                        <div class="action">
-                                            <div class="actions_inner">
-                                                <ul class="add_to_links">
-                                                    <li><a class="cart" href="cart.html"><i
-                                                            class="bi bi-shopping-bag4"></i></a></li>
-                                                    <li><a class="wishlist" href="boighor/wishlist.html"><i
-                                                            class="bi bi-shopping-cart-full"></i></a></li>
-                                                    <li><a class="compare" href="#"><i
-                                                            class="bi bi-heart-beat"></i></a></li>
-                                                    <li><a data-bs-toggle="modal" title="Quick View"
-                                                           class="quickview modal-view detail-link"
-                                                           href="#productmodal"><i class="bi bi-search"></i></a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="product__hover--content">
-                                            <ul class="rating d-flex">
-                                                <li class="on"><i class="fa fa-star-o"></i></li>
-                                                <li class="on"><i class="fa fa-star-o"></i></li>
-                                                <li class="on"><i class="fa fa-star-o"></i></li>
-                                                <li><i class="fa fa-star-o"></i></li>
-                                                <li><i class="fa fa-star-o"></i></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Start Single Product -->
-                        </div>
-                        <div class="single__product">
-                            <!-- Start Single Product -->
-                            <div class="single__product__inner">
-                                <div class="product product__style--3">
-                                    <div class="product__thumb">
-                                        <a class="first__img" href="single-product.html"><img
-                                                src="boighor/images/books/9.jpg" alt="product image"></a>
-                                        <a class="second__img animation1" href="single-product.html"><img
-                                                src="boighor/images/books/4.jpg" alt="product image"></a>
-                                        <div class="hot__box">
-                                            <span class="hot-label">BEST SALLER</span>
-                                        </div>
-                                    </div>
-                                    <div class="product__content content--center">
-                                        <h4><a href="single-product.html">Bowen Greenwood</a></h4>
-                                        <ul class="price d-flex">
-                                            <li>$40.00</li>
-                                            <li class="old_price">$35.00</li>
-                                        </ul>
-                                        <div class="action">
-                                            <div class="actions_inner">
-                                                <ul class="add_to_links">
-                                                    <li><a class="cart" href="cart.html"><i
-                                                            class="bi bi-shopping-bag4"></i></a></li>
-                                                    <li><a class="wishlist" href="boighor/wishlist.html"><i
-                                                            class="bi bi-shopping-cart-full"></i></a></li>
-                                                    <li><a class="compare" href="#"><i
-                                                            class="bi bi-heart-beat"></i></a></li>
-                                                    <li><a data-bs-toggle="modal" title="Quick View"
-                                                           class="quickview modal-view detail-link"
-                                                           href="#productmodal"><i class="bi bi-search"></i></a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="product__hover--content">
-                                            <ul class="rating d-flex">
-                                                <li class="on"><i class="fa fa-star-o"></i></li>
-                                                <li class="on"><i class="fa fa-star-o"></i></li>
-                                                <li class="on"><i class="fa fa-star-o"></i></li>
-                                                <li><i class="fa fa-star-o"></i></li>
-                                                <li><i class="fa fa-star-o"></i></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Start Single Product -->
-                            <!-- Start Single Product -->
-                            <div class="single__product__inner">
-                                <div class="product product__style--3">
-                                    <div class="product__thumb">
-                                        <a class="first__img" href="single-product.html"><img
-                                                src="boighor/images/books/7.jpg" alt="product image"></a>
-                                        <a class="second__img animation1" href="single-product.html"><img
-                                                src="boighor/images/books/3.jpg" alt="product image"></a>
-                                        <div class="hot__box">
-                                            <span class="hot-label">BEST SALLER</span>
-                                        </div>
-                                    </div>
-                                    <div class="product__content content--center">
-                                        <h4><a href="single-product.html">Bowen Greenwood</a></h4>
-                                        <ul class="price d-flex">
-                                            <li>$40.00</li>
-                                            <li class="old_price">$35.00</li>
-                                        </ul>
-                                        <div class="action">
-                                            <div class="actions_inner">
-                                                <ul class="add_to_links">
-                                                    <li><a class="cart" href="cart.html"><i
-                                                            class="bi bi-shopping-bag4"></i></a></li>
-                                                    <li><a class="wishlist" href="boighor/wishlist.html"><i
-                                                            class="bi bi-shopping-cart-full"></i></a></li>
-                                                    <li><a class="compare" href="#"><i
-                                                            class="bi bi-heart-beat"></i></a></li>
-                                                    <li><a data-bs-toggle="modal" title="Quick View"
-                                                           class="quickview modal-view detail-link"
-                                                           href="#productmodal"><i class="bi bi-search"></i></a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="product__hover--content">
-                                            <ul class="rating d-flex">
-                                                <li class="on"><i class="fa fa-star-o"></i></li>
-                                                <li class="on"><i class="fa fa-star-o"></i></li>
-                                                <li class="on"><i class="fa fa-star-o"></i></li>
-                                                <li><i class="fa fa-star-o"></i></li>
-                                                <li><i class="fa fa-star-o"></i></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Start Single Product -->
-                        </div>
-                        <div class="single__product">
-                            <!-- Start Single Product -->
-                            <div class="single__product__inner">
-                                <div class="product product__style--3">
-                                    <div class="product__thumb">
-                                        <a class="first__img" href="single-product.html"><img
-                                                src="boighor/images/books/6.jpg" alt="product image"></a>
-                                        <a class="second__img animation1" href="single-product.html"><img
-                                                src="boighor/images/books/4.jpg" alt="product image"></a>
-                                        <div class="hot__box">
-                                            <span class="hot-label">BEST SALLER</span>
-                                        </div>
-                                    </div>
-                                    <div class="product__content content--center">
-                                        <h4><a href="single-product.html">Bowen Greenwood</a></h4>
-                                        <ul class="price d-flex">
-                                            <li>$40.00</li>
-                                            <li class="old_price">$35.00</li>
-                                        </ul>
-                                        <div class="action">
-                                            <div class="actions_inner">
-                                                <ul class="add_to_links">
-                                                    <li><a class="cart" href="cart.html"><i
-                                                            class="bi bi-shopping-bag4"></i></a></li>
-                                                    <li><a class="wishlist" href="boighor/wishlist.html"><i
-                                                            class="bi bi-shopping-cart-full"></i></a></li>
-                                                    <li><a class="compare" href="#"><i
-                                                            class="bi bi-heart-beat"></i></a></li>
-                                                    <li><a data-bs-toggle="modal" title="Quick View"
-                                                           class="quickview modal-view detail-link"
-                                                           href="#productmodal"><i class="bi bi-search"></i></a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="product__hover--content">
-                                            <ul class="rating d-flex">
-                                                <li class="on"><i class="fa fa-star-o"></i></li>
-                                                <li class="on"><i class="fa fa-star-o"></i></li>
-                                                <li class="on"><i class="fa fa-star-o"></i></li>
-                                                <li><i class="fa fa-star-o"></i></li>
-                                                <li><i class="fa fa-star-o"></i></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Start Single Product -->
-                            <!-- Start Single Product -->
-                            <div class="single__product__inner">
-                                <div class="product product__style--3">
-                                    <div class="product__thumb">
-                                        <a class="first__img" href="single-product.html"><img
-                                                src="boighor/images/books/4.jpg" alt="product image"></a>
-                                        <a class="second__img animation1" href="single-product.html"><img
-                                                src="boighor/images/books/10.jpg" alt="product image"></a>
-                                        <div class="hot__box">
-                                            <span class="hot-label">BEST SALLER</span>
-                                        </div>
-                                    </div>
-                                    <div class="product__content content--center">
-                                        <h4><a href="single-product.html">Bowen Greenwood</a></h4>
-                                        <ul class="price d-flex">
-                                            <li>$40.00</li>
-                                            <li class="old_price">$35.00</li>
-                                        </ul>
-                                        <div class="action">
-                                            <div class="actions_inner">
-                                                <ul class="add_to_links">
-                                                    <li><a class="cart" href="cart.html"><i
-                                                            class="bi bi-shopping-bag4"></i></a></li>
-                                                    <li><a class="wishlist" href="boighor/wishlist.html"><i
-                                                            class="bi bi-shopping-cart-full"></i></a></li>
-                                                    <li><a class="compare" href="#"><i
-                                                            class="bi bi-heart-beat"></i></a></li>
-                                                    <li><a data-bs-toggle="modal" title="Quick View"
-                                                           class="quickview modal-view detail-link"
-                                                           href="#productmodal"><i class="bi bi-search"></i></a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="product__hover--content">
-                                            <ul class="rating d-flex">
-                                                <li class="on"><i class="fa fa-star-o"></i></li>
-                                                <li class="on"><i class="fa fa-star-o"></i></li>
-                                                <li class="on"><i class="fa fa-star-o"></i></li>
-                                                <li><i class="fa fa-star-o"></i></li>
-                                                <li><i class="fa fa-star-o"></i></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Start Single Product -->
-                        </div>
+<!--                    <div class="product__indicator&#45;&#45;4 arrows_style owl-carousel owl-theme">-->
+                    <div class="container row tho">
+
+
+
                     </div>
                 </div>
                 <!-- End Single Tab Content -->
@@ -1891,54 +1331,7 @@
 
     <!-- Best Sale Area Area -->
     <!-- Footer Area -->
-    <footer id="wn__footer" class="footer__area bg__cat--8 brown--color">
-        <div class="footer-static-top">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="footer__widget footer__menu">
-                            <div class="ft__logo">
-                                <a href="index.html">
-                                    <img src="/images/logo/3.png" alt="logo">
-                                </a>
-                                <p>Khám phá hành trình đầy phiêu lưu và khám phá bản thân trong cuốn sách mới đầy cảm hứng.</p>
-
-                            </div>
-                            <div class="footer__content">
-                                <ul class="social__net social__net--2 d-flex justify-content-center">
-                                    <li><a href="#"><i class="bi bi-facebook"></i></a></li>
-                                    <li><a href="#"><i class="bi bi-google"></i></a></li>
-                                    <li><a href="#"><i class="bi bi-twitter"></i></a></li>
-                                    <li><a href="#"><i class="bi bi-linkedin"></i></a></li>
-                                    <li><a href="#"><i class="bi bi-youtube"></i></a></li>
-                                </ul>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="copyright__wrapper">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-6 col-md-6 col-sm-12">
-                        <div class="copyright">
-                            <div class="copy__right__inner text-start">
-                                <p>&copy; 2023, Quản lý thư viên. Made with <i class="fa fa-heart text-danger"></i> by <a
-                                        href="" target="_blank">Huynn và Ninhnh</a></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-sm-12">
-                        <div class="payment text-end">
-                            <img src="/images/icons/payment.png" alt=""/>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
+    <div th:replace="fragments/footer/_footer :: footer"></div>
     <!-- //Footer Area -->
     <!-- QUICKVIEW PRODUCT -->
     <div id="quickview-wrapper">
@@ -2016,7 +1409,6 @@
                                         </ul>
                                     </div>
                                 </div>
-                                <div class="addtocart-btn">
                                     <a href="#">Add to cart</a>
                                 </div>
                             </div>
@@ -2028,7 +1420,6 @@
     </div>
     <!-- END QUICKVIEW PRODUCT -->
 </div>
-<!-- //Main wrapper -->
 
 <!-- JS Files -->
 <script src="/js/vendor/jquery.min.js"></script>
@@ -2036,9 +1427,8 @@
 <script src="/js/vendor/bootstrap.min.js"></script>
 <script src="/js/plugins.js"></script>
 <script src="/js/active.js"></script>
-
+<script src="/js/index/index.js"></script>
 </body>
 
 
-<!-- Mirrored from htmldemo.net/boighor/boighor/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 11 May 2023 16:00:51 GMT -->
 </html>

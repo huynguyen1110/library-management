@@ -5,6 +5,7 @@ import jakarta.persistence.criteria.CriteriaBuilder;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -18,20 +19,22 @@ public class Sach {
     public Integer maSach;
     public String tenSach;
     public Integer soLuong;
-    public Date ngayXuatBan;
+    public LocalDate ngayXuatBan;
+    public Double giaTien;
     @OneToOne
     public TheLoai theLoai;
     @OneToOne
     public NhaXuatBan nhaXuatBan;
     @Lob
     private byte[] image;
-    @ManyToMany
-    @JoinTable(name = "sach_tacgia",
-            joinColumns = @JoinColumn(name = "ma_sach"),
-            inverseJoinColumns = @JoinColumn(name = "ma_tac_gia"))
-    public Set<TacGia> tacGias = new HashSet<>();
+    @ManyToOne
+    @JoinColumn()
+    public TacGia tacGia ;
     @ManyToMany(mappedBy = "sachs")
     public Set<PhieuMuon> phieuMuons = new HashSet<>();
     @ManyToMany(mappedBy = "sachs")
     public Set<PhieuTra> phieuTras = new HashSet<>();
+    @ManyToMany(mappedBy = "sachs")
+    public Set<GioHang> gioHangs = new HashSet<>();
+
 }

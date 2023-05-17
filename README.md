@@ -6,3 +6,5 @@ dự quán demo bộ môn công nghệ phần mềm
   - mariadb Database
   
   - Spring boot 3.0.6
+
+  - thymeleaf 

@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -20,6 +21,6 @@ public class TacGia {
     public String sdt;
     public String email;
     public Date ngaySinh;
-    @ManyToMany(mappedBy = "tacGias")
-    public Set<Sach> sachSet = new HashSet<>();
+    @OneToMany
+    private List<Sach> sachs;
 }

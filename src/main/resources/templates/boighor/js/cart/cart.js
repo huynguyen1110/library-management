@@ -6,6 +6,7 @@ function hienThiChiTietSachTrongCart () {
     tableBody.empty()
     var result = ``
     var tongTienBody = $(".tong-tien")
+    var tongTien = 0
     var tongTienContent = ``
     tongTienBody.empty()
     $.ajax({
@@ -16,15 +17,16 @@ function hienThiChiTietSachTrongCart () {
                 result = `<tr>
                             <td class="product-name"><a href="/api/v1/single-product?maSach=${maSach}&maTk=${maTk}">${item.tenSach}</a></td>
                             <td class="product-price"><span class="amount">${formatTienMat(item.giaTien)}</span></td>
-                            <td class="product-remove"><a href="#">X</a></td>
+                            <td class="product-remove"><button type="button" onclick="xoaSanPhamKhoiGioHang(${item.maSach})">X</button></td>
                      </tr>`
+                tongTien += item.giaTien
                 tableBody.append(result);
             })
             tongTienContent = `<ul class="cart__total__list">
                                 <li>Tổng tiền</li>
                             </ul>
                             <ul class="cart__total__tk">
-                                <li>${formatTienMat(response.tongTien)}</li>
+                                <li>${formatTienMat(tongTien)}</li>
                             </ul>`
             tongTienBody.append(tongTienContent)
         },
@@ -45,3 +47,20 @@ function formatTienMat(tien) {
 }
 
 hienThiChiTietSachTrongCart()
+
+function xoaSanPhamKhoiGioHang(maSachItem) {
+
+    $.ajax({
+        url: '/api/v1/xoa-sach-khoi-gio-hang?maSach=' + maSachItem + '&maTk=' + maTk,
+        type: 'DELETE',
+        success: function(response) {
+            alert("Đã xóa sách khỏi giỏ hàng")
+            hienThiChiTietSachTrongCart()
+        },
+        error: function(xhr, status, error) {
+            console.log('xóa sách không thành công');
+            console.log(error);
+        }
+    });
+}
+

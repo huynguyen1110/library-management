@@ -30,7 +30,7 @@ function hienThiChiTieSach() {
                                         </ul>
                                     </div>
                                     <div class="price-box">
-                                        <span>${item.giaTien}</span>
+                                        <span>${formatTienMat(item.giaTien) }</span>
                                     </div>
                                     <div class="box-tocart d-flex">
                                             <div class="addtocart__actions">
@@ -106,21 +106,22 @@ function hienThiGioHang() {
     var maTk = urlParams.get('maTk');
     var gioHangBody = $(".gio-hang-body")
     gioHangBody.empty()
+    var tongTien = 0
     var result = ``
     $.ajax({
         url: '/api/v1/lay-gio-hang?maSach=' + maSach + '&maTk=' + maTk,
         type: 'GET',
         success: function(response) {
+            response.sachList.forEach(function (item) {
+                tongTien += item.giaTien
+            })
             result = `
-                                    <div class="micart__close">
-                                        <span>close</span>
-                                    </div>
                                     <div class="items-total d-flex justify-content-between">
                                         <span>${response.sachList.length} items</span>
                                         <span>Tổng tiền</span>
                                     </div>
                                     <div class="total_amount text-end">
-                                        <span>${formatTienMat(response.tongTien)}</span>
+                                        <span>${formatTienMat(tongTien)}</span>
                                     </div>
                                     <div class="mini_action checkout">
                                         <a class="checkout__btn" href="/api/v1/cart?maSach=${maSach}&maTk=${maTk}">Thanh toán</a>

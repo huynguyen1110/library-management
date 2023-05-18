@@ -12,6 +12,7 @@ import com.example.library.code.services.iservices.IGioHangService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ansi.Ansi8BitColor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -89,6 +90,12 @@ public class GioHangService implements IGioHangService {
             layGioHangDto.sachList.add(getChiTietSachDto);
         }
         return layGioHangDto;
+    }
+
+    @Transactional
+    @Override
+    public void xoaSachKhoiGioHang(int maSach, int maTk) {
+        gioHangRepository.removeSachFromGioHangByMaSach(maSach, maTk);
     }
 
 }

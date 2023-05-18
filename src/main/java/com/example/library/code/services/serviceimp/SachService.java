@@ -1,7 +1,9 @@
 package com.example.library.code.services.serviceimp;
 
 import com.example.library.code.data.sach.GetChiTietSachDto;
+import com.example.library.code.data.sach.ThemSachDto;
 import com.example.library.code.models.entities.Sach;
+import com.example.library.code.models.entities.TacGia;
 import com.example.library.code.repositories.SachRepository;
 import com.example.library.code.services.iservices.ISachService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -76,4 +78,22 @@ public class SachService implements ISachService {
         getChiTietSachDto.tacGia = sach.tacGia.ten;
         return getChiTietSachDto;
     }
+
+    @Override
+    public Sach themSach(ThemSachDto sach) {
+        Sach themSach = new Sach();
+        themSach.setTenSach(sach.tenSach);
+        themSach.setSoLuong(sach.soLuong);
+        themSach.setNgayXuatBan(sach.ngayXuatBan);
+        themSach.setGiaTien(sach.giaTien);
+        themSach.setTheLoai(sach.theLoai);
+        themSach.setNhaXuatBan(sach.nhaXuatBan);
+        themSach.setImage(sach.getImage());
+        themSach.setTacGia(sach.tacGia);
+
+        sachRepository.save(themSach);
+        return themSach;
+    }
+
+
 }

@@ -64,37 +64,47 @@
 <div class="container">
   <h2>Add Book</h2>
 
-  <form th:action="@{/templates/books}" th:object="${book}" method="post" enctype="multipart/form-data">
+  <form th:action="@{/api/v1/them-sach}" th:object="${sach}" method="post" enctype="multipart/form-data">
     <div class="form-group">
-      <label for="ma_sach">Mã sách:</label>
-      <input type="text" class="form-control" id="ma_sach" th:field="*{ma_sach}">
+      <label for="imagePreview">Xem trước ảnh:</label> <br>
+      <img id="imagePreview" src="#" style="max-width: 400px; max-height: 400px;"/>
     </div>
     <div class="form-group">
       <label for="image">Ảnh:</label>
-      <input type="file" class="form-control-file" id="image" name="image">
+      <input type="file" class="form-control-file" id="image" name="image" accept="image/*" onchange="previewImage(event)">
     </div>
     <div class="form-group">
-      <label for="ngay_xuat_ban">Ngày xuất bản:</label>
-      <input type="text" class="form-control" id="ngay_xuat_ban" th:field="*{ngay_xuat_ban}">
+      <label for="tenSach">Tên sách:</label>
+      <input type="text" class="form-control" id="tenSach" name="tenSach" th:field="*{tenSach}">
     </div>
     <div class="form-group">
-      <label for="so_luong">Số lượng:</label>
-      <input type="number" class="form-control" id="so_luong" th:field="*{so_luong}">
-    </div>
-    <div class="form-group">
-      <label for="ten_sach">Tên sách:</label>
-      <input type="text" class="form-control" id="ten_sach" th:field="*{ten_sach}">
-    </div>
-    <div class="form-group">
-      <label for="the_loai_ma_the_loai">Nhà xuất bản:</label>
-      <select class="form-control" id="nha_xuat_ban_ma_nha_xuat_ban" name="" th:field="*{nha_xuat_ban_ma_nha_xuat_ban}" >
-        <option th:each="nhaXuatBan : ${nha_xuat_ban}" th:value="123123" th:text="${nhaXuatBan.ten_nha_xuat_ban}"></option>
+      <label for="theLoai">Tác Giả:</label>
+      <select class="form-control" id="tacGia" name="tacGia" th:field="*{tacGia}" >
+        <option th:each="tacGia : ${tacGias}" th:value="${tacGia.maTacGia}" th:text="${tacGia.ten}"></option>
       </select>
     </div>
     <div class="form-group">
-      <label for="the_loai_ma_the_loai">Thể loại:</label>
-      <select class="form-control" id="the_loai_ma_the_loai" name="" th:field="*{the_loai_ma_the_loai}" >
-        <option th:each="theLoai : ${the_loai}" th:value="123123" th:text="${theLoai.ten_the_loai}"></option>
+      <label for="giaSach">Giá:</label>
+      <input type="number" class="form-control" id="giaSach" name="giaSach" min="0" step="0.01" th:field="*{giaTien}">
+    </div>
+    <div class="form-group">
+      <label for="soLuong">Số lượng:</label>
+      <input type="number" class="form-control" id="soLuong" name="soLuong" th:field="*{soLuong}">
+    </div>
+    <div class="form-group">
+      <label for="ngayXuatBan">Ngày xuất bản:</label>
+      <input type="date" pattern="\d{1,2}/\d{1,2}/\d{4}" placeholder="dd/mm/yyyy" class="form-control" id="ngayXuatBan" name="ngayXuatBan" th:field="*{ngayXuatBan}">
+    </div>
+    <div class="form-group">
+      <label for="theLoai">Nhà xuất bản:</label>
+      <select class="form-control" id="nhaXuatBan" name="nhaXuatBan" th:field="*{nhaXuatBan}" >
+        <option th:each="nhaXuatBan : ${nhaxuatBans}" th:value="${nhaXuatBan.maNhaXuatBan}" th:text="${nhaXuatBan.tenNhaXuatBan}"></option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="nhaXuatBan">Thể loại:</label>
+      <select class="form-control" id="theLoai" name="theLoai" th:field="*{theLoai}" >
+        <option th:each="theLoai : ${theLoais}" th:value="${theLoai.maTheLoai}" th:text="${theLoai.tenTheLoai}"></option>
       </select>
     </div>
     <button type="submit" class="btn btn-primary">Thêm sách</button>
@@ -105,4 +115,22 @@
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 </body>
+<script>
+  function previewImage(event) {
+    var input = event.target;
+    var preview = document.getElementById('imagePreview');
+
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+
+      reader.onload = function(e) {
+        preview.src = e.target.result;
+      }
+
+      reader.readAsDataURL(input.files[0]);
+    } else {
+      preview.src = '#';
+    }
+  }
+</script>
 </html>

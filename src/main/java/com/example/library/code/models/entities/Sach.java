@@ -25,8 +25,7 @@ public class Sach {
     public TheLoai theLoai;
     @OneToOne
     public NhaXuatBan nhaXuatBan;
-    @Lob
-    private byte[] image;
+    public String image;
     @ManyToOne
     @JoinColumn()
     public TacGia tacGia ;

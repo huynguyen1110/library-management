@@ -160,7 +160,7 @@ function hienThiSachTheoTheLoai (theLoai) {
                                 <div class="product product__style--3">
                                     <div class="product__thumb">
                                         <a class="first__img" href="/api/v1/single-product?maSach=${item.maSach}&maTk=${idNguoiDung}"><img
-                                                src="/images/books/8.jpg" alt="product image"></a>
+                                                src="${item.image} ;" alt="product image"></a>
                                         <div class="hot__box">
                                             <span class="hot-label">BEST SALLER</span>
                                         </div>

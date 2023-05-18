@@ -154,13 +154,17 @@ function hienThiSachTheoTheLoai (theLoai) {
 
             if (theLoai == 'Thơ') {
                 response.forEach(function (item) {
+                    var imagePath = item.image
+                    var newPath = imagePath.replace(/\\/g, "/");
+                    var startIndex = newPath.indexOf("/sach-img/");
+                    var finalPath = newPath.substring(startIndex);
                     result = `
                             <!-- Start Single Product -->
                             <div class="single__product__inner  col-3">
                                 <div class="product product__style--3">
                                     <div class="product__thumb">
                                         <a class="first__img" href="/api/v1/single-product?maSach=${item.maSach}&maTk=${idNguoiDung}"><img
-                                                src="${item.image} ;" alt="product image"></a>
+                                                src="${finalPath}" style="width: 249px; height: 313.55px;" alt="product image"></a>
                                         <div class="hot__box">
                                             <span class="hot-label">BEST SALLER</span>
                                         </div>

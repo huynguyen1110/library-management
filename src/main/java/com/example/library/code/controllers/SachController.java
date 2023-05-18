@@ -57,7 +57,7 @@ public class SachController {
         return sachService.timTatCa();
     }
 
-    @GetMapping("sach")
+    @GetMapping("sach-theo-the-loai")
     public List<Sach> sachTheoTheLoai(@RequestParam("the-loai") String theLoai) {
         return sachService.timTheLoaiTruyenNgan(theLoai);
     }

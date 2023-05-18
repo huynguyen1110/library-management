@@ -23,4 +23,9 @@ public class GioHangController {
     public LayGioHangDto layGioHangTheoMaTk(@RequestParam("maTk") int maTk) {
         return gioHangService.layGioHangTheoMaTk(maTk);
     }
+
+    @DeleteMapping("xoa-sach-khoi-gio-hang")
+    public void xoaSachKhoiGioHang(@RequestParam int maSach, @RequestParam int maTk) {
+        gioHangService.xoaSachKhoiGioHang(maSach, maTk);
+    }
 }

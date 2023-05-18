@@ -30,7 +30,7 @@ import java.util.Random;
 @RequestMapping("/api/v1/")
 public class SachController {
 
-    private static String UPLOADED_FOLDER = "D:\\img_libary_management\\";
+    private static String UPLOADED_FOLDER = "D:\\Libary Management\\aa\\library-management\\src\\main\\resources\\static\\image\\";
     private static String FILE_EXTENSION = ".jpg";
 
     @Autowired
@@ -121,7 +121,7 @@ public class SachController {
             Path path = Paths.get(UPLOADED_FOLDER + file.getName() + ranNum + FILE_EXTENSION);
             Files.write(path, bytes);
 //            return file.getOriginalFilename();
-            return path.toString();
+            return path.getFileName().toString();
         } else return null;
     }
 }

@@ -5,6 +5,10 @@ import com.example.library.code.models.entities.Sach;
 import com.example.library.code.repositories.SachRepository;
 import com.example.library.code.services.iservices.ISachService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -75,5 +79,11 @@ public class SachService implements ISachService {
         getChiTietSachDto.nhaXuatBan = sach.nhaXuatBan.tenNhaXuatBan;
         getChiTietSachDto.tacGia = sach.tacGia.ten;
         return getChiTietSachDto;
+    }
+
+    @Override
+    public Page<Sach> timTatCaSachCoPhanTrang(int pageNumber, String orderBy) {
+        Pageable pageable = PageRequest.of(pageNumber, 12, Sort.by(orderBy).ascending());
+        return sachRepository.findAllByOrderByTenSachAsc(pageable);
     }
 }

@@ -195,8 +195,18 @@ function hienThiSachTheoTheLoai (theLoai) {
     });
 }
 
-function formatTienMat(tien) {
+function vaoCuaHang() {
+    var urlParams = new URLSearchParams(window.location.search);
+    var maTk = urlParams.get('id-nguoi-dung');
+    $(".vao-cua-hang").on("click", function(event) {
+        event.preventDefault();
+        window.location.href = '/api/v1/shop?maTk=' + maTk;
+    });
+}
 
+vaoCuaHang()
+
+function formatTienMat(tien) {
     var formattedAmount = tien.toLocaleString('vi-VN', {
         style: 'currency',
         currency: 'VND'

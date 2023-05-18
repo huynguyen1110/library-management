@@ -2,6 +2,7 @@ package com.example.library.code.services.iservices;
 
 import com.example.library.code.data.sach.GetChiTietSachDto;
 import com.example.library.code.models.entities.Sach;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -12,9 +13,11 @@ public interface ISachService {
 
     List<Sach> timSachMoi(LocalDate ngayBatDau);
 
-    public List<Sach> timTatCa();
+    List<Sach> timTatCa();
 
-    public List<Sach> timTheLoaiTruyenNgan(String theLoai);
+    List<Sach> timTheLoaiTruyenNgan(String theLoai);
 
-    public GetChiTietSachDto timSachTheoId(int id);
+    GetChiTietSachDto timSachTheoId(int id);
+
+    Page<Sach> timTatCaSachCoPhanTrang(int pageNumber, String orderBy);
 }

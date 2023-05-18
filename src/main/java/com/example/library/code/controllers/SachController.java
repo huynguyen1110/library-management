@@ -4,6 +4,7 @@ import com.example.library.code.data.sach.GetChiTietSachDto;
 import com.example.library.code.models.entities.Sach;
 import com.example.library.code.services.serviceimp.SachService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -39,5 +40,10 @@ public class SachController {
     @GetMapping("chi-tiet-sach")
     public GetChiTietSachDto timSachTheoId(@RequestParam("id") int id) {
             return sachService.timSachTheoId(id);
+    }
+
+    @GetMapping("lay-sach-phantrang")
+    public Page<Sach> laySachCoPhanTrang(@RequestParam(defaultValue = "0") int pageNumber, @RequestParam(defaultValue = "tenSach") String orderBy) {
+        return sachService.timTatCaSachCoPhanTrang(pageNumber, orderBy);
     }
 }

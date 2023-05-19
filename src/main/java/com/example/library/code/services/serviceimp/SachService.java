@@ -84,6 +84,26 @@ public class SachService implements ISachService {
     @Override
     public Page<Sach> timTatCaSachCoPhanTrang(int pageNumber, String orderBy) {
         Pageable pageable = PageRequest.of(pageNumber, 12, Sort.by(orderBy).ascending());
-        return sachRepository.findAllByOrderByTenSachAsc(pageable);
+        if (orderBy == "tenSach") {
+            return sachRepository.findAllByOrderByTenSachAsc(pageable);
+        }
+        if (orderBy == "ngayXuatBan") {
+            return sachRepository.findAllByOrderByNgayXuatBanAsc(pageable);
+        } else  {
+            return sachRepository.findAllByOrderByGiaTienAsc(pageable);
+        }
+    }
+
+    @Override
+    public Page<Sach> laySachTheoTheLoaiCoPhanTrang(int pageNumber, String theLoai, String orderBy) {
+        Pageable pageable = PageRequest.of(pageNumber, 12, Sort.by(orderBy).ascending());
+        if ("tenSach".equals(orderBy)) {
+            return sachRepository.findAllByTheLoai_TenTheLoaiOrderByTenSachAsc(theLoai, pageable);
+        }
+        if ("ngayXuatBan".equals(orderBy)) {
+            return sachRepository.findAllByTheLoai_TenTheLoaiOrderByNgayXuatBanAsc(theLoai ,pageable);
+        } else  {
+            return sachRepository.findAllByTheLoai_TenTheLoaiOrderByGiaTienAsc(theLoai ,pageable);
+        }
     }
 }

@@ -46,4 +46,9 @@ public class SachController {
     public Page<Sach> laySachCoPhanTrang(@RequestParam(defaultValue = "0") int pageNumber, @RequestParam(defaultValue = "tenSach") String orderBy) {
         return sachService.timTatCaSachCoPhanTrang(pageNumber, orderBy);
     }
+
+    @GetMapping("lay-sach-phantrang-theo-theloai")
+    public Page<Sach> laySachCoPhanTrangTheoTheLoai(@RequestParam(defaultValue = "0") int pageNumber, @RequestParam(defaultValue = "tenSach") String orderBy, @RequestParam String theLoai) {
+        return sachService.laySachTheoTheLoaiCoPhanTrang(pageNumber, theLoai, orderBy);
+    }
 }

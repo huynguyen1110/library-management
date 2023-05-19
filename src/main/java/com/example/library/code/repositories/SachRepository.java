@@ -34,4 +34,15 @@ public interface SachRepository extends JpaRepository<Sach, Integer> {
     List<Sach> findSachTrongGioHangByMaTk(@Param("maTk") int maTk);
 
     Page<Sach> findAllByOrderByTenSachAsc(Pageable pageable);
+
+    Page<Sach> findAllByOrderByNgayXuatBanAsc(Pageable pageable);
+
+    Page<Sach> findAllByOrderByGiaTienAsc(Pageable pageable);
+
+    Page<Sach> findAllByTheLoai_TenTheLoaiOrderByTenSachAsc (String theLoai, Pageable pageable);
+
+    Page<Sach> findAllByTheLoai_TenTheLoaiOrderByNgayXuatBanAsc (String theLoai, Pageable pageable);
+
+    Page<Sach> findAllByTheLoai_TenTheLoaiOrderByGiaTienAsc (String theLoai, Pageable pageable);
+
 }

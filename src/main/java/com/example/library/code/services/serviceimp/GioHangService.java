@@ -95,7 +95,18 @@ public class GioHangService implements IGioHangService {
     @Transactional
     @Override
     public void xoaSachKhoiGioHang(int maSach, int maTk) {
+        GioHang gioHang = gioHangRepository.findGioHangByMaTK(maTk);
+        Sach sach = sachRepository.timSachTheoId(maSach);
+        gioHang.tongTien = gioHang.tongTien - sach.giaTien;
+        gioHangRepository.save(gioHang);
         gioHangRepository.removeSachFromGioHangByMaSach(maSach, maTk);
+    }
+
+    @Transactional
+    @Override
+    public void xoaGioHangByMaTk(int maTk) {
+        DocGia docGia = docGiaRepository.findByMaTk(maTk);
+        gioHangRepository.deleteByMaDocGia(docGia.maDocGia);
     }
 
 }

@@ -214,4 +214,18 @@ function formatTienMat(tien) {
     return formattedAmount
 }
 
+function thongTinMuonTraBtn() {
+    alert("thanh cong")
+    // $.ajax({
+    //     url: `/api/v1/tao-phieu-muon-tra?maTk=` + maTk,
+    //     method: 'POST',
+    //     success: function (response) {
+    //         alert("Thanh toán thành công")
+    //     },
+    //     error: function () {
+    //         console.log('Đã xảy ra lỗi khi gọi API.');
+    //     }
+    // });
+}
+
 

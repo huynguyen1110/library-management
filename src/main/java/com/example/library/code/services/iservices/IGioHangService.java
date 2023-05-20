@@ -12,4 +12,6 @@ public interface IGioHangService {
     LayGioHangDto layGioHangTheoMaTk(int maTk);
 
     void xoaSachKhoiGioHang(int maSach, int maTk);
+
+    void xoaGioHangByMaTk(int maDocGia);
 }

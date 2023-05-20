@@ -27,5 +27,7 @@ public interface GioHangRepository extends JpaRepository<GioHang, Integer> {
             "AND ma_sach = :sachId ", nativeQuery = true)
     void removeSachFromGioHangByMaSach(@Param("sachId") int sachId, @Param("taiKhoanId") int taiKhoanId);
 
-
+    @Modifying
+    @Query("DELETE FROM GioHang gh WHERE gh.docGia.maDocGia = :maDocGia")
+    void deleteByMaDocGia(int maDocGia);
 }

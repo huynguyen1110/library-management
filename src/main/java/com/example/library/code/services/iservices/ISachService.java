@@ -24,7 +24,6 @@ public interface ISachService {
     Page<Sach> timTatCaSachCoPhanTrang(int pageNumber, String orderBy);
 
     Page<Sach> laySachTheoTheLoaiCoPhanTrang(int pageNumber, String theLoai, String orderBy);
-    public GetChiTietSachDto timSachTheoId(int id);
 
     public Sach themSach(ThemSachDto sachDto);
 

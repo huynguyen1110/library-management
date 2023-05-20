@@ -17,6 +17,8 @@ public interface ISachService {
 
     List<Sach> timTatCa();
 
+    List<Sach> adminTimTatCaSach();
+
     List<Sach> timTheLoaiTruyenNgan(String theLoai);
 
     GetChiTietSachDto timSachTheoId(int id);

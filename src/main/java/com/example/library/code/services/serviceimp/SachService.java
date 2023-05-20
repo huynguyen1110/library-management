@@ -55,6 +55,11 @@ public class SachService implements ISachService {
     }
 
     @Override
+    public List<Sach> adminTimTatCaSach() {
+        return sachRepository.findAll();
+    }
+
+    @Override
     public List<Sach> timTheLoaiTruyenNgan(String theLoai) {
         List<Sach> sachTheoTheLoai = sachRepository.timTheoTheLoai(theLoai);
         List<Sach> results = new ArrayList<>();

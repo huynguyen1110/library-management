@@ -34,4 +34,7 @@ public class PhieuTra {
             joinColumns = @JoinColumn(name = "phieu_tra_id"),
             inverseJoinColumns = @JoinColumn(name = "sach_id"))
     private Set<Sach> sachs = new HashSet<>();
+    public boolean trang_thai;
+
+
 }

@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class SachService implements ISachService {
@@ -73,7 +74,7 @@ public class SachService implements ISachService {
         getChiTietSachDto.ngayXuatBan = sach.ngayXuatBan;
         getChiTietSachDto.soLuong = sach.soLuong;
         getChiTietSachDto.theLoai = sach.theLoai.tenTheLoai;
-        getChiTietSachDto.getImage();
+        getChiTietSachDto.image = sach.image;
         getChiTietSachDto.nhaXuatBan = sach.nhaXuatBan.tenNhaXuatBan;
         getChiTietSachDto.tacGia = sach.tacGia.ten;
         return getChiTietSachDto;
@@ -93,6 +94,28 @@ public class SachService implements ISachService {
 
         sachRepository.save(themSach);
         return themSach;
+    }
+
+    @Override
+    public Sach xoaSach(int id) {
+        Optional<Sach> sach = sachRepository.findById(id);
+        sachRepository.delete(sach.get());
+        return sach.get();
+    }
+
+    @Override
+    public Sach capNhap(int id, ThemSachDto sachDto) {
+        Optional<Sach> sach = sachRepository.findById(id);
+        sach.get().setTenSach(sachDto.tenSach);
+        sach.get().setSoLuong(sachDto.soLuong);
+        sach.get().setNgayXuatBan(sachDto.ngayXuatBan);
+        sach.get().setGiaTien(sachDto.giaTien);
+        sach.get().setTheLoai(sachDto.theLoai);
+        sach.get().setNhaXuatBan(sachDto.nhaXuatBan);
+        sach.get().setImage(sachDto.image);
+        sach.get().setTacGia(sachDto.tacGia);
+        sachRepository.save(sach.get());
+        return sach.get();
     }
 
 

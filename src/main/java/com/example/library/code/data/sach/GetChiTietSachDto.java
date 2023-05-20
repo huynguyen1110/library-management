@@ -21,6 +21,6 @@ public class GetChiTietSachDto {
     public Double giaTien;
     public String theLoai;
     public String nhaXuatBan;
-    private byte[] image;
+    public String image;
     public String tacGia;
 }

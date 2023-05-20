@@ -67,7 +67,7 @@ public class SachController {
             return sachService.timSachTheoId(id);
     }
 
-    @GetMapping("them-sach")
+    @GetMapping("admin/them-sach")
     public ModelAndView formThemSach(){
         ModelAndView modelAndView = new ModelAndView("/books/addBook");
         List<TheLoai> theLoais = theLoaiService.danhSachTheLoai();
@@ -81,7 +81,7 @@ public class SachController {
         return modelAndView;
     }
 
-    @PostMapping("them-sach")
+    @PostMapping("admin/them-sach")
     public ModelAndView themSach(
             @RequestParam("image") MultipartFile image,
             @RequestParam("tenSach") String tenSach,
@@ -123,5 +123,61 @@ public class SachController {
 //            return file.getOriginalFilename();
             return path.getFileName().toString();
         } else return null;
+    }
+
+    @GetMapping("admin/danh-sach")
+    private ModelAndView danhSach(){
+        ModelAndView model = new ModelAndView("books/listBook");
+        List<Sach> books = sachService.timTatCa();
+        model.addObject("books", books);
+        return model;
+    }
+
+    @GetMapping ("admin/xoa-sach/{id}")
+    private ModelAndView xoaSach(@PathVariable("id") int id){
+        Sach sach = sachService.xoaSach(id);
+        ModelAndView model = new ModelAndView("books/listBook");
+        List<Sach> books = sachService.timTatCa();
+        model.addObject("books", books);
+        return model;
+    }
+
+    @GetMapping("admin/capnhap-sach/{id}")
+    private ModelAndView giaoDienCapNhap(@PathVariable("id") int id){
+        GetChiTietSachDto sach = sachService.timSachTheoId(id);
+        List<TheLoai> theLoais = theLoaiService.danhSachTheLoai();
+        List<NhaXuatBan> nhaXuatBans = nhaXuatBanService.danhSachNhaXuatBan();
+        List<TacGia> tacGias = tacGiaService.danhSachTacGia();
+        ModelAndView model = new ModelAndView("books/updateBook");
+        model.addObject("sach", sach);
+        model.addObject("theLoais", theLoais);
+        model.addObject("nhaxuatBans", nhaXuatBans);
+        model.addObject("tacGias", tacGias);
+        return model;
+    }
+
+    @PostMapping("admin/capnhap-sach/{id}")
+    private ModelAndView capNhapSach(
+            @PathVariable("id") int id,
+            @RequestParam("image") MultipartFile image,
+            @RequestParam("tenSach") String tenSach,
+            @RequestParam("tacGia") int maTacGia,
+            @RequestParam("giaTien") double giaSach,
+            @RequestParam("soLuong") int soLuong,
+            @RequestParam("ngayXuatBan") String ngayXuatBan,
+            @RequestParam("nhaXuatBan") int maNhaXuatBan,
+            @RequestParam("theLoai") int maTheLoai) throws IOException {
+        TheLoai theLoai = theLoaiService.timTheLoaiTheoMa(maTheLoai);
+        NhaXuatBan nhaXuatBan = nhaXuatBanService.timNhaXuatBanTheoMa(maNhaXuatBan);
+        TacGia tacGia = tacGiaService.timTacGiaTheoMa(maTacGia);
+        String imagePath = saveUploadedFiles(image);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate ngayXuatBanLD = LocalDate.parse(ngayXuatBan, formatter);
+        ThemSachDto themSachDto = new ThemSachDto(tenSach, soLuong, ngayXuatBanLD, giaSach, theLoai, nhaXuatBan, imagePath, tacGia);
+        sachService.capNhap(id, themSachDto);
+        ModelAndView model = new ModelAndView("redirect:/api/v1/admin/danh-sach");
+        List<Sach> books = sachService.timTatCa();
+        model.addObject("books", books);
+        return model;
     }
 }

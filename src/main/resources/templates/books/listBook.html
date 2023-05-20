@@ -73,32 +73,37 @@
         <thead>
         <tr>
             <th>Mã sách</th>
+            <th>Ảnh</th>
             <th>Tên sách</th>
+            <th>Giá tiền</th>
             <th>Số lượng</th>
             <th>Ngày xuất bản</th>
-            <th>Mã thể loại</th>
-            <th>Mã nhà xuất bản</th>
+            <th>Nhà Xuất Bản</th>
+            <th>Thể loại</th>
+            <th>Tác Giả</th>
             <th>Sự kiện</th>
         </tr>
         </thead>
         <tbody>
         <!-- Duyệt qua danh sách sách và hiển thị thông tin -->
         <tr th:each="book : ${books}">
-            <td th:text="${book.ma_sach}"></td>
-            <td th:text="${book.ten_sach}"></td>
-            <td th:text="${book.tac_gia}"></td>
-            <td th:text="${book.nha_xuat_ban}"></td>
-            <td th:text="${book.ma}"></td>
-            <td th:text="${book.nha_xuat_ban}"></td>
+            <td th:text="${book.maSach}" ></td>
+            <td><img th:src="@{/image/__${book.image}__}" style="max-width: 50px; max-height: 50px;"alt="Ảnh"></td>
+<!--            <td><img src="/static/image/image1289292073.jpg" style="max-width: 50px; max-height: 50px;" alt=""></td>-->
+            <td th:text="${book.tenSach}"></td>
+            <td th:text="${book.giaTien}"></td>
+            <td th:text="${book.soLuong}"></td>
+            <td th:text="${book.ngayXuatBan}"></td>
+            <td th:text="${book.nhaXuatBan.tenNhaXuatBan}"></td>
+            <td th:text="${book.theLoai.tenTheLoai}"></td>
+            <td th:text="${book.tacGia.ten}"></td>
                 <td>
-                    <a href="#">Cập nhập</a>
-                    <a href="#">Xóa</a>
+                    <a th:href="@{'/api/v1/admin/capnhap-sach/{id}'(id=${book.maSach})}" >Cập nhập</a>
+                    <a th:href="@{'/api/v1/admin/xoa-sach/{id}'(id=${book.maSach})}" >Xóa</a>
                 </td>
         </tr>
         </tbody>
     </table>
-</div>
-
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>

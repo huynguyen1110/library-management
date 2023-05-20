@@ -22,6 +22,6 @@ public class ThemSachDto {
     public Double giaTien;
     public TheLoai theLoai;
     public NhaXuatBan nhaXuatBan;
-    private String image;
+    public String image;
     public TacGia tacGia;
 }

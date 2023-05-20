@@ -20,4 +20,8 @@ public interface ISachService {
     public GetChiTietSachDto timSachTheoId(int id);
 
     public Sach themSach(ThemSachDto sachDto);
+
+    public Sach xoaSach(int id);
+
+    public Sach capNhap(int id, ThemSachDto sachDto);
 }

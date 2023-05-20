@@ -24,7 +24,7 @@ function hienThiSachMoi () {
                         <div class="product__content content--center">
                             <h4 ><a href="single-product.html" >${item.tenSach}</a></h4>
                             <ul class="price d-flex">
-                                <li >${item.giaTien}</li>
+                                <li >${formatTienMat(item.giaTien)}</li>
                             </ul>
 
                             <div class="product__hover--content">
@@ -75,7 +75,7 @@ function tatCaSach () {
                                     <div class="product__content content--center">
                                         <h4><a href="/api/v1/single-product">${item.tenSach}</a></h4>
                                         <ul class="price d-flex">
-                                            <li>${item.giaTien}</li>
+                                            <li>${formatTienMat(item.giaTien)}</li>
                                         </ul>
 
                                         <div class="product__hover--content">
@@ -107,7 +107,7 @@ tatCaSach()
 
 function hienThiSachTheoTheLoai (theLoai) {
     $.ajax({
-        url: "/api/v1/sach?the-loai=" + theLoai,
+        url: "/api/v1/sach-theo-the-loai?the-loai=" + theLoai,
         method: "GET",
         success: function(response) {
             var truyenNganBody = $(".truyen-ngan")
@@ -131,7 +131,7 @@ function hienThiSachTheoTheLoai (theLoai) {
                                     <div class="product__content content--center">
                                         <h4><a href="/api/v1/single-product">${item.tenSach}</a></h4>
                                         <ul class="price d-flex">
-                                            <li>${item.giaTien}</li>
+                                            <li>${formatTienMat(item.giaTien)} </li>
                                         </ul>
 
                                         <div class="product__hover--content">
@@ -168,7 +168,7 @@ function hienThiSachTheoTheLoai (theLoai) {
                                     <div class="product__content content--center">
                                         <h4><a href="/api/v1/single-product">${item.tenSach}</a></h4>
                                         <ul class="price d-flex">
-                                            <li>${item.giaTien}</li>
+                                            <li>${formatTienMat(item.giaTien)}</li>
                                         </ul>
 
                                         <div class="product__hover--content">
@@ -193,6 +193,25 @@ function hienThiSachTheoTheLoai (theLoai) {
             alert("Đã xảy ra lỗi khi lấy dữ liệu từ API.");
         }
     });
+}
+
+function vaoCuaHang() {
+    var urlParams = new URLSearchParams(window.location.search);
+    var maTk = urlParams.get('id-nguoi-dung');
+    $(".vao-cua-hang").on("click", function(event) {
+        event.preventDefault();
+        window.location.href = '/api/v1/shop?maTk=' + maTk;
+    });
+}
+
+vaoCuaHang()
+
+function formatTienMat(tien) {
+    var formattedAmount = tien.toLocaleString('vi-VN', {
+        style: 'currency',
+        currency: 'VND'
+    });
+    return formattedAmount
 }
 
 

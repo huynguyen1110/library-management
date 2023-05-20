@@ -10,4 +10,6 @@ public interface IGioHangService {
     GioHang themSachVaoGioHang(int maSach, int maTk);
 
     LayGioHangDto layGioHangTheoMaTk(int maTk);
+
+    void xoaSachKhoiGioHang(int maSach, int maTk);
 }

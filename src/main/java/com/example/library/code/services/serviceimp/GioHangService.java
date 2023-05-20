@@ -1,6 +1,7 @@
 package com.example.library.code.services.serviceimp;
 
 import com.example.library.code.data.giohang.LayGioHangDto;
+import com.example.library.code.data.sach.GetChiTietSachDto;
 import com.example.library.code.models.entities.DocGia;
 import com.example.library.code.models.entities.GioHang;
 import com.example.library.code.models.entities.Sach;
@@ -11,7 +12,9 @@ import com.example.library.code.services.iservices.IGioHangService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ansi.Ansi8BitColor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
@@ -65,12 +68,12 @@ public class GioHangService implements IGioHangService {
         }
         return true;
     }
-    
+
 
     @Override
     public LayGioHangDto layGioHangTheoMaTk(int maTk) {
         GioHang gioHang = gioHangRepository.findGioHangByMaTK(maTk);
-        List<Sach> sach = sachRepository.findSachTrongGioHangByMaTk(maTk);
+        List<Sach> sachs = sachRepository.findSachTrongGioHangByMaTk(maTk);
         LayGioHangDto layGioHangDto = new LayGioHangDto();
         layGioHangDto.maGioHang = gioHang.maGioHang;
         layGioHangDto.tongTien = gioHang.tongTien;
@@ -79,8 +82,20 @@ public class GioHangService implements IGioHangService {
         layGioHangDto.tenDocGia = gioHang.docGia.ten;
         layGioHangDto.diaChi = gioHang.docGia.diaCHi;
         layGioHangDto.maTaiKhoan = gioHang.docGia.taiKhoan.maTk;
-        layGioHangDto.sachList = sach;
+        for (Sach element : sachs) {
+            GetChiTietSachDto getChiTietSachDto = new GetChiTietSachDto();
+            getChiTietSachDto.maSach = element.maSach;
+            getChiTietSachDto.tenSach = element.tenSach;
+            getChiTietSachDto.giaTien = element.giaTien;
+            layGioHangDto.sachList.add(getChiTietSachDto);
+        }
         return layGioHangDto;
+    }
+
+    @Transactional
+    @Override
+    public void xoaSachKhoiGioHang(int maSach, int maTk) {
+        gioHangRepository.removeSachFromGioHangByMaSach(maSach, maTk);
     }
 
 }

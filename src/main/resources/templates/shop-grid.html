@@ -48,6 +48,8 @@
     <link rel="stylesheet" href="/css/plugins.css">
     <link rel="stylesheet" href="/css/style.css">
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <!-- Cusom css -->
     <link rel="stylesheet" href="/css/custom.css">
 
@@ -109,12 +111,12 @@
                     <div class="shop__sidebar">
                         <aside class="widget__categories products--cat">
                             <h3 class="widget__title">Các thể loại</h3>
-                            <ul>
-                                <li><a href="/api/v1/shop">Tất cả <span>(3)</span></a></li>
-                                <li><a href="/api/v1/shop?the-loai">Tiểu thuyết <span>(3)</span></a></li>
-                                <li><a href="/api/v1/shop?the-loai">Truyện ngắn <span>(4)</span></a></li>
-                                <li><a href="/api/v1/shop?the-loai">Thơ <span>(6)</span></a></li>
-                            </ul>
+                                <ul>
+                                    <li><a href="" class="tatCarButton" value="tất cả" >Tất cả <span></span></a></li>
+                                    <li><a href="" class="tieuThuyetButton" value="Tiểu Thuyết">Tiểu thuyết <span></span></a></li>
+                                    <li><a href="" class="truyenNganButton" value="Truyện Ngắn">Truyện ngắn <span></span></a></li>
+                                    <li><a href="" class="thoButton" value="thơ">Thơ <span></span></a></li>
+                                </ul>
                         </aside>
                         <aside class="widget__categories pro--range">
                             <h3 class="widget__title">Lọc theo giá</h3>
@@ -158,9 +160,9 @@
                                 <div class="orderby__wrapper">
                                     <span>Sắp xếp theo</span>
                                     <select class="shot__byselect">
-                                        <option>Tên</option>
-                                        <option>Ngày xuất bản</option>
-                                        <option>Giá</option>
+                                        <option value="tenSach">Tên</option>
+                                        <option value="ngayXuatBan">Ngày xuất bản</option>
+                                        <option value="giaTien">Giá</option>
                                     </select>
                                 </div>
                             </div>
@@ -168,31 +170,18 @@
                     </div>
                     <div class="tab__container tab-content">
                         <div class="shop-grid tab-pane fade show active" id="nav-grid" role="tabpanel">
-                            <div class="row">
+                            <div id="productList" class="row">
                                 <!-- Start Single Product -->
                                 <!-- Lấy tối <= 12 sản phẩm -->
-                                <div class="product product__style--3 col-lg-4 col-md-4 col-sm-6 col-12">
-                                    <div class="product__thumb">
-                                        <a class="first__img" href="/api/v1/single-product"><img
-                                                src="/images/books/1.jpg" alt="product image"></a>
-                                        <div class="hot__box">
-                                            <span class="hot-label">BEST SALLER</span>
-                                        </div>
-                                    </div>
-                                    <div class="product__content content--center">
-                                        <h4><a href="/api/v1/single-product">robin parrish</a></h4>
-                                        <ul class="price d-flex">
-                                            <li>$35.00</li>
-                                        </ul>
-                                    </div>
-                                </div>
+
+
                             </div>
                             <ul class="wn__pagination">
-                                <li class="active"><a href="#">1</a></li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#">4</a></li>
-                                <li><a href="#"><i class="zmdi zmdi-chevron-right"></i></a></li>
+<!--                                <li class="active"><a href="#">1</a></li>-->
+<!--                                <li><a href="#">2</a></li>-->
+<!--                                <li><a href="#">3</a></li>-->
+<!--                                <li><a href="#">4</a></li>-->
+<!--                                <li><a href="#"><i class="zmdi zmdi-chevron-right"></i></a></li>-->
                             </ul>
                         </div>
 
@@ -295,11 +284,15 @@
 <!-- //Main wrapper -->
 
 <!-- JS Files -->
-<script src="/js/vendor/jquery.min.js"></script>
 <script src="/js/popper.min.js"></script>
 <script src="/js/vendor/bootstrap.min.js"></script>
 <script src="/js/plugins.js"></script>
 <script src="/js/active.js"></script>
+<script src="/js/single-product/single-product.js"></script>
+<!--<script src="/js/index/index.js"></script>-->
+<script src="/js/shop/laySachTheoTheLoai.js"></script>
+<script src="/js/shop/shop.js"></script>
+
 
 </body>
 

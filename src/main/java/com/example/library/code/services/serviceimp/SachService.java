@@ -7,6 +7,10 @@ import com.example.library.code.models.entities.TacGia;
 import com.example.library.code.repositories.SachRepository;
 import com.example.library.code.services.iservices.ISachService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -119,4 +123,30 @@ public class SachService implements ISachService {
     }
 
 
+
+    @Override
+    public Page<Sach> timTatCaSachCoPhanTrang(int pageNumber, String orderBy) {
+        Pageable pageable = PageRequest.of(pageNumber, 12, Sort.by(orderBy).ascending());
+        if (orderBy == "tenSach") {
+            return sachRepository.findAllByOrderByTenSachAsc(pageable);
+        }
+        if (orderBy == "ngayXuatBan") {
+            return sachRepository.findAllByOrderByNgayXuatBanAsc(pageable);
+        } else  {
+            return sachRepository.findAllByOrderByGiaTienAsc(pageable);
+        }
+    }
+
+    @Override
+    public Page<Sach> laySachTheoTheLoaiCoPhanTrang(int pageNumber, String theLoai, String orderBy) {
+        Pageable pageable = PageRequest.of(pageNumber, 12, Sort.by(orderBy).ascending());
+        if ("tenSach".equals(orderBy)) {
+            return sachRepository.findAllByTheLoai_TenTheLoaiOrderByTenSachAsc(theLoai, pageable);
+        }
+        if ("ngayXuatBan".equals(orderBy)) {
+            return sachRepository.findAllByTheLoai_TenTheLoaiOrderByNgayXuatBanAsc(theLoai ,pageable);
+        } else  {
+            return sachRepository.findAllByTheLoai_TenTheLoaiOrderByGiaTienAsc(theLoai ,pageable);
+        }
+    }
 }

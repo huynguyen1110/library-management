@@ -11,6 +11,11 @@ import com.example.library.code.services.serviceimp.SachService;
 import com.example.library.code.services.serviceimp.TacGiaService;
 import com.example.library.code.services.serviceimp.TheLoaiService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -57,7 +62,7 @@ public class SachController {
         return sachService.timTatCa();
     }
 
-    @GetMapping("sach")
+    @GetMapping("sach-theo-the-loai")
     public List<Sach> sachTheoTheLoai(@RequestParam("the-loai") String theLoai) {
         return sachService.timTheLoaiTruyenNgan(theLoai);
     }
@@ -179,5 +184,15 @@ public class SachController {
         List<Sach> books = sachService.timTatCa();
         model.addObject("books", books);
         return model;
+    }
+
+    @GetMapping("lay-sach-phantrang")
+    public Page<Sach> laySachCoPhanTrang(@RequestParam(defaultValue = "0") int pageNumber, @RequestParam(defaultValue = "tenSach") String orderBy) {
+        return sachService.timTatCaSachCoPhanTrang(pageNumber, orderBy);
+    }
+
+    @GetMapping("lay-sach-phantrang-theo-theloai")
+    public Page<Sach> laySachCoPhanTrangTheoTheLoai(@RequestParam(defaultValue = "0") int pageNumber, @RequestParam(defaultValue = "tenSach") String orderBy, @RequestParam String theLoai) {
+        return sachService.laySachTheoTheLoaiCoPhanTrang(pageNumber, theLoai, orderBy);
     }
 }

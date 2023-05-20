@@ -1,8 +1,10 @@
 package com.example.library.code.data.giohang;
 
+import com.example.library.code.data.sach.GetChiTietSachDto;
 import com.example.library.code.models.entities.Sach;
 import jakarta.persistence.criteria.CriteriaBuilder;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class LayGioHangDto {
@@ -15,5 +17,5 @@ public class LayGioHangDto {
     public String diaChi;
     public Integer maTaiKhoan;
     public Integer tenTaiKhoang;
-    public List<Sach> sachList;
+    public List<GetChiTietSachDto> sachList = new ArrayList<>();
 }

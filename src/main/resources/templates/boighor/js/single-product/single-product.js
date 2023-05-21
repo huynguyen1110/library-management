@@ -204,3 +204,14 @@ function formatTienMat(tien) {
     return formattedAmount
 }
 
+var urlParams = new URLSearchParams(window.location.search);
+var maTk = urlParams.get('maTk');
+
+function thongTinMuonTraBtn() {
+    window.location.href = '/api/v1/thong-tin-muon-tra?maTk=' + maTk;
+}
+
+function dangXuatBtn() {
+    window.location.href = '/api/v1/login'
+}
+

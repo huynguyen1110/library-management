@@ -100,9 +100,9 @@ public class CheckOutService implements ICheckOutService {
             layPhieuMuonTraDto.soLuongTra = phieuTraList.get(phieuMuonIndex).soLuong;
             layPhieuMuonTraDto.setSachTra(phieuTraList.get(phieuMuonIndex).getSachs());
             if (phieuTraList.get(phieuMuonIndex).trang_thai == true) {
-                layPhieuMuonTraDto.trangThaiMuon = "Đã Xác Nhận";
+                layPhieuMuonTraDto.trangThaiTra = "Đã Xác Nhận";
             } else {
-                layPhieuMuonTraDto.trangThaiMuon = "Chờ Xác nhận";
+                layPhieuMuonTraDto.trangThaiTra = "Chờ Xác nhận";
             }
 
 

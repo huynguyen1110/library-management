@@ -102,8 +102,13 @@ $(document).ready(function() {
                     if (response == "") {
                         alert("Tên đăng nhập hoặc mật khẩu không đúng")
                     } else {
-                        alert("Đăng nhập thành công, xin chào: " + username)
-                        window.location.href = '/api/v1/index?id-nguoi-dung=' + response.maTk;
+                        if (response.role == "NGUOI_DUNG") {
+                            alert("Đăng nhập thành công, xin chào: " + username)
+                            window.location.href = '/api/v1/index?id-nguoi-dung=' + response.maTk;
+                        } else {
+                            alert("Đăng nhập thành công, xin chào admin: " + username)
+                            window.location.href = '/api/v1/admin/them-sach?id-nguoi-dung=' + response.maTk;
+                        }
                     }
                 },
                 error: function(xhr, status, error) {

@@ -215,17 +215,11 @@ function formatTienMat(tien) {
 }
 
 function thongTinMuonTraBtn() {
-    alert("thanh cong")
-    // $.ajax({
-    //     url: `/api/v1/tao-phieu-muon-tra?maTk=` + maTk,
-    //     method: 'POST',
-    //     success: function (response) {
-    //         alert("Thanh toán thành công")
-    //     },
-    //     error: function () {
-    //         console.log('Đã xảy ra lỗi khi gọi API.');
-    //     }
-    // });
+    window.location.href = '/api/v1/thong-tin-muon-tra?maTk=' + idNguoiDung;
+}
+
+function dangXuatBtn() {
+    window.location.href = '/api/v1/login'
 }
 
 

@@ -29,6 +29,7 @@
                 dataType: 'json',
                 success: function(response) {
                     alert("Cập nhât thành công")
+                    window.location.href = '/api/v1/info-update?maTk=' + maTk
                 },
                 error: function(xhr, status, error) {
                     console.error(error);
@@ -49,7 +50,7 @@
                                 <label class="label label-info"> ${response.ten}</label>
                             </li>
                             <li class="activity">DỊA CHỈ: ${response.diaCHi}</li>
-                            <li class="activity">NGÀY SINH: ${response.ngaySinh}</li>
+                            <li class="activity">NGÀY SINH: ${ convertToDateTimeFormatted(response.ngaySinh) }</li>
                             <li class="activity">SỐ ĐIỆN THOẠI: ${response.sdt}</li>
                             <li class="activity">EMAIL: ${response.email}</li>
                             `
@@ -62,3 +63,15 @@
     }
 
     hienThiThongTinUser()
+
+    function convertToDateTimeFormatted(dateTimeString) {
+        var dateTime = new Date(dateTimeString);
+        var day = dateTime.getDate();
+        var month = dateTime.getMonth() + 1;
+        var year = dateTime.getFullYear();
+
+        // Định dạng ngày-tháng-năm
+        var formattedDateTime = day + '-' + month + '-' + year;
+
+        return formattedDateTime;
+    }

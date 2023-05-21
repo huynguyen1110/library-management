@@ -16,9 +16,11 @@
         <section class="module">
             <div class="module-inner">
                 <div class="side-bar">
-                    <div class="user-info">
-                        <img class="img-profile img-circle img-responsive center-block" src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="">
+                    <div class="user-info" style="margin-left: -300px">
                         <ul class="meta list list-unstyled" id="userInfo">
+                            <li class="name">NGƯỜI DÙNG
+                                <label class="label label-info"> ${response.ten}</label>
+                            </li>
 
                         </ul>
                     </div>
@@ -33,20 +35,20 @@
                             <div class="form-group">
                                 <label class="col-md-2 col-sm-3 col-xs-12 control-label">Họ và tên</label>
                                 <div class="col-md-10 col-sm-9 col-xs-12">
-                                    <input type="text" class="form-control" id="hoVaTen">
+                                    <input type="text" class="form-control" id="hoVaTen" required>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label class="col-md-2 col-sm-3 col-xs-12 control-label">Địa chỉ</label>
                                 <div class="col-md-10 col-sm-9 col-xs-12">
-                                    <input type="text" class="form-control" id="diaChi">
+                                    <input type="text" class="form-control" id="diaChi" required>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-md-2 col-sm-3 col-xs-12 control-label">Ngày sinh</label>
                                 <div class="col-md-10 col-sm-9 col-xs-12">
-                                    <input type="date" class="form-control" id="ngaySinh">
+                                    <input type="date" class="form-control" id="ngaySinh" required>
                                 </div>
                             </div>
                         </fieldset>
@@ -55,13 +57,13 @@
                             <div class="form-group">
                                 <label class="col-md-2  col-sm-3 col-xs-12 control-label">Email</label>
                                 <div class="col-md-10 col-sm-9 col-xs-12">
-                                    <input type="email" class="form-control" placeholder="huynn@gmail.com" id="email">
+                                    <input type="email" class="form-control" placeholder="huynn@gmail.com" id="email" required>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-md-2  col-sm-3 col-xs-12 control-label">Số điện thoai</label>
                                 <div class="col-md-10 col-sm-9 col-xs-12">
-                                    <input type="text" class="form-control" id="soDienThoai">
+                                    <input type="text" class="form-control" id="soDienThoai" required>
                                 </div>
                             </div>
                         </fieldset>

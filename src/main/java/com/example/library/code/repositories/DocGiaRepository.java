@@ -13,4 +13,5 @@ public interface DocGiaRepository extends JpaRepository<DocGia, Integer> {
     DocGia findByMaTk(@Param("maTk") int maTk);
 
     DocGia findByTen(String ten);
+
 }

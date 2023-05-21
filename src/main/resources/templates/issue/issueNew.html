@@ -61,11 +61,134 @@
         </ul>
     </div>
 </nav>
+<div class="container">
+    <h2>Phiếu Mượn Sách</h2>
+    <form >
+        <div class="form-group">
+            <label for="ngayMuon">Ngày Mượn</label>
+            <input type="date" th:value="${#dates.format(#dates.createNow(), 'yyyy-MM-dd')}" class="form-control" name="ngayMuon" id="ngayMuon">
+        </div>
+        <div class="form-group">
+            <label for="ngayTra">Ngày Trả Dự Kiến</label>
+            <input type="date" pattern="\d{1,2}/\d{1,2}/\d{4}" class="form-control" name="ngayTra" id="ngayTra">
+        </div>
+        <div class="form-group">
+            <label for="docGia">Member:</label>
+            <select class="form-control" id="docGia">
+                <option value="">Lựa chọn Độc Giả</option>
+                <option th:each="docGia : ${docGias}" th:value="${docGia.maDocGia}" th:text="${docGia.ten}"></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="sach">Book:</label>
+            <select class="form-control" id="sach">
+                <option value="">Lựa chọn Sách</option>
+                <option th:each="sach : ${sachs}" th:value="${sach.maSach}" th:text="${sach.tenSach}"></option>
+            </select>
+        </div>
+<!--        <button type="submit" class="btn btn-primary" onclick="themDong()">Thêm Sách</button>-->
+        <input onclick="yeuCauThemSach()" value="Thêm Sách" type="button" class="btn btn-primary">
+        <table class="table">
+            <thead>
+            <br>
+            <tr>
+                <th>Mã sách</th>
+                <th>Tên sách</th>
+                <th>Tác Giả</th>
+                <th>Sự kiện</th>
+            </tr>
+            </thead>
+            <br>
+            <tbody id="danhSachMuon" class="border">
 
-
-
+            </tbody>
+        </table>
+        <p class="border"></p>
+<!--        <button type="submit" class="btn btn-primary">Tạo Phiếu Mượn</button>-->
+        <input onclick="taoPhieuMuon()" value="Tạo Phiếu Mượn" type="button" class="btn btn-primary">
+    </form>
+</div>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 </body>
+<script>
+
+    function taoPhieuMuon(){
+        var idDocGia = $("#docGia").val();
+        var idSachs = [];
+        var ngayMuon = $("#ngayMuon").val();
+        var ngayTraDuKien = $("#ngayTra").val();
+
+        $("#danhSachMuon tr").each(function () {
+            var columnValue = $(this).find('td:nth-child(1)').text();
+            idSachs.push(columnValue);
+        });
+
+        var data = {
+            idDocGia: idDocGia,
+            idSachs : idSachs,
+            ngayMuon : ngayMuon,
+            ngayTraDuKien : ngayTraDuKien
+        };
+        console.log(data);
+        $.post({
+            url: "/api/v1/admin/phieu-muon",
+            dataType: "json",
+            contentType: "application/json",
+            data: JSON.stringify(data),
+            success: function (response) {
+                alert("Success");
+                console.log(response);
+                themDong(response);
+            },
+            error: function (xhr) {
+                alert("Error");
+                alert(xhr)
+            }
+        })
+
+    }
+
+    function yeuCauThemSach(){
+        var idSach = $("#sach").val();
+        $.post({
+            url: "/api/v1/admin/phieu-muon/them-sach",
+            dataType: "json",
+            contentType: "application/json",
+            data: JSON.stringify(idSach),
+            success: function (response) {
+                alert("Thêm Sách thành công");
+                console.log(response);
+                themDong(response);
+            },
+            error: function (xhr) {
+                alert("Error");
+                alert(xhr)
+            }
+        })
+    }
+
+    function themDong(data){
+        var row = "<tr>" +
+            "<td>" + data.maSach + "</td>" +
+            "<td>" + data.tenSach + "</td>" +
+            "<td>" + data.tacGia + "</td>" +
+            "<td><input onclick=\"xoaDong('" + data.maSach + "')\" value=\"Xóa\" type=\"button\"></td>" +
+            "</tr>";
+        $("#danhSachMuon").append(row);
+    }
+
+
+    function xoaDong(id){
+        $("#danhSachMuon tr").each(function () {
+            var maSachRow = $(this).find("td:first").text();
+            if (maSachRow === id.toString()) {
+                $(this).remove();
+                return false; // Dừng vòng lặp khi tìm thấy dòng cần xóa
+            }
+        });
+    }
+</script>
 </html>

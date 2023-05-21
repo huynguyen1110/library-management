@@ -90,6 +90,11 @@ public class SachService implements ISachService {
     }
 
     @Override
+    public Sach timSachTheoId2(int id) {
+        return sachRepository.findById(id).get();
+    }
+
+    @Override
     public Sach themSach(ThemSachDto sach) {
         Sach themSach = new Sach();
         themSach.setTenSach(sach.tenSach);
@@ -127,6 +132,15 @@ public class SachService implements ISachService {
         return sach.get();
     }
 
+    @Override
+    public double tinhTien(int[] idSachs) {
+        double tongTien = 0;
+        for(int i = 0; i < idSachs.length; i++){
+            Sach sach = sachRepository.findById(idSachs[i]).get();
+            tongTien += sach.giaTien;
+        }
+        return tongTien;
+    }
 
 
     @Override

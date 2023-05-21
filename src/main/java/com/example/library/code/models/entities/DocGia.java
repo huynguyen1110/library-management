@@ -2,15 +2,17 @@ package com.example.library.code.models.entities;
 
 import com.example.library.code.models.enums.HinhThucThanhToan;
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
-@Data
+//@Data
+@Setter
+@Getter
 @RequiredArgsConstructor
+
 public class DocGia {
 
     @Id
@@ -25,6 +27,8 @@ public class DocGia {
     public TheThuVien theThuVien;
     @OneToOne
     public TaiKhoan taiKhoan;
+    @ToString.Exclude
     @OneToOne
     public GioHang gioHang;
+
 }

@@ -23,6 +23,8 @@ public interface ISachService {
 
     GetChiTietSachDto timSachTheoId(int id);
 
+    Sach timSachTheoId2(int id);
+
     Page<Sach> timTatCaSachCoPhanTrang(int pageNumber, String orderBy);
 
     Page<Sach> laySachTheoTheLoaiCoPhanTrang(int pageNumber, String theLoai, String orderBy);
@@ -32,4 +34,6 @@ public interface ISachService {
     public Sach xoaSach(int id);
 
     public Sach capNhap(int id, ThemSachDto sachDto);
+
+    public double tinhTien(int[] idSachs);
 }

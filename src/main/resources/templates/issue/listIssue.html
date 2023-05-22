@@ -61,8 +61,151 @@
         </ul>
     </div>
 </nav>
+<div class="container">
+    <h2>List Books</h2>
+
+    <table id="listIssue" class="table" style="border: 1px solid">
+        <thead>
+        <tr>
+            <th>Độc Giả</th>
+            <th>Sách</th>
+            <th>Ngày tạo phiếu mượn</th>
+<!--            <th>Ngày dự kiến trả</th>-->
+            <th>Sự kiện</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Duyệt qua danh sách sách và hiển thị thông tin -->
+        <tr th:each="issue, iterStat : ${issues}" th:with="currentIndex=${iterStat.count - 1}">
+                <td th:text="${issue.docGia.ten}"></td>
+                <td>
+                    <ul th:id="${'issue_' + issue.maPhieuMuon}" th:value="${issuesRes.get(currentIndex).maPhieuTra}">
+                        <th:block th:each="ib : ${issue.sachs}">
+                            <li th:id="${ib.maSach}" th:text="${ib.tenSach}"></li>
+                        </th:block>
+                    </ul>
+                </td>
+                <td th:text="${issue.ngayMuon}"></td>
+<!--                <td th:text="${issue.ngay}"></td>-->
+                <td>
+                    <a href="#" type="btn" th:data-ma-phieu-muon="${issue.maPhieuMuon}" th:data-ma-phieu-tra="${issuesRes.get(currentIndex).maPhieuTra}" onclick="formTraSach(this.dataset.maPhieuMuon, this.dataset.maPhieuTra)">Xử lý</a>
+                </td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="modal-content" style="display: none; width: 50%; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%)">
+        <div class="modal-header">
+            <h4 class="modal-title">Return Book(s)</h4>
+            <button type="button" class="close" data-dismiss="modal"aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <table id="returnBookTable" class="table">
+                <thead>
+                <tr>
+                    <th style="width: 5px;"><input type="checkbox" id="select-all" onclick="sellectAll()" style="margin-top: 5px;" /></th>
+                    <th style="padding-bottom: 10px; padding-left: 0px">Select All</th>
+                </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default "
+                    data-dismiss="modal">Tắt</button>
+            <button type="button" class="btn btn-primary"  onclick="returnBookConfirm()">Trả Sách được chọn</button>
+        </div>
+    </div>
+
+</div>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 </body>
+<script>
+    function formTraSach(id, id2){
+        var issueId = "#issue_" + id;
+        var liElements = $(issueId).find("li");
+        var modalTable = $("#returnBookTable tbody");
+        modalTable.empty();
+        liElements.each(function() {
+            var liText = $(this).text();
+            var liId = $(this).attr("id");
+            var rowHtml = '<tr id="'+id2+'"><td><input type="checkbox" value="' + liId + '"></td><td>' + liText + '</td></tr>';
+
+            modalTable.append(rowHtml);
+        });
+        $(".modal-content").show();
+    }
+
+    function returnBookConfirm(id){
+        // var issueId = "#issue_" + id;
+        // var maPhieuMuon = $(issueId).find("ul").val();
+        var maPhieuTra = $("#returnBookTable tbody tr").attr("id");
+        console.log(maPhieuTra);
+        var idSachs = $("#returnBookTable tbody input[type='checkbox']:checked").map(function() {
+            return $(this).val();
+        }).get();
+        data = {
+            maPhieuTra : maPhieuTra,
+            idSachs : idSachs
+        }
+        $.post({
+            url: "/api/v1/admin/tra-sach",
+            dataType: "json",
+            contentType: "application/json",
+            data: JSON.stringify(data),
+            success: function (response) {
+                alert("Trả thành công");
+                console.log(response);
+                xoaSach(data.idSachs, maPhieuTra);
+            },
+            error: function (xhr) {
+                alert("Error");
+                console.log(xhr)
+            }
+        })
+        // $(".modal-content").hide();
+    }
+
+
+    $(document).ready(function() {
+        // Bắt sự kiện khi người dùng nhấp vào dấu ×
+        $(".modal-header .close").click(function() {
+            // Ẩn modal
+            $(".modal-content").hide();
+        });
+
+        $(".modal-footer .btn-default").click(function() {
+            // Ẩn modal
+            $(".modal-content").hide();
+        });
+
+    });
+
+    function xoaSach(idSachs, maPhieuTra){
+        $(document).ready(function() {
+            var excludedValues = idSachs;
+
+            $("#returnBookTable tbody tr").each(function() {
+                var tdValue = $(this).find("td:first-child input").val();
+
+                if (excludedValues.includes(tdValue)) {
+                    $(this).remove();
+                }
+            });
+
+
+            var idsToRemove = idSachs; // Các giá trị "id" của <li> cần xóa
+            $("#listIssue ul[value='" + maPhieuTra + "'] li").filter(function() {
+                var liId = $(this).attr("id");
+                return idsToRemove.includes(liId);
+            }).remove();
+        });
+
+
+    }
+</script>
 </html>

@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
+import lombok.ToString;
 
 import java.time.LocalDate;
 import java.util.Date;
@@ -28,12 +29,14 @@ public class Sach {
     public String image;
     @ManyToOne
     @JoinColumn()
-    public TacGia tacGia ;
+    public TacGia tacGia;
+    @ToString.Exclude
     @ManyToMany(mappedBy = "sachs")
     public Set<PhieuMuon> phieuMuons = new HashSet<>();
+    @ToString.Exclude
     @ManyToMany(mappedBy = "sachs")
     public Set<PhieuTra> phieuTras = new HashSet<>();
+    @ToString.Exclude
     @ManyToMany(mappedBy = "sachs")
     public Set<GioHang> gioHangs = new HashSet<>();
-
 }

@@ -1,5 +1,6 @@
 package com.example.library.code.models.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import lombok.Data;
@@ -31,12 +32,15 @@ public class Sach {
     @JoinColumn()
     public TacGia tacGia;
     @ToString.Exclude
+    @JsonIgnore
     @ManyToMany(mappedBy = "sachs")
     public Set<PhieuMuon> phieuMuons = new HashSet<>();
     @ToString.Exclude
+    @JsonIgnore
     @ManyToMany(mappedBy = "sachs")
     public Set<PhieuTra> phieuTras = new HashSet<>();
     @ToString.Exclude
+    @JsonIgnore
     @ManyToMany(mappedBy = "sachs")
     public Set<GioHang> gioHangs = new HashSet<>();
 }

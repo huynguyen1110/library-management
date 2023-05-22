@@ -1,10 +1,7 @@
 package com.example.library.code.services.serviceimp;
 
-<<<<<<< HEAD
 import com.example.library.code.data.docgia.GetDocGiaInfoDto;
 import com.example.library.code.data.docgia.UpdateDocGiaDto;
-=======
->>>>>>> origin/test-merger1
 import com.example.library.code.models.entities.DocGia;
 import com.example.library.code.repositories.DocGiaRepository;
 import com.example.library.code.services.iservices.IDocGiaService;
@@ -13,16 +10,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-<<<<<<< HEAD
-@Service
-public class DocGiaService implements IDocGiaService {
-
-=======
-import java.util.List;
 
 @Service
 public class DocGiaService implements IDocGiaService {
->>>>>>> origin/test-merger1
     @Autowired
     private DocGiaRepository docGiaRepository;
 

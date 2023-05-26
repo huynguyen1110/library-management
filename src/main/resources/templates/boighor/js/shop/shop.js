@@ -8,6 +8,7 @@ function hienThiSachTrongShop(selectedValue, theLoai) {
 
     var maTk = searchParams.get('maTk');
 
+
     if (selectedValue === undefined) {
         selectedValue = "tenSach"
     }

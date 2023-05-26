@@ -62,12 +62,10 @@ public class CheckOutService implements ICheckOutService {
         PhieuTra phieuTra = new PhieuTra();
         phieuTra.ngayTra = LocalDateTime.now().plusDays(14) ;
         phieuTra.tongTien = layGioHangDto.tongTien;
-        phieuTra.soLuong = layGioHangDto.sachList.size();
+        phieuTra.soLuong = 0;
         phieuTra.trang_thai = false;
         phieuTra.docGia = docGia;
         for (GetChiTietSachDto sach : layGioHangDto.sachList) {
-            Sach sachTrongGioHang = sachRepository.timSachTheoId(sach.maSach);
-            phieuTra.getSachs().add(sachTrongGioHang);
             gioHangService.xoaSachKhoiGioHang(sach.maSach, maTk);
         }
         phieuTraRepository.save(phieuTra);

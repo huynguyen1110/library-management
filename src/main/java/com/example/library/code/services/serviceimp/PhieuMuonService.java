@@ -31,4 +31,9 @@ public class PhieuMuonService implements IPhieuMuonService {
         return phieuMuonRepository.findAll();
     }
 
+    @Override
+    public PhieuMuon timPhieuMuonId(int id) {
+        return phieuMuonRepository.findById(id).get();
+    }
+
 }

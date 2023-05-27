@@ -10,7 +10,10 @@ import org.springframework.stereotype.Component;
 @NoArgsConstructor
 @Component
 public class CapNhapSachTraDto {
+
     public int maPhieuTra;
+
+    public int maPhieuMuon;
 
     public int[] idSachs;
 }

@@ -21,6 +21,11 @@ public class PhieuMuonService implements IPhieuMuonService {
         return phieuMuon;
     }
 
+//    @Override
+//    public List<PhieuMuon> danhSachPhieuMuon() {
+//        return phieuMuonRepository.findAll();
+//    }
+
     @Override
     public List<PhieuMuon> danhSachPhieuMuon() {
         return phieuMuonRepository.findAll();

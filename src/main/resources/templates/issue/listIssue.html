@@ -79,12 +79,15 @@
         </thead>
         <tbody>
         <!-- Duyệt qua danh sách sách và hiển thị thông tin -->
-        <tr th:each="issue, iterStat : ${issues}" th:with="currentIndex=${iterStat.count - 1}">
+        <tr th:each="issue, iterStat : ${issues}" th:with="currentIndex=${iterStat.count - 1}" th:if="${issue.sachs.size() != issuesRes.get(iterStat.count - 1).sachs.size()}">
                 <td th:text="${issue.docGia.ten}"></td>
                 <td>
                     <ul th:id="${'issue_' + issue.maPhieuMuon}" th:value="${issuesRes.get(currentIndex).maPhieuTra}">
                         <th:block th:each="ib : ${issue.sachs}">
-                            <li th:id="${ib.maSach}" th:text="${ib.tenSach}"></li>
+                            <th:block th:each="ibr : ${issuesRes.get(currentIndex).sachs}" th:if="${ib.maSach != ibr.maSach && issuesRes.get(currentIndex).sachs.size() > 0}">
+                                <li th:id="${ib.maSach}" th:text="${ib.tenSach}"></li>
+                            </th:block>
+                            <li th:id="${ib.maSach}" th:text="${ib.tenSach}" th:if="${issuesRes.get(currentIndex).sachs.size() == 0}"></li>
                         </th:block>
                     </ul>
                 </td>
@@ -128,6 +131,8 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 </body>
 <script>
+
+
     function formTraSach(id, id2){
         var issueId = "#issue_" + id;
         var liElements = $(issueId).find("li");
@@ -143,9 +148,7 @@
         $(".modal-content").show();
     }
 
-    function returnBookConfirm(id){
-        // var issueId = "#issue_" + id;
-        // var maPhieuMuon = $(issueId).find("ul").val();
+    function returnBookConfirm(){
         var maPhieuTra = $("#returnBookTable tbody tr").attr("id");
         console.log(maPhieuTra);
         var idSachs = $("#returnBookTable tbody input[type='checkbox']:checked").map(function() {
@@ -170,7 +173,7 @@
                 console.log(xhr)
             }
         })
-        // $(".modal-content").hide();
+        $(".modal-content").hide();
     }
 
 
@@ -206,8 +209,13 @@
                 var liId = $(this).attr("id");
                 return idsToRemove.includes(liId);
             }).remove();
-        });
 
+            // Xử lý xóa dòng
+            if($("#listIssue ul[value='" + maPhieuTra + "'] li").length == 0){
+                console.log($("#listIssue ul[value='" + maPhieuTra + "']").closest("tr"))
+                $("#listIssue ul[value='" + maPhieuTra + "']").closest("tr").remove()
+            }
+        });
 
     }
 </script>

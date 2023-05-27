@@ -124,7 +124,7 @@ function hienThiGioHang() {
                                         <span>${formatTienMat(tongTien)}</span>
                                     </div>
                                     <div class="mini_action checkout">
-                                        <a class="checkout__btn" href="/api/v1/cart?maSach=${maSach}&maTk=${maTk}">Thanh toán</a>
+                                        <a class="checkout__btn" href="/api/v1/cart?maSach=${maSach}&maTk=${maTk}">Đặt cọc</a>
                                     </div>
                                     <div class="single__items">
                                         <div class="miniproduct chi-tiet-sach-trong-gio-hang">

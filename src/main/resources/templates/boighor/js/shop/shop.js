@@ -1,11 +1,13 @@
 var selectedValueToOrder
-
+var urlParams = new URLSearchParams(window.location.search);
+var maTk = urlParams.get('maTk');
 function hienThiSachTrongShop(selectedValue, theLoai) {
     var currentURL = window.location.href;
 
     var searchParams = new URLSearchParams(new URL(currentURL).search);
 
     var maTk = searchParams.get('maTk');
+
 
     if (selectedValue === undefined) {
         selectedValue = "tenSach"
@@ -94,6 +96,85 @@ function hienThiSachTrongShop(selectedValue, theLoai) {
         });
     }
 
+    if (theLoai == "Truyện Ngắn") {
+        $.ajax({
+            url: '/api/v1/lay-sach-phantrang-theo-theloai?pageNumber=' + '&orderBy=' + selectedValue + '&theLoai='+ theLoai ,
+            method: "GET",
+            success: function(response) {
+                ajaxComplete = true
+                productList.empty()
+                response.content.forEach(function (item) {
+                    result = `<div class="product product__style--3 col-lg-4 col-md-4 col-sm-6 col-12">
+                                    <div class="product__thumb">
+                                        <a class="first__img" href="/api/v1/single-product?maSach=${item.maSach}&maTk=${maTk}"><img
+                                                src="/images/books/1.jpg" alt="product image"></a>
+                                        <div class="hot__box">
+                                            <span class="hot-label">BEST SALLER</span>
+                                        </div>
+                                    </div>
+                                    <div class="product__content content--center">
+                                        <h4><a href="/api/v1/single-product?maSach=${item.maSach}&maTk=${maTk}">${item.tenSach}</a></h4>
+                                        <ul class="price d-flex">
+                                            <li>${ formatTienMat(item.giaTien)}</li>
+                                        </ul>
+                                    </div>
+                                </div>`
+                    productList.append(result)
+                })
+                var pagination = $('.wn__pagination');
+                pagination.empty()
+                for (var i = 1; i <= response.totalPages; i++) {
+                    var pageNumber = `<li> <a href="#" onclick="loadBooksByTheLoai(${i - 1}, '${theLoai}')"> ${i} </a> </li>`
+                    pagination.append(pageNumber);
+                }
+
+            },
+            error: function() {
+                ajaxComplete = true
+                alert("Đã xảy ra lỗi khi lấy dữ liệu từ API.");
+            }
+        });
+    }
+
+    if (theLoai == "Thơ") {
+        $.ajax({
+            url: '/api/v1/lay-sach-phantrang-theo-theloai?pageNumber=' + '&orderBy=' + selectedValue + '&theLoai='+ theLoai ,
+            method: "GET",
+            success: function(response) {
+                ajaxComplete = true
+                productList.empty()
+                response.content.forEach(function (item) {
+                    result = `<div class="product product__style--3 col-lg-4 col-md-4 col-sm-6 col-12">
+                                    <div class="product__thumb">
+                                        <a class="first__img" href="/api/v1/single-product?maSach=${item.maSach}&maTk=${maTk}"><img
+                                                src="/images/books/1.jpg" alt="product image"></a>
+                                        <div class="hot__box">
+                                            <span class="hot-label">BEST SALLER</span>
+                                        </div>
+                                    </div>
+                                    <div class="product__content content--center">
+                                        <h4><a href="/api/v1/single-product?maSach=${item.maSach}&maTk=${maTk}">${item.tenSach}</a></h4>
+                                        <ul class="price d-flex">
+                                            <li>${ formatTienMat(item.giaTien)}</li>
+                                        </ul>
+                                    </div>
+                                </div>`
+                    productList.append(result)
+                })
+                var pagination = $('.wn__pagination');
+                pagination.empty()
+                for (var i = 1; i <= response.totalPages; i++) {
+                    var pageNumber = `<li> <a href="#" onclick="loadBooksByTheLoai(${i - 1}, '${theLoai}')"> ${i} </a> </li>`
+                    pagination.append(pageNumber);
+                }
+
+            },
+            error: function() {
+                ajaxComplete = true
+                alert("Đã xảy ra lỗi khi lấy dữ liệu từ API.");
+            }
+        });
+    }
 
 }
 
@@ -172,8 +253,8 @@ sapXepTheo()
 
 
 
-function checkClickedButton() {
-    var value
+function checkClickedButton(inputValue) {
+    var value = inputValue
     $("a.tatCarButton, a.tieuThuyetButton, a.truyenNganButton, a.thoButton").click(function(event) {
         event.preventDefault();
         value = $(this).attr('value');
@@ -233,8 +314,7 @@ function loadBooksByTheLoai(page, theLoai) {
 }
 
 
-var urlParams = new URLSearchParams(window.location.search);
-var maTk = urlParams.get('maTk');
+
 
 function thongTinMuonTraBtn() {
     window.location.href = '/api/v1/thong-tin-muon-tra?maTk=' + maTk;
@@ -243,6 +323,8 @@ function thongTinMuonTraBtn() {
 function dangXuatBtn() {
     window.location.href = '/api/v1/login'
 }
+
+
 
 
 

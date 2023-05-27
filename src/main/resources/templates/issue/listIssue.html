@@ -131,8 +131,6 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 </body>
 <script>
-
-
     function formTraSach(id, id2){
         var issueId = "#issue_" + id;
         var liElements = $(issueId).find("li");
@@ -141,7 +139,7 @@
         liElements.each(function() {
             var liText = $(this).text();
             var liId = $(this).attr("id");
-            var rowHtml = '<tr id="'+id2+'"><td><input type="checkbox" value="' + liId + '"></td><td>' + liText + '</td></tr>';
+            var rowHtml = '<tr id="'+ id2 +'" value="' + id + '"><td><input type="checkbox" value="' + liId + '"></td><td>' + liText + '</td></tr>';
 
             modalTable.append(rowHtml);
         });
@@ -150,12 +148,14 @@
 
     function returnBookConfirm(){
         var maPhieuTra = $("#returnBookTable tbody tr").attr("id");
-        console.log(maPhieuTra);
+        var maPhieuMuon = $("#returnBookTable tbody tr").attr("value");
+        console.log(maPhieuMuon)
         var idSachs = $("#returnBookTable tbody input[type='checkbox']:checked").map(function() {
             return $(this).val();
         }).get();
         data = {
             maPhieuTra : maPhieuTra,
+            maPhieuMuon: maPhieuMuon,
             idSachs : idSachs
         }
         $.post({

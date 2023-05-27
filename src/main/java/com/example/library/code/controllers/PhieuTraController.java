@@ -3,7 +3,9 @@ package com.example.library.code.controllers;
 import com.example.library.code.data.phieuTra.CapNhapSachTraDto;
 import com.example.library.code.data.sach.GetChiTietSachDto;
 import com.example.library.code.data.sach.GetChiTietSachPhieuMuon;
+import com.example.library.code.models.entities.PhieuMuon;
 import com.example.library.code.models.entities.PhieuTra;
+import com.example.library.code.services.serviceimp.PhieuMuonService;
 import com.example.library.code.services.serviceimp.PhieuTraService;
 import com.example.library.code.services.serviceimp.SachService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,9 @@ public class PhieuTraController {
     private PhieuTraService phieuTraService;
 
     @Autowired
+    private PhieuMuonService phieuMuonService;
+
+    @Autowired
     private SachService sachService;
 
     @PostMapping("admin/tra-sach")
@@ -29,6 +34,11 @@ public class PhieuTraController {
         phieuTra.setSachs(phieuTra.getSachs());
         phieuTraService.taoPhieuTra(phieuTra);
 
+        PhieuMuon phieuMuon = phieuMuonService.timPhieuMuonId(sachTraDto.maPhieuMuon);
+        if(phieuMuon.getSachs().size() == phieuTra.getSachs().size()){
+            phieuTra.setTrang_thai(true);
+        }
+        phieuTraService.taoPhieuTra(phieuTra);
         return ResponseEntity.ok().body(sachTraDto);
     }
 }

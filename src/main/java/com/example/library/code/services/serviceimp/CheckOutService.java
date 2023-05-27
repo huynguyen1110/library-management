@@ -7,6 +7,7 @@ import com.example.library.code.models.entities.DocGia;
 import com.example.library.code.models.entities.PhieuMuon;
 import com.example.library.code.models.entities.PhieuTra;
 import com.example.library.code.models.entities.Sach;
+import com.example.library.code.models.enums.HinhThucMuonTra;
 import com.example.library.code.repositories.*;
 import com.example.library.code.services.iservices.ICheckOutService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,6 +46,7 @@ public class CheckOutService implements ICheckOutService {
         phieuMuon.tongTien = layGioHangDto.tongTien;
         phieuMuon.soLuong = layGioHangDto.sachList.size();
         phieuMuon.trang_thai = true;
+        phieuMuon.hinhThucMuonTra = HinhThucMuonTra.ONLINE;
         phieuMuon.docGia = docGia;
         for (GetChiTietSachDto sach : layGioHangDto.sachList) {
             Sach sachTrongGioHang = sachRepository.timSachTheoId(sach.maSach);

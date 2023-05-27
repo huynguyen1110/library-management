@@ -21,7 +21,8 @@ function hienThiThonTinPhieuMuonTra() {
                 <td>${item.tongTien}</td>
                 <td>${item.trangThaiMuon}</td>
                 <td>${item.trangThaiTra}</td>
-            </tr>`
+                <td ><a type="button" onclick="xemChiTietBtn(${item.maPhieuMuon}, '${item.maPhieuTra}')">Xem chi tiết</a></td>
+                </tr>`
                 phieuMuonTraBody.append(result)
             })
         },
@@ -55,5 +56,41 @@ function troLaiTrangChu() {
 
 function capNhatTrangThai() {
     window.location.href = '/api/v1/thong-tin-muon-tra?maTk=' + maTk
+}
+
+function xemChiTietBtn(maPhieuMuon, maPhieuTra) {
+    var result = ``
+    $.ajax({
+        url: '/api/v1/lay-phieu-muon-tra?maTk=' + maTk,
+        method: 'GET',
+        success: function (response) {
+            var thongTinSachBody = $(".thongTinSachBody")
+            thongTinSachBody.empty()
+            response.forEach(function (item) {
+                if (maPhieuMuon == item.maPhieuMuon && maPhieuTra == item.maPhieuTra) {
+                    item.sachMuon.forEach(function (sachMuon) {
+                        result = `<tr>
+                                <td>${item.maPhieuMuon}</td>
+                                <td>${sachMuon.maSach}</td>
+                                <td>${sachMuon.tenSach}</td>
+                                <td>${sachMuon.giaTien}</td>
+                                <td>${sachMuon.theLoai.tenTheLoai}</td>
+                                <td>${sachMuon.nhaXuatBan.tenNhaXuatBan}</td>
+                                <td>${sachMuon.tacGia.ten}</td>
+                              </tr>`
+                        thongTinSachBody.append(result)
+                    })
+                }
+            })
+        },
+        error: function () {
+            console.log('Đã xảy ra lỗi khi gọi API.');
+        }
+    });
+    $(".modal-content").show()
+}
+
+function closeChiTietSach() {
+    $(".modal-content").hide()
 }
 

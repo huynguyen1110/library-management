@@ -44,12 +44,45 @@
                 <th scope="col">Tổng tiền</th>
                 <th scope="col">Trạng thái mượn</th>
                 <th scope="col">Trạng thái trả</th>
+                <th scope="col">xem</th>
             </tr>
             </thead>
             <tbody class="phieuMuonTraBody">
 
             </tbody>
         </table>
+        <div  class="xemChiTietBody container">
+            <div class="modal-content" style="display: none; width: 50%; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%)">
+                <div class="modal-header">
+                    <h4 class="modal-title">Thông tin mượn trả</h4>
+                    <button type="button" class="close" data-dismiss="modal"aria-label="Close" onclick="closeChiTietSach()">
+                        <span aria-hidden="true" onclick="closeChiTietSach()">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <table id="returnBookTable" class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">Mã phiếu mượn</th>
+                            <th scope="col">Mã sách</th>
+                            <th scope="col">Tên sách</th>
+                            <th scope="col">Giá cọc</th>
+                            <th scope="col">Thể loại</th>
+                            <th scope="col">Nhà xuất bản</th>
+                            <th scope="col">Tác giả</th>
+                        </tr>
+                        </thead>
+                        <tbody class="thongTinSachBody">
+
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>
 

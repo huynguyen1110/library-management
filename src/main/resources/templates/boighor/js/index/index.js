@@ -214,7 +214,7 @@ function formatTienMat(tien) {
     return formattedAmount
 }
 
-function thongTinMuonTraBtn() {
+function thongTinMuonTraBtn1() {
     window.location.href = '/api/v1/thong-tin-muon-tra?maTk=' + idNguoiDung;
 }
 

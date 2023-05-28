@@ -5,14 +5,17 @@ import com.example.library.code.models.enums.HinhThucThanhToan;
 import jakarta.persistence.*;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import lombok.Data;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Data
+@Getter
+@Setter
 @RequiredArgsConstructor
 public class PhieuTra {
     @Id

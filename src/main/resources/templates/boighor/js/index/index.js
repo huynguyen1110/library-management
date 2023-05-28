@@ -15,8 +15,8 @@ function hienThiSachMoi () {
                 result = `
                 <div class="product product__style--3 col-3">
                         <div class="product__thumb">
-                            <a class="first__img" href="/api/v1/single-product?maSach=${item.maSach}&maTk=${idNguoiDung}"><img src="/images/books/1.jpg"
-                                                                                     alt="product image"></a>
+                            <a class="first__img" href="/api/v1/single-product?maSach=${item.maSach}&maTk=${idNguoiDung}"><img src="/image/${item.image}"
+                                                                                     alt="product image" style="width: 249px; height: 313.55px"></a>
                             <div class="hot__box">
                                 <span class="hot-label">BEST SALLER</span>
                             </div>
@@ -66,8 +66,8 @@ function tatCaSach () {
                             <div class="single__product__inner ">
                                 <div class="product product__style--3">
                                     <div class="product__thumb">
-                                        <a class="first__img" href="/api/v1/single-product?maSach=${item.maSach}&maTk=${idNguoiDung}"><img
-                                                src="/images/books/8.jpg" alt="product image"></a>
+                                        <a class="first__img" href="/api/v1/single-product?maSach=${item.maSach}&maTk=${idNguoiDung}"><img src="/image/${item.image}"
+                                                                                     alt="product image" style="width: 249px; height: 313.55px"></a>
                                         <div class="hot__box">
                                             <span class="hot-label">BEST SALLER</span>
                                         </div>
@@ -122,8 +122,8 @@ function hienThiSachTheoTheLoai (theLoai) {
                             <div class="single__product__inner  col-3">
                                 <div class="product product__style--3">
                                     <div class="product__thumb">
-                                        <a class="first__img" href="/api/v1/single-product?maSach=${item.maSach}&maTk=${idNguoiDung}"><img
-                                                src="/images/books/8.jpg" alt="product image"></a>
+                                        <a class="first__img" href="/api/v1/single-product?maSach=${item.maSach}&maTk=${idNguoiDung}"><img src="/image/${item.image}"
+                                                                                     alt="product image" style="width: 249px; height: 313.55px"></a>
                                         <div class="hot__box">
                                             <span class="hot-label">BEST SALLER</span>
                                         </div>
@@ -159,8 +159,8 @@ function hienThiSachTheoTheLoai (theLoai) {
                             <div class="single__product__inner  col-3">
                                 <div class="product product__style--3">
                                     <div class="product__thumb">
-                                        <a class="first__img" href="/api/v1/single-product?maSach=${item.maSach}&maTk=${idNguoiDung}"><img
-                                                src="/images/books/8.jpg" alt="product image"></a>
+                                        <a class="first__img" href="/api/v1/single-product?maSach=${item.maSach}&maTk=${idNguoiDung}"><img src="/image/${item.image}"
+                                                                                     alt="product image" style="width: 249px; height: 313.55px"></a>
                                         <div class="hot__box">
                                             <span class="hot-label">BEST SALLER</span>
                                         </div>

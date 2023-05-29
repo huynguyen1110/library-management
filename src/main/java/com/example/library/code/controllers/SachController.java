@@ -35,7 +35,7 @@ import java.util.Random;
 @RequestMapping("/api/v1/")
 public class SachController {
 
-    private static String UPLOADED_FOLDER = "D:\\Libary Management\\aa\\library-management\\src\\main\\resources\\static\\image\\";
+    private static String UPLOADED_FOLDER = "E:\\Tai_lieu\\Ky_hai_nam_ba\\cong_nghe_phan_mem\\do_an\\code\\src\\main\\resources\\static\\image\\";
     private static String FILE_EXTENSION = ".jpg";
 
     @Autowired
@@ -133,7 +133,7 @@ public class SachController {
     @GetMapping("admin/danh-sach")
     private ModelAndView danhSach(){
         ModelAndView model = new ModelAndView("books/listBook");
-        List<Sach> books = sachService.timTatCa();
+        List<Sach> books = sachService.adminTimTatCaSach();
         model.addObject("books", books);
         return model;
     }

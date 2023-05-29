@@ -14,9 +14,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-//@Data
-@Setter
 @Getter
+@Setter
 @RequiredArgsConstructor
 public class PhieuTra {
     @Id

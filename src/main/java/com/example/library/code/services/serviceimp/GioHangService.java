@@ -87,6 +87,7 @@ public class GioHangService implements IGioHangService {
             getChiTietSachDto.maSach = element.maSach;
             getChiTietSachDto.tenSach = element.tenSach;
             getChiTietSachDto.giaTien = element.giaTien;
+            getChiTietSachDto.image = element.image;
             layGioHangDto.sachList.add(getChiTietSachDto);
         }
         return layGioHangDto;

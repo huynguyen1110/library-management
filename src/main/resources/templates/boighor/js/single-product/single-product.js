@@ -13,7 +13,7 @@ function hienThiChiTieSach() {
                     result = `<div class="col-lg-6 col-12">
                                 <div class="wn__fotorama__wrapper">
                                     <div class="fotorama wn__fotorama__action" data-nav="thumbs">
-                                        <img src="/images/product/1.jpg" alt="">
+                                        <img src="/image/${item.image}" alt="product image" style="width: 249px; height: 313.55px">
                                     </div>
                                 </div>
                             </div>
@@ -158,9 +158,8 @@ function hienThiSachTrongGioHang(maSach, maTk) {
             response.sachList.forEach(function (item) {
                 result = `<!-- item trong giỏ hàng -->
                                             <div class="item01 d-flex mt--20">
-                                                <div class="thumb"><img
-                                                        src="/images/product/sm-img/2.jpg"
-                                                        alt="product images"></a>
+                                                <div class="thumb"><img src="/image/${item.image}"
+                                                                                     alt="product image" style="width: 75px; height: 94px"></a>
                                                 </div>
                                                 <div class="content">
                                                     <h6>${item.tenSach}</h6>

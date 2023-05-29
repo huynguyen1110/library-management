@@ -27,8 +27,8 @@ function hienThiSachTrongShop(selectedValue, theLoai) {
                 response.content.forEach(function (item) {
                     result = `<div class="product product__style--3 col-lg-4 col-md-4 col-sm-6 col-12">
                                     <div class="product__thumb">
-                                        <a class="first__img" href="/api/v1/single-product?maSach=${item.maSach}&maTk=${maTk}"><img
-                                                src="/images/books/1.jpg" alt="product image"></a>
+                                        <a class="first__img" href="/api/v1/single-product?maSach=${item.maSach}&maTk=${maTk}"><img src="/image/${item.image}"
+                                                                                     alt="product image" style="width: 249px; height: 313.55px"></a>
                                         <div class="hot__box">
                                             <span class="hot-label">BEST SALLER</span>
                                         </div>
@@ -66,8 +66,8 @@ function hienThiSachTrongShop(selectedValue, theLoai) {
                 response.content.forEach(function (item) {
                     result = `<div class="product product__style--3 col-lg-4 col-md-4 col-sm-6 col-12">
                                     <div class="product__thumb">
-                                        <a class="first__img" href="/api/v1/single-product?maSach=${item.maSach}&maTk=${maTk}"><img
-                                                src="/images/books/1.jpg" alt="product image"></a>
+                                        <a class="first__img" href="/api/v1/single-product?maSach=${item.maSach}&maTk=${maTk}"><img src="/image/${item.image}"
+                                                                                     alt="product image" style="width: 249px; height: 313.55px"></a>
                                         <div class="hot__box">
                                             <span class="hot-label">BEST SALLER</span>
                                         </div>
@@ -106,8 +106,8 @@ function hienThiSachTrongShop(selectedValue, theLoai) {
                 response.content.forEach(function (item) {
                     result = `<div class="product product__style--3 col-lg-4 col-md-4 col-sm-6 col-12">
                                     <div class="product__thumb">
-                                        <a class="first__img" href="/api/v1/single-product?maSach=${item.maSach}&maTk=${maTk}"><img
-                                                src="/images/books/1.jpg" alt="product image"></a>
+                                        <a class="first__img" href="/api/v1/single-product?maSach=${item.maSach}&maTk=${maTk}"><img src="/image/${item.image}"
+                                                                                     alt="product image" style="width: 249px; height: 313.55px"></a>
                                         <div class="hot__box">
                                             <span class="hot-label">BEST SALLER</span>
                                         </div>
@@ -146,8 +146,8 @@ function hienThiSachTrongShop(selectedValue, theLoai) {
                 response.content.forEach(function (item) {
                     result = `<div class="product product__style--3 col-lg-4 col-md-4 col-sm-6 col-12">
                                     <div class="product__thumb">
-                                        <a class="first__img" href="/api/v1/single-product?maSach=${item.maSach}&maTk=${maTk}"><img
-                                                src="/images/books/1.jpg" alt="product image"></a>
+                                        <a class="first__img" href="/api/v1/single-product?maSach=${item.maSach}&maTk=${maTk}"><img src="/image/${item.image}"
+                                                                                     alt="product image" style="width: 249px; height: 313.55px"></a>
                                         <div class="hot__box">
                                             <span class="hot-label">BEST SALLER</span>
                                         </div>
@@ -202,8 +202,8 @@ function loadBooks(page) {
             response.content.forEach(function (item) {
                 result = `<div class="product product__style--3 col-lg-4 col-md-4 col-sm-6 col-12">
                                     <div class="product__thumb">
-                                        <a class="first__img" href="/api/v1/single-product?maSach=${item.maSach}&maTk=${maTk}"><img
-                                                src="/images/books/1.jpg" alt="product image"></a>
+                                        <a class="first__img" href="/api/v1/single-product?maSach=${item.maSach}&maTk=${maTk}"><img src="/image/${item.image}"
+                                                                                     alt="product image" style="width: 249px; height: 313.55px"></a>
                                         <div class="hot__box">
                                             <span class="hot-label">BEST SALLER</span>
                                         </div>
@@ -290,8 +290,8 @@ function loadBooksByTheLoai(page, theLoai) {
             response.content.forEach(function (item) {
                 result = `<div class="product product__style--3 col-lg-4 col-md-4 col-sm-6 col-12">
                                     <div class="product__thumb">
-                                        <a class="first__img" href="/api/v1/single-product?maSach=${item.maSach}&maTk=${maTk}"><img
-                                                src="/images/books/1.jpg" alt="product image"></a>
+                                        <a class="first__img" href="/api/v1/single-product?maSach=${item.maSach}&maTk=${maTk}"><img src="/image/${item.image}"
+                                                                                     alt="product image" style="width: 249px; height: 313.55px"></a>
                                         <div class="hot__box">
                                             <span class="hot-label">BEST SALLER</span>
                                         </div>

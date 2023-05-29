@@ -6,6 +6,9 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import javax.print.Doc;
+import java.util.List;
+
 @Repository
 public interface DocGiaRepository extends JpaRepository<DocGia, Integer> {
 
@@ -13,5 +16,4 @@ public interface DocGiaRepository extends JpaRepository<DocGia, Integer> {
     DocGia findByMaTk(@Param("maTk") int maTk);
 
     DocGia findByTen(String ten);
-
 }

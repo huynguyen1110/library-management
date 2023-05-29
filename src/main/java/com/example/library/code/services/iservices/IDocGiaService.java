@@ -15,4 +15,8 @@ public interface IDocGiaService {
     List<DocGia> timTatCa();
 
     DocGia timTheoMa(int id);
+
+    List<GetDocGiaInfoDto> getDocGiaInfoDtos();
+
+    DocGia xoaDocGiaByMaTk(int maTk);
 }

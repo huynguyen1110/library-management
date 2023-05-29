@@ -7,4 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface TaiKhoanRepository extends JpaRepository<TaiKhoan, Integer> {
 
     TaiKhoan findByTenTk(String tenTk);
+
+    TaiKhoan findByMaTk(int maTk);
 }

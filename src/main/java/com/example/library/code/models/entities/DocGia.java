@@ -23,6 +23,7 @@ public class DocGia {
     public String sdt;
     public String email;
     public String diaCHi;
+    public Boolean daXoa;
     @OneToOne
     public TheThuVien theThuVien;
     @OneToOne

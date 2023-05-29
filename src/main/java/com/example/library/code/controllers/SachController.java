@@ -195,4 +195,10 @@ public class SachController {
     public Page<Sach> laySachCoPhanTrangTheoTheLoai(@RequestParam(defaultValue = "0") int pageNumber, @RequestParam(defaultValue = "tenSach") String orderBy, @RequestParam String theLoai) {
         return sachService.laySachTheoTheLoaiCoPhanTrang(pageNumber, theLoai, orderBy);
     }
+
+    @GetMapping("admin/them-the-loai")
+    public ModelAndView theTheLoaiPage() {
+        ModelAndView modelAndView = new ModelAndView("/categories/addCategori");
+        return modelAndView;
+    }
 }

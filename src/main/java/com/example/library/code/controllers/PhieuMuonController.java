@@ -42,7 +42,7 @@ public class PhieuMuonController {
     public ModelAndView formPhieuMuon(){
         ModelAndView modelAndView = new ModelAndView("issue/issueNew");
         List<TheLoai> theLoais = theLoaiService.danhSachTheLoai();
-        List<Sach> sachs = sachService.timTatCa();
+        List<Sach> sachs = sachService.adminTimTatCaSach();
         List<DocGia> docGias = docGiaService.timTatCa();
         modelAndView.addObject("sachs", sachs);
         modelAndView.addObject("theLoais", theLoais);

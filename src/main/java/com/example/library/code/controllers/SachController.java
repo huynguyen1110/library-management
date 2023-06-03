@@ -11,6 +11,7 @@ import com.example.library.code.services.serviceimp.SachService;
 import com.example.library.code.services.serviceimp.TacGiaService;
 import com.example.library.code.services.serviceimp.TheLoaiService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,7 +36,8 @@ import java.util.Random;
 @RequestMapping("/api/v1/")
 public class SachController {
 
-    private static String UPLOADED_FOLDER = "E:\\Tai_lieu\\Ky_hai_nam_ba\\cong_nghe_phan_mem\\do_an\\code\\src\\main\\resources\\static\\image\\";
+    private static String UPLOADED_FOLDER = "D:\\Libary Management\\aa\\library-management\\src\\main\\resources\\static\\image\\";
+
     private static String FILE_EXTENSION = ".jpg";
 
     @Autowired
@@ -125,7 +127,6 @@ public class SachController {
             byte[] bytes = file.getBytes();
             Path path = Paths.get(UPLOADED_FOLDER + file.getName() + ranNum + FILE_EXTENSION);
             Files.write(path, bytes);
-//            return file.getOriginalFilename();
             return path.getFileName().toString();
         } else return null;
     }

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
@@ -51,7 +52,7 @@ public class PhieuMuonController {
     }
 
     @PostMapping("admin/phieu-muon")
-    public ResponseEntity<?> taoPhieuMuon(@RequestBody TaoPhieuMuonDto phieuMuonDto){
+    public ResponseEntity<TaoPhieuMuonDto> taoPhieuMuon(@RequestBody TaoPhieuMuonDto phieuMuonDto){
         PhieuMuon phieuMuon = new PhieuMuon();
 //        phieuMuon.setMaPhieuMuon(phieuMuonService.danhSachPhieuMuon().size()+1);
         phieuMuon.setHinhThucThanhToan(HinhThucThanhToan.TIEN_MAT);
@@ -73,13 +74,13 @@ public class PhieuMuonController {
         phieuTra.setHinhThucTra(HinhThucMuonTra.OFFLINE);
         phieuTra.setDocGia(docGiaService.timTheoMa(phieuMuonDto.idDocGia));
         phieuTra.setSoLuong(phieuMuonDto.idSachs.length);
-        phieuTra.setNgayTra(LocalDateTime.now().plusDays(3));
+        phieuTra.setNgayTra(LocalDateTime.parse(phieuMuonDto.ngayTraDuKien.concat("T").concat(LocalTime.now().toString())));
         phieuTra.setTongTien(sachService.tinhTien(phieuMuonDto.idSachs));
         phieuTra.setTrang_thai(false);
 
         phieuTraService.taoPhieuTra(phieuTra);
 
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok().body(phieuMuonDto);
     }
 
     @GetMapping("admin/phieu-muon/danh-sach")
@@ -104,12 +105,4 @@ public class PhieuMuonController {
        return ResponseEntity.ok().body(sachDto);
     }
 
-    private LocalDateTime convertTextToLocalDateTime(String temp){
-        String pattern = "yyyy-MM-dd";
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
-
-        // Chuyển đổi chuỗi thành LocalDateTime
-        LocalDateTime dateTime = LocalDateTime.parse(temp, formatter);
-        return dateTime;
-    }
 }

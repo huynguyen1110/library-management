@@ -16,9 +16,9 @@ function hienThiListMembers() {
                             <td>${item.sdt}</td>
                             <td>${item.taiKhoan.maTk}</td>
                             <td>
-                                <a href="/api/v1/admin/info-update?maTk=${item.taiKhoan.maTk}"><i class="fa-solid fa-pen-to-square ml-2"></i><span class="ml-2">Cập nhật</span></a>
+                                <a href="/api/v1/admin/info-update?maTk=${item.taiKhoan.maTk}"><i class="fa-solid fa-pen-to-square "></i><span class="ml-2">Cập nhật</span></a>
                                 <br>
-                                <a href="" onclick="deleteDocGia(${item.taiKhoan.maTk})"><i class="fa-solid fa-trash ml-2"></i><span class="ml-2">Xóa</span></a>
+                                <a href="" onclick="deleteDocGia(${item.taiKhoan.maTk})"><i class="fa-solid fa-trash "></i><span class="ml-2">Xóa</span></a>
                                 <br>
                                 <a href="#" onclick="lichSuMuonTra(${item.taiKhoan.maTk})"><i class="fa-solid fa-clock-rotate-left"></i><span class="ml-2">Lịch sử mượn trả</span></a>
                             </td>

@@ -44,9 +44,9 @@ function hienThiDanhSachTheLoai() {
                         <td>${item.maTheLoai}</td>
                         <td>${item.tenTheLoai}</td>
                         <td>
-                            <a href="#" onclick="capNhatTheLoaiBtn(${item.maTheLoai})">Cập nhập</a>
+                            <a href="#" onclick="capNhatTheLoaiBtn(${item.maTheLoai})"><i class="fa-solid fa-pen-to-square ml-2"></i><span class="ml-2">Cập nhật</span></a>
                             <br>
-                            <a href="#" onclick="xoaTheLoai(${item.maTheLoai})">Xóa</a>
+                            <a href="#" onclick="xoaTheLoai(${item.maTheLoai})"><i class="fa-solid fa-trash ml-2"></i><span class="ml-2">Xóa</span></a>
                             <br>
                         </td>
                        </tr>`

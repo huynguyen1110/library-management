@@ -24,6 +24,12 @@ public class DocGiaController {
         return modelAndView;
     }
 
+    @GetMapping("admin/info-update")
+    public ModelAndView adminCapNhatThongTinPage() {
+        ModelAndView modelAndView = new ModelAndView("/members/update-members");
+        return modelAndView;
+    }
+
     @PutMapping("cap-nhat-thong-tin")
     public UpdateDocGiaDto capNhatThongTin(@RequestBody UpdateDocGiaDto updateDocGiaDto, @RequestParam int maTk) {
         return docGiaService.capNhatThongTinDocGia(updateDocGiaDto, maTk);

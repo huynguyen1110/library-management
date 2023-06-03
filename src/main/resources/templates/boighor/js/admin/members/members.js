@@ -16,11 +16,11 @@ function hienThiListMembers() {
                             <td>${item.sdt}</td>
                             <td>${item.taiKhoan.maTk}</td>
                             <td>
-                                <a href="/api/v1/info-update?maTk=${item.taiKhoan.maTk}">Cập nhập</a>
+                                <a href="/api/v1/info-update?maTk=${item.taiKhoan.maTk}"><i class="fa-solid fa-pen-to-square ml-2"></i><span class="ml-2">Cập nhật</span></a>
                                 <br>
-                                <a href="" onclick="deleteDocGia(${item.taiKhoan.maTk})">Xóa</a>
+                                <a href="" onclick="deleteDocGia(${item.taiKhoan.maTk})"><i class="fa-solid fa-trash ml-2"></i><span class="ml-2">Xóa</span></a>
                                 <br>
-                                <a href="#" onclick="lichSuMuonTra(${item.taiKhoan.maTk})">Lịch sử mượn trả</a>
+                                <a href="#" onclick="lichSuMuonTra(${item.taiKhoan.maTk})"><i class="fa-solid fa-clock-rotate-left"></i><span class="ml-2">Lịch sử mượn trả</span></a>
                             </td>
                            </tr>`
                     listMembersBody.append(result)
@@ -83,18 +83,18 @@ function lichSuMuonTra(maTk) {
                     })
                     stt += 1
                     result = `<tr>
-                                <th scope="row">${stt}</th>
-                                <th>${item.maPhieuMuon}</th>
-                                <th>${formatDate(item.ngayMuon)}</th>
-                                <th>${item.maPhieuTra}</th>
-                                <th>${formatDate(item.ngayTra)}</th>
-                                <th>${sacMuon.maSach}</th>
-                                <th>${sacMuon.tenSach}</th>
-                                <th>${sacMuon.giaTien}</th>
-                                <th>${sacMuon.theLoai.tenTheLoai}</th>
-                                <th>${sacMuon.nhaXuatBan.tenNhaXuatBan}</th>
-                                <th>${sacMuon.tacGia.ten}</th>
-                                <th>${daTra}</th>
+                                <td>${stt}</td>
+                                <td>${item.maPhieuMuon}</td>
+                                <td>${formatDate(item.ngayMuon)}</td>
+                                <td>${item.maPhieuTra}</td>
+                                <td>${formatDate(item.ngayTra)}</td>
+                                <td>${sacMuon.maSach}</td>
+                                <td>${sacMuon.tenSach}</td>
+                                <td>${sacMuon.giaTien}</td>
+                                <td>${sacMuon.theLoai.tenTheLoai}</td>
+                                <td>${sacMuon.nhaXuatBan.tenNhaXuatBan}</td>
+                                <td>${sacMuon.tacGia.ten}</td>
+                                <td>${daTra}</td>
                                </tr>`
                     thongTinSachMuonTra.append(result)
                 })

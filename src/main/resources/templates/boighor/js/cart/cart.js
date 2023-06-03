@@ -17,7 +17,8 @@ function hienThiChiTietSachTrongCart () {
                 result = `<tr>
                             <td class="product-name"><a href="/api/v1/single-product?maSach=${maSach}&maTk=${maTk}">${item.tenSach}</a></td>
                             <td class="product-price"><span class="amount">${formatTienMat(item.giaTien)}</span></td>
-                            <td class="product-remove"><button type="button" onclick="xoaSanPhamKhoiGioHang(${item.maSach})">X</button></td>
+<!--                            <td class="product-remove"><button type="button" onclick="xoaSanPhamKhoiGioHang()">X</button></td>-->
+                            <td class="product-remove"><i class="fa-regular fa-xmark xoaBtn" onclick="xoaSanPhamKhoiGioHang(${item.maSach})"></i></td>
                      </tr>`
                 tongTien += item.giaTien
                 tableBody.append(result);
@@ -48,6 +49,7 @@ function formatTienMat(tien) {
 
 hienThiChiTietSachTrongCart()
 
+
 function xoaSanPhamKhoiGioHang(maSachItem) {
 
     $.ajax({
@@ -64,18 +66,23 @@ function xoaSanPhamKhoiGioHang(maSachItem) {
     });
 }
 
+
 function thanhToan() {
-    $.ajax({
-        url: `/api/v1/tao-phieu-muon-tra?maTk=` + maTk,
-        method: 'POST',
-        success: function (response) {
-            alert("Thanh toán thành công")
-        },
-        error: function () {
-            console.log('Đã xảy ra lỗi khi gọi API.');
-        }
-    });
+    var confirmation = confirm("Bạn có chắc chắn muốn mượn cuốn sách này?");
+    if (confirmation) {
+        $.ajax({
+            url: `/api/v1/tao-phieu-muon-tra?maTk=` + maTk,
+            method: 'POST',
+            success: function (response) {
+                alert("Mượn thành công thành công");
+            },
+            error: function () {
+                console.log('Đã xảy ra lỗi khi gọi API.');
+            }
+        });
+    }
 }
+
 var urlParams = new URLSearchParams(window.location.search);
 var maTk = urlParams.get('maTk');
 

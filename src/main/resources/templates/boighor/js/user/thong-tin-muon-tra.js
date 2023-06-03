@@ -54,6 +54,10 @@ function troLaiTrangChu() {
     window.location.href = '/api/v1/index?id-nguoi-dung=' + maTk;
 }
 
+function lichSuMuonTraBtn() {
+    window.location.href = '/api/v1/thong-tin-muon-tra?maTk=' + maTk;
+}
+
 function capNhatTrangThai() {
     window.location.href = '/api/v1/thong-tin-muon-tra?maTk=' + maTk
 }

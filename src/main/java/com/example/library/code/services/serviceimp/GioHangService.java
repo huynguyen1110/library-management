@@ -34,29 +34,44 @@ public class GioHangService implements IGioHangService {
     public GioHang themSachVaoGioHang(int maSach, int maTk) {
         DocGia docGia  = docGiaRepository.findByMaTk(maTk);
         Sach sach = sachRepository.timSachTheoId(maSach);
-        if (isGioHangExist(maTk) == false){
-            double giaSach = 0;
-            giaSach += sach.giaTien;
-            GioHang gioHang = new GioHang();
-            gioHang.tongTien = giaSach;
-            gioHang.maGioHang = docGia.maDocGia;
-            gioHang.docGia = docGia;
-            gioHang.getSachs().add(sach);
-            gioHang.daThanhToan = false;
-            gioHangRepository.save(gioHang);
-            return gioHang;
-        } else {
-            int maDocGia = docGia.maDocGia;
-            GioHang gioHang = gioHangRepository.findGioHangByMaDocGia(maDocGia);
-            double tongTienSach = gioHang.tongTien;
-            double giaSach = sach.giaTien;
-            tongTienSach += giaSach;
-            gioHang.tongTien = tongTienSach;
-            gioHang.getSachs().add(sach);
-            gioHang.daThanhToan = false;
-            gioHangRepository.save(gioHang);
-            return gioHang;
+        if (sach.soLuong > 0) {
+            if (isGioHangExist(maTk) == false){
+                double giaSach = 0;
+                giaSach += sach.giaTien;
+                GioHang gioHang = new GioHang();
+                gioHang.tongTien = giaSach;
+                gioHang.maGioHang = docGia.maDocGia;
+                gioHang.docGia = docGia;
+                gioHang.daThanhToan = false;
+                if (!gioHang.sachs.contains(sach)) {
+                    sach.soLuong -= 1;
+                    sachRepository.save(sach);
+                    gioHang.getSachs().add(sach);
+                }
+                gioHangRepository.save(gioHang);
+                if (!gioHang.sachs.contains(sach)) {
+                    sach.soLuong -= 1;
+                    sachRepository.save(sach);
+                }
+                return gioHang;
+            } else {
+                int maDocGia = docGia.maDocGia;
+                GioHang gioHang = gioHangRepository.findGioHangByMaDocGia(maDocGia);
+                double tongTienSach = gioHang.tongTien;
+                double giaSach = sach.giaTien;
+                tongTienSach += giaSach;
+                gioHang.tongTien = tongTienSach;
+                gioHang.daThanhToan = false;
+                if (!gioHang.sachs.contains(sach)) {
+                    sach.soLuong -= 1;
+                    sachRepository.save(sach);
+                    gioHang.getSachs().add(sach);
+                }
+                gioHangRepository.save(gioHang);
+                return gioHang;
+            }
         }
+        return null;
     }
 
     public Boolean isGioHangExist(int maTk) {
@@ -99,6 +114,18 @@ public class GioHangService implements IGioHangService {
         GioHang gioHang = gioHangRepository.findGioHangByMaTK(maTk);
         Sach sach = sachRepository.timSachTheoId(maSach);
         gioHang.tongTien = gioHang.tongTien - sach.giaTien;
+        sach.soLuong += 1;
+        sachRepository.save(sach);
+        gioHangRepository.save(gioHang);
+        gioHangRepository.removeSachFromGioHangByMaSach(maSach, maTk);
+    }
+
+    @Transactional
+    public void xoaSachKhoiGioHangKhiThanhToan(int maSach, int maTk) {
+        GioHang gioHang = gioHangRepository.findGioHangByMaTK(maTk);
+        Sach sach = sachRepository.timSachTheoId(maSach);
+        gioHang.tongTien = gioHang.tongTien - sach.giaTien;
+        sachRepository.save(sach);
         gioHangRepository.save(gioHang);
         gioHangRepository.removeSachFromGioHangByMaSach(maSach, maTk);
     }

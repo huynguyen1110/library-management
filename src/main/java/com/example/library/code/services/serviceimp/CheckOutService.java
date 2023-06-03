@@ -68,7 +68,7 @@ public class CheckOutService implements ICheckOutService {
         phieuTra.trang_thai = false;
         phieuTra.docGia = docGia;
         for (GetChiTietSachDto sach : layGioHangDto.sachList) {
-            gioHangService.xoaSachKhoiGioHang(sach.maSach, maTk);
+            gioHangService.xoaSachKhoiGioHangKhiThanhToan(sach.maSach, maTk);
         }
         phieuTraRepository.save(phieuTra);
         gioHangService.xoaGioHangByMaTk(maTk);

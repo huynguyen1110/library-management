@@ -70,7 +70,7 @@ function hienThiChiTieSach() {
                                     <div class="mt-4">
                                         <h1 class="text-uppercase font-weight-bold text-xxl">Chi tiết thông tin</h1>
                                         <p class="text--italic">Tác giả: ${item.tacGia}</p>
-                                        <p class="text--italic">Ngày xuất bản: ${item.ngayXuatBan}</p>
+                                        <p class="text--italic">Ngày xuất bản: ${formatDate(item.ngayXuatBan)}</p>
                                         <p class="text--italic">Nhà xuất bản:  ${item.nhaXuatBan}</p>
                                         <p class="text--italic">Thể Loại: ${item.theLoai}</p>
                                         <p class="text--italic">Số lượng sách còn: ${item.soLuong}</p>
@@ -91,7 +91,11 @@ function themSachVaoGioHang(maSach, maTk) {
             url: '/api/v1/them-vao-gio-hang?maSach=' + maSach + '&maTk=' + maTk,
             type: 'POST',
             success: function(response) {
-                alert("Đã thêm sách vào giỏ hàng")
+                if (response == "") {
+                    alert("Đã hết sách")
+                } else {
+                    alert("Đã thêm sách vào giỏ hàng")
+                }
             },
             error: function(xhr, status, error) {
                 console.log('Error sending POST request');
@@ -124,7 +128,7 @@ function hienThiGioHang() {
                                         <span>${formatTienMat(tongTien)}</span>
                                     </div>
                                     <div class="mini_action checkout">
-                                        <a class="checkout__btn" href="/api/v1/cart?maSach=${maSach}&maTk=${maTk}">Đặt cọc</a>
+                                        <a class="checkout__btn" href="/api/v1/cart?maSach=${maSach}&maTk=${maTk}">Yêu cầu mượn</a>
                                     </div>
                                     <div class="single__items">
                                         <div class="miniproduct chi-tiet-sach-trong-gio-hang">
@@ -212,5 +216,21 @@ function thongTinMuonTraBtn() {
 
 function dangXuatBtn() {
     window.location.href = '/api/v1/login'
+}
+
+function formatDate(dateTimeString) {
+    var dateTime = new Date(dateTimeString);
+
+    var date = dateTime.getDate();
+    var month = dateTime.getMonth() + 1; // Tháng trong JavaScript đếm từ 0 đến 11
+    var year = dateTime.getFullYear();
+
+    var formattedDate = (date < 10 ? '0' : '') + date;
+    var formattedMonth = (month < 10 ? '0' : '') + month;
+    var formattedYear = year;
+
+
+    var formattedDateTime = formattedDate + '/' + formattedMonth + '/' + formattedYear + ' '
+    return formattedDateTime;
 }
 

@@ -96,14 +96,17 @@ public class PhieuMuonController {
 
     @PostMapping("admin/phieu-muon/them-sach")
     public ResponseEntity<GetChiTietSachPhieuMuon> handleAjaxRequest(@RequestBody int id) {
+
         GetChiTietSachDto sach = sachService.timSachTheoId(id);
+        GetChiTietSachPhieuMuon sachDto = new GetChiTietSachPhieuMuon();
+        sachDto.setMaSach(sach.maSach);
+        sachDto.setTenSach(sach.tenSach);
+        sachDto.setTacGia(sach.tacGia);
+        if(sach.getSoLuong() > 0){
+            return ResponseEntity.ok().body(sachDto);
+        }
+        return ResponseEntity.badRequest().body(sachDto);
 
-       GetChiTietSachPhieuMuon sachDto = new GetChiTietSachPhieuMuon();
-       sachDto.setMaSach(sach.maSach);
-       sachDto.setTenSach(sach.tenSach);
-       sachDto.setTacGia(sach.tacGia);
-
-       return ResponseEntity.ok().body(sachDto);
     }
 
 }

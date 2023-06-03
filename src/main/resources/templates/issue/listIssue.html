@@ -91,7 +91,36 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 </body>
 <script>
+    $(document).ready(function () {
+        // Bắt sự kiện khi người dùng nhấp vào dấu ×
+        $(".modal-header .close").click(function () {
+            // Ẩn modal
+            $(".modal-content").hide();
+        });
 
+        $(".modal-footer .btn-default").click(function () {
+            // Ẩn modal
+            $(".modal-content").hide();
+        });
+
+        $("#listIssue tbody tr").each(function() {
+            var dateValue = $(this).find("td:nth-child(5)").text(); // Lấy giá trị từ cột thứ 4 trong hàng hiện tại
+
+            // Chuyển đổi định dạng ngày
+            var dateParts = dateValue.split("/");
+            var convertedDate = new Date(dateParts[2], dateParts[1] - 1, dateParts[0]);
+
+            console.log(convertedDate);
+            console.log(new Date())
+
+            if(new Date() - convertedDate > 0){
+                $(this).css({
+                    "color": "red"
+                })
+            }
+        });
+    });
+    
     function sellectAll(){
         // Kiểm tra trạng thái của checkbox "Select All"
         var isChecked = $('#select-all').prop('checked');
@@ -145,21 +174,6 @@
         $(".modal-content").hide();
     }
 
-
-    $(document).ready(function () {
-        // Bắt sự kiện khi người dùng nhấp vào dấu ×
-        $(".modal-header .close").click(function () {
-            // Ẩn modal
-            $(".modal-content").hide();
-        });
-
-        $(".modal-footer .btn-default").click(function () {
-            // Ẩn modal
-            $(".modal-content").hide();
-        });
-
-    });
-
     function xoaSach(idSachs, maPhieuTra) {
         $(document).ready(function () {
             var excludedValues = idSachs;
@@ -186,5 +200,6 @@
         });
 
     }
+    
 </script>
 </html>

@@ -13,5 +13,4 @@ public class GetChiTietSachPhieuMuon {
     public Integer maSach;
     public String tenSach;
     public String tacGia;
-
 }

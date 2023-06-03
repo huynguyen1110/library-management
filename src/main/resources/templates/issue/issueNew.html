@@ -124,8 +124,8 @@
                 themDong(response);
             },
             error: function (xhr) {
-                alert("Error");
-                alert(xhr)
+                console.log(xhr.responseJSON.tenSach)
+                alert("Sách " + xhr.responseJSON.tenSach + " đã hết! Xin lỗi vì sự bất tiện này.");
             }
         })
     }

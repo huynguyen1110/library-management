@@ -2,14 +2,14 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <title>Add Book</title>
+  <title>Thêm Sách</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 </head>
 <body>
 <div th:replace="~{fragments/adminnav/_nav :: nav}"></div>
 <div class="container py-5 mt-2 border border-primary rounded table-responsive">
   <div class="col-md-12">
-    <h2>Add Book</h2>
+    <h2>Thêm Sách</h2>
     <form id="formBook" th:action="@{/api/v1/admin/them-sach}" th:object="${sach}" method="post" enctype="multipart/form-data">
       <div class="form-group">
         <label for="imagePreview">Xem trước ảnh:</label> <br>

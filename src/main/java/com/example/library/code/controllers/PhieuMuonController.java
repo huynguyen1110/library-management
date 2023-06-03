@@ -64,6 +64,7 @@ public class PhieuMuonController {
         phieuMuon.setTrang_thai(true);
         for(int i = 0; i < phieuMuonDto.idSachs.length; i++){
             Sach sach = sachService.timSachTheoId2(phieuMuonDto.idSachs[i]);
+            sach.setSoLuong(sach.getSoLuong()-1);
             phieuMuon.getSachs().add(sach);
         }
         phieuMuon.setSachs(phieuMuon.getSachs());

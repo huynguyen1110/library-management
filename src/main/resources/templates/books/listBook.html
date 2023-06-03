@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>List Books</title>
+    <title>Danh Sách</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <style>
@@ -19,9 +19,15 @@
 <div th:replace="~{fragments/adminnav/_nav :: nav}"></div>
 <div class="container py-5 mt-2 border border-primary rounded table-responsive">
     <div class="col-md-12">
-        <h2 class="mb-4 text-center">List Books</h2>
+        <h2 class="mb-4 text-center">Danh Sách</h2>
+        <div class="input-group mb-3 w-50">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Tìm Kiếm</span>
+            </div>
+            <input id="inputSearch" type="text" class="form-control" onkeyup="timkiem()" placeholder="Điền tên sách...">
+        </div>
         <div class="table-container" style="max-height: 400px; overflow-y: auto">
-            <table class="table" >
+            <table class="table" id="listTable" >
                 <thead>
                 <tr>
                     <th>Mã sách</th>
@@ -62,4 +68,25 @@
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 </body>
+<script>
+    function timkiem() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = $("#inputSearch");
+        filter = input.val().toUpperCase();
+        table = $("#listTable");
+        tr = table.find("tr");
+
+        tr.each(function() {
+            td = $(this).find("td").eq(2);
+            if (td) {
+                txtValue = td.text();
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
+            }
+        });
+    }
+</script>
 </html>

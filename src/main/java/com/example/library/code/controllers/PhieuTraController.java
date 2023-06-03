@@ -5,6 +5,7 @@ import com.example.library.code.data.sach.GetChiTietSachDto;
 import com.example.library.code.data.sach.GetChiTietSachPhieuMuon;
 import com.example.library.code.models.entities.PhieuMuon;
 import com.example.library.code.models.entities.PhieuTra;
+import com.example.library.code.models.entities.Sach;
 import com.example.library.code.services.serviceimp.PhieuMuonService;
 import com.example.library.code.services.serviceimp.PhieuTraService;
 import com.example.library.code.services.serviceimp.SachService;
@@ -29,7 +30,9 @@ public class PhieuTraController {
     public ResponseEntity<CapNhapSachTraDto> handleAjaxRequest(@RequestBody CapNhapSachTraDto sachTraDto) {
         PhieuTra phieuTra = phieuTraService.timPhieuTraId(sachTraDto.maPhieuTra);
         for(int i = 0; i < sachTraDto.idSachs.length; i++){
-            phieuTra.getSachs().add(sachService.timSachTheoId2(sachTraDto.idSachs[i]));
+            Sach sach = sachService.timSachTheoId2(sachTraDto.idSachs[i]);
+            sach.setSoLuong(sach.getSoLuong()+1);
+            phieuTra.getSachs().add(sach);
         }
         phieuTra.setSachs(phieuTra.getSachs());
         phieuTraService.taoPhieuTra(phieuTra);

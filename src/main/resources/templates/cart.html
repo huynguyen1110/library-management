@@ -6,7 +6,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Shopping Cart | Books Library eCommerce Store</title>
+    <title>Giỏ hàng</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -31,6 +31,8 @@
     <!-- Modernizer js -->
     <script src="boighor/js/vendor/modernizr-3.5.0.min.js"></script>
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 
 <!--    thymeleaf-->
     <!-- Favicons -->
@@ -42,6 +44,7 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,300i,400,400i,500,600,600i,700,700i,800"
           rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 
     <!-- Stylesheets -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -60,6 +63,8 @@
 </head>
 
 <body>
+
+
 <!--[if lte IE 9]>
 <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade
     your browser</a> to improve your experience and security.</p>
@@ -115,25 +120,24 @@
                                 <thead>
                                 <tr class="title-top">
                                     <th class="product-name">Sản phẩm</th>
-                                    <th class="product-price">Giá</th>
+                                    <th class="product-price">Giá đặt cọc</th>
                                     <th class="product-remove">xóa</th>
                                 </tr>
                                 </thead>
-                                <tbody>
-                                <tr>
-                                    <td class="product-name"><a href="#">Natoque penatibus</a></td>
-                                    <td class="product-price"><span class="amount">$165.00</span></td>
-                                    <td class="product-remove"><a href="#">X</a></td>
-                                </tr>
+                                <tbody class="table-cart-body">
+
+
+
+
                                 </tbody>
                             </table>
                         </div>
                     </form>
                     <div class="cartbox__btn">
-                        <ul
-                                class="cart__btn__list d-flex flex-wrap flex-md-nowrap flex-lg-nowrap justify-content-between">
-                            <li><a href="#">Cập nhật trạng thái giỏ hàng</a></li>
-                            <li><a href="/api/v1/check-out">Thanh toán</a></li>
+                        <ul class="cart__btn__list d-flex flex-wrap flex-md-nowrap flex-lg-nowrap justify-content-between">
+<!--                            <li><a href="#">Cập nhật trạng thái giỏ hàng</a></li>-->
+                            <li></li>
+                            <li><a href="" class="thanhToanBtn" onclick="thanhToan()">Yêu cầu mượn</a></li>
                         </ul>
                     </div>
                 </div>
@@ -141,13 +145,8 @@
             <div class="row">
                 <div class="col-lg-6 offset-lg-6">
                     <div class="cartbox__total__area">
-                        <div class="cartbox-total d-flex justify-content-between">
-                            <ul class="cart__total__list">
-                                <li>Tổng tiền</li>
-                            </ul>
-                            <ul class="cart__total__tk">
-                                <li>$70</li>
-                            </ul>
+                        <div class="cartbox-total d-flex justify-content-between tong-tien">
+
                         </div>
                     </div>
                 </div>
@@ -163,11 +162,12 @@
 <!-- //Main wrapper -->
 
 <!-- JS Files -->
-<script src="/js/vendor/jquery.min.js"></script>
 <script src="/js/popper.min.js"></script>
 <script src="/js/vendor/bootstrap.min.js"></script>
 <script src="/js/plugins.js"></script>
 <script src="/js/active.js"></script>
+<script src="/js/single-product/single-product.js"></script>
+<script src="/js/cart/cart.js"></script>
 
 </body>
 

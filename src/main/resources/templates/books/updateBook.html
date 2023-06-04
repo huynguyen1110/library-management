@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Add Book</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+</head>
+<body>
+<div th:replace="~{fragments/adminnav/_nav :: nav}"></div>
+<div class="container pt-5 mt-5 border border-primary rounded table-responsive">
+  <div class="col-md-12">
+    <h2>Update Book</h2>
+
+    <form th:action="@{'/api/v1/admin/capnhap-sach/{id}'(id=${sach.maSach})}" th:object="${sach}" method="post" enctype="multipart/form-data">
+      <div class="form-group">
+        <label for="imagePreview">Xem trước ảnh:</label> <br>
+        <img id="imagePreview" th:src="@{/image/__${sach.image}__}" style="max-width: 400px; max-height: 400px;"/>
+      </div>
+      <div class="form-group">
+        <label for="image">Ảnh:</label>
+        <input type="file" class="form-control-file" id="image" name="image" accept="image/*"  onchange="previewImage(event)" th:field="*{image}">
+      </div>
+      <div class="form-group">
+        <label for="tenSach">Tên sách:</label>
+        <input type="text" class="form-control" id="tenSach" name="tenSach" th:field="*{tenSach}">
+      </div>
+      <div class="form-group">
+        <label for="theLoai">Tác Giả:</label>
+        <select class="form-control" id="tacGia" name="tacGia" th:field="*{tacGia}" >
+          <option th:each="tacGia : ${tacGias}" th:value="${tacGia.maTacGia}" th:text="${tacGia.ten}" th:if="${tacGia.ten == sach.tacGia}" selected></option>
+          <option th:each="tacGia : ${tacGias}" th:value="${tacGia.maTacGia}" th:text="${tacGia.ten}" th:if="${tacGia.ten != sach.tacGia}"></option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="giaSach">Giá:</label>
+        <input type="number" class="form-control" id="giaSach" name="giaSach" min="0" step="0.01" th:field="*{giaTien}">
+      </div>
+      <div class="form-group">
+        <label for="soLuong">Số lượng:</label>
+        <input type="number" class="form-control" id="soLuong" name="soLuong" th:field="*{soLuong}">
+      </div>
+      <div class="form-group">
+      </div>
+      <div class="form-group">
+        <label for="ngayXuatBan">Ngày xuất bản:</label>
+        <input type="date" th:value="${sach.ngayXuatBan}" class="form-control" name="ngayXuatBan" id="ngayXuatBan">
+      </div>
+      <div class="form-group">
+        <label for="nhaXuatBan">Nhà xuất bản:</label>
+        <select class="form-control" id="nhaXuatBan" name="nhaXuatBan" th:field="*{nhaXuatBan}" >
+          <option th:each="nhaXuatBan : ${nhaxuatBans}" th:value="${nhaXuatBan.maNhaXuatBan}" th:text="${nhaXuatBan.tenNhaXuatBan}" th:if="${nhaXuatBan.tenNhaXuatBan == sach.nhaXuatBan}" selected></option>
+          <option th:each="nhaXuatBan : ${nhaxuatBans}" th:value="${nhaXuatBan.maNhaXuatBan}" th:text="${nhaXuatBan.tenNhaXuatBan}" th:if="${nhaXuatBan.tenNhaXuatBan != sach.nhaXuatBan}"></option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="nhaXuatBan">Thể loại:</label>
+        <select class="form-control" id="theLoai" name="theLoai" th:field="*{theLoai}" >
+          <option th:each="theLoai : ${theLoais}" th:value="${theLoai.maTheLoai}" th:text="${theLoai.tenTheLoai}" th:if="${theLoai.tenTheLoai == sach.theLoai}" selected></option>
+          <option th:each="theLoai : ${theLoais}" th:value="${theLoai.maTheLoai}" th:text="${theLoai.tenTheLoai}" th:if="${theLoai.tenTheLoai != sach.theLoai}"></option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-primary">Cập nhập</button>
+    </form>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</body>
+<script>
+  function previewImage(event) {
+    var input = event.target;
+    var preview = document.getElementById('imagePreview');
+
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+
+      reader.onload = function(e) {
+        preview.src = e.target.result;
+      }
+
+      reader.readAsDataURL(input.files[0]);
+    } else {
+      preview.src = '#';
+    }
+  }
+</script>
+</html>

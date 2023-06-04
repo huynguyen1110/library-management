@@ -19,4 +19,5 @@ public class TaiKhoan {
     public String matKhau;
     @Enumerated(EnumType.STRING)
     public Role role;
+    public boolean daXoa;
 }

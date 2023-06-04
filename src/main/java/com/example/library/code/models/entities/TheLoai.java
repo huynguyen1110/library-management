@@ -15,4 +15,5 @@ public class TheLoai {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Integer maTheLoai;
     public String tenTheLoai;
+    public Boolean daXoa;
 }

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+</head>
+<body>
+<div th:replace="~{fragments/adminnav/_nav :: nav}"></div>
+<div class="container">
+    <h2>Add Member</h2>
+
+    <form th:action="@{/members/add}" method="post" th:object="${docGia}">
+<!--        <div class="form-group">-->
+<!--            <label for="ma_doc_gia">Mã độc giả:</label>-->
+<!--            <input type="text" class="form-control" id="ma_doc_gia" name="ma_doc_gia" th:field="*{ma_doc_gia}" />-->
+<!--        </div>-->
+        <div class="form-group">
+            <label for="ten">Tên:</label>
+            <input type="text" class="form-control" id="ten" name="ten" th:field="*{docGia.ten}" />
+        </div>
+        <div class="form-group">
+            <label for="ngay_sinh">Ngày sinh:</label>
+            <input type="date" class="form-control" id="ngay_sinh" name="ngay_sinh" th:field="*{docGia.ngay_sinh}" />
+        </div>
+        <div class="form-group">
+            <label for="sdt">Số điện thoại:</label>
+            <input type="text" class="form-control" id="sdt" name="sdt" th:field="*{docGia.sdt}" />
+        </div>
+        <div class="form-group">
+            <label for="diachi">Địa chỉ:</label>
+            <input type="text" class="form-control" id="diachi" name="diachi" th:field="*{docGia.diachi}" />
+        </div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="text" class="form-control" id="email" name="email" th:field="*{docGia.email}" />
+        </div>
+<!--        <div class="form-group">-->
+<!--            <label for="tai_khoan_ma_tk">Mã tài khoản:</label>-->
+<!--            <input type="text" class="form-control" id="tai_khoan_ma_tk" name="tai_khoan_ma_tk" th:field="*{tai_khoan_ma_tk}" />-->
+<!--        </div>-->
+<!--        <div class="form-group">-->
+<!--            <label for="the_thu_vien_ma_the">Mã thẻ thư viện:</label>-->
+<!--            <input type="text" class="form-control" id="the_thu_vien_ma_the" name="the_thu_vien_ma_the" th:field="*{the_thu_vien_ma_the}" />-->
+<!--        </div>-->
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</body>
+</html>

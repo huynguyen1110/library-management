@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+</head>
+<body>
+
+<div th:replace="~{fragments/adminnav/_nav :: nav}"></div>
+<div class="container pt-5 mt-5 border border-primary rounded table-responsive">
+    <div class="col-md-12">
+        <h2 class="mb-4 text-center">Danh Sách Phiếu Mượn Trả</h2>
+        <div class="table-container" style="max-height: 400px; overflow-y: auto">
+            <table id="listIssue" class="table table-striped ">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Độc Giả</th>
+                    <th scope="col">Sách</th>
+                    <th scope="col">Ngày Mượn</th>
+                    <th scope="col">Ngày Trả</th>
+                    <th scope="col">Sự kiện</th>
+                </tr>
+                </thead>
+                <tbody>
+                <!-- Duyệt qua danh sách sách và hiển thị thông tin -->
+                <tr th:each="issue, iterStat : ${issues}" th:with="currentIndex=${iterStat.count - 1}"
+                    th:if="${issue.sachs.size() != issuesRes.get(iterStat.count - 1).sachs.size()}">
+                    <th scope="row" th:text="${currentIndex}"></th>
+                    <td th:text="${issue.docGia.ten}"></td>
+                    <td>
+                        <ul style="padding-left: 10%" th:id="${'issue_' + issue.maPhieuMuon}" th:value="${issuesRes.get(currentIndex).maPhieuTra}">
+                            <th:block th:each="ib : ${issue.sachs}">
+                                <th:block th:each="ibr : ${issuesRes.get(currentIndex).sachs}"
+                                          th:if="${ib.maSach != ibr.maSach && issuesRes.get(currentIndex).sachs.size() > 0}">
+                                    <li th:id="${ib.maSach}" th:text="${ib.tenSach}"></li>
+                                </th:block>
+                                <li th:id="${ib.maSach}" th:text="${ib.tenSach}"
+                                    th:if="${issuesRes.get(currentIndex).sachs.size() == 0}"></li>
+                            </th:block>
+                        </ul>
+                    </td>
+                    <td th:text="${#temporals.format(issue.ngayMuon.toLocalDate(), 'dd/MM/yyyy')}"></td>
+                    <td th:text="${#temporals.format(issuesRes.get(currentIndex).ngayTra.toLocalDate(), 'dd/MM/yyyy')}"></td>
+                    <td>
+                        <a href="#" class="px-3" style="color: black" type="btn" th:data-ma-phieu-muon="${issue.maPhieuMuon}"
+                           th:data-ma-phieu-tra="${issuesRes.get(currentIndex).maPhieuTra}"
+                           onclick="formTraSach(this.dataset.maPhieuMuon, this.dataset.maPhieuTra)"><i class="fas fa-undo-alt"></i></a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+    <div class="modal-content"
+         style="display: none; width: 50%; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%)">
+        <div class="modal-header">
+            <h4 class="modal-title">Return Book(s)</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <table id="returnBookTable" class="table">
+                <thead>
+                <tr>
+                    <th style="width: 5px;"><input type="checkbox" id="select-all" onclick="sellectAll()"
+                                                   style="margin-top: 5px;"/></th>
+                    <th style="padding-bottom: 10px; padding-left: 0px">Select All</th>
+                </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default "
+                    data-dismiss="modal">Tắt
+            </button>
+            <button type="button" class="btn btn-primary" onclick="returnBookConfirm()">Trả Sách được chọn</button>
+        </div>
+    </div>
+
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</body>
+<script>
+    $(document).ready(function () {
+        // Bắt sự kiện khi người dùng nhấp vào dấu ×
+        $(".modal-header .close").click(function () {
+            // Ẩn modal
+            $(".modal-content").hide();
+        });
+
+        $(".modal-footer .btn-default").click(function () {
+            // Ẩn modal
+            $(".modal-content").hide();
+        });
+
+        $("#listIssue tbody tr").each(function() {
+            var dateValue = $(this).find("td:nth-child(5)").text(); // Lấy giá trị từ cột thứ 4 trong hàng hiện tại
+
+            // Chuyển đổi định dạng ngày
+            var dateParts = dateValue.split("/");
+            var convertedDate = new Date(dateParts[2], dateParts[1] - 1, dateParts[0]);
+
+            console.log(convertedDate);
+            console.log(new Date())
+
+            if(new Date() - convertedDate > 0){
+                $(this).css({
+                    "color": "red"
+                })
+            }
+        });
+    });
+    
+    function sellectAll(){
+        // Kiểm tra trạng thái của checkbox "Select All"
+        var isChecked = $('#select-all').prop('checked');
+
+        // Thiết lập trạng thái chọn của tất cả các checkbox trong bảng
+        $('#returnBookTable tbody input[type="checkbox"]').prop('checked', isChecked);
+    }
+
+    function formTraSach(id, id2) {
+        var issueId = "#issue_" + id;
+        var liElements = $(issueId).find("li");
+        var modalTable = $("#returnBookTable tbody");
+        modalTable.empty();
+        liElements.each(function () {
+            var liText = $(this).text();
+            var liId = $(this).attr("id");
+            var rowHtml = '<tr id="' + id2 + '" value="' + id + '"><td><input type="checkbox" value="' + liId + '"></td><td>' + liText + '</td></tr>';
+
+            modalTable.append(rowHtml);
+        });
+        $(".modal-content").show();
+    }
+
+    function returnBookConfirm() {
+        var maPhieuTra = $("#returnBookTable tbody tr").attr("id");
+        var maPhieuMuon = $("#returnBookTable tbody tr").attr("value");
+        console.log(maPhieuMuon)
+        var idSachs = $("#returnBookTable tbody input[type='checkbox']:checked").map(function () {
+            return $(this).val();
+        }).get();
+        data = {
+            maPhieuTra: maPhieuTra,
+            maPhieuMuon: maPhieuMuon,
+            idSachs: idSachs
+        }
+        $.post({
+            url: "/api/v1/admin/tra-sach",
+            dataType: "json",
+            contentType: "application/json",
+            data: JSON.stringify(data),
+            success: function (response) {
+                alert("Trả thành công");
+                console.log(response);
+                xoaSach(data.idSachs, maPhieuTra);
+            },
+            error: function (xhr) {
+                alert("Error");
+                console.log(xhr)
+            }
+        })
+        $(".modal-content").hide();
+    }
+
+    function xoaSach(idSachs, maPhieuTra) {
+        $(document).ready(function () {
+            var excludedValues = idSachs;
+
+            $("#returnBookTable tbody tr").each(function () {
+                var tdValue = $(this).find("td:first-child input").val();
+
+                if (excludedValues.includes(tdValue)) {
+                    $(this).remove();
+                }
+            });
+
+            var idsToRemove = idSachs; // Các giá trị "id" của <li> cần xóa
+            $("#listIssue ul[value='" + maPhieuTra + "'] li").filter(function () {
+                var liId = $(this).attr("id");
+                return idsToRemove.includes(liId);
+            }).remove();
+
+            // Xử lý xóa dòng
+            if ($("#listIssue ul[value='" + maPhieuTra + "'] li").length == 0) {
+                console.log($("#listIssue ul[value='" + maPhieuTra + "']").closest("tr"))
+                $("#listIssue ul[value='" + maPhieuTra + "']").closest("tr").remove()
+            }
+        });
+
+    }
+    
+</script>
+</html>

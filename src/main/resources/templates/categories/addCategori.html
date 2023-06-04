@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Thể loại</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <style>
+        .form-container {
+            background-color: #e6e6e6;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 10px;
+            margin-top: 56px;
+            width: 80%;
+            height: 100vh;
+        }
+    </style>
+</head>
+<body>
+<div th:replace="~{fragments/adminnav/_nav :: nav}"></div>
+<div class="container mt-2">
+    <div class="form-container">
+        <h2>Thể loại:</h2>
+        <form id="formTheLoai" method="post" class="mt-4">
+            <div class="form-group">
+                <label for="tenTheLoai">Tên thể loại</label>
+                <input type="text" class="form-control" id="tenTheLoai" name="tenTheLoai" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Thêm thể loại</button>
+        </form>
+
+        <h2 class="mt-4">Danh sách các thể loại hiện có:</h2>
+        <div class="" style="overflow: auto; max-height: 500px;">
+            <table class="table">
+                <thead style="position: sticky; top: 0px; background-color: #f5f5f5;">
+                <tr>
+                    <th>Mã thể loại</th>
+                    <th>Tên Thể loại</th>
+                    <th>Sự kiện</th>
+                </tr>
+                </thead>
+                <tbody class="listOfMembersBody">
+                </tbody>
+            </table>
+
+            <div  class="capNhatTheLoai container">
+                <div class="modal-content" style="display: none; width: 50%; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%)">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Cập nhật thể loại</h4>
+                        <button type="button" class="close" data-dismiss="modal"aria-label="Close" onclick="closeFormCapNhat()">
+                            <span aria-hidden="true" onclick="closeFormCapNhat()">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" style="overflow: auto; max-height: 500px;">
+                        <form id="formCapNhatTheLoai" method="post" class="mt-4">
+                            <div class="form-group">
+                                <label for="theLoaiCapNhatTen">Tên thể loại</label>
+                                <input type="text" class="form-control" id="theLoaiCapNhatTen" name="theLoaiCapNhatTen" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Cập nhật</button>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<script src="/js/admin/categories/categories.js"></script>
+
+</body>
+</html>

@@ -9,7 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/api/v1/")
 public class CartController {
 
-    @GetMapping("/cart")
+    @GetMapping("cart")
     public ModelAndView cartPage() {
         ModelAndView modelAndView = new ModelAndView("cart");
         return modelAndView;

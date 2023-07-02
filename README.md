@@ -7,4 +7,6 @@ dự quán demo bộ môn công nghệ phần mềm
   
   - Spring boot 3.0.6
 
-  - thymeleaf 
+  - thymeleaf
+
+  - Springdata jpa

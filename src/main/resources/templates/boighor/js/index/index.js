@@ -6,6 +6,7 @@ var idNguoiDung = searchParams.get('id-nguoi-dung');
 
 function hienThiSachMoi () {
     $.ajax({
+
         url: "/api/v1/sach-moi",
         method: "GET",
         success: function(response) {

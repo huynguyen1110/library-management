@@ -1,18 +1,14 @@
 package com.example.library.code.models.entities;
 
-import com.example.library.code.models.enums.HinhThucThanhToan;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
-//@Data
 @Setter
 @Getter
 @RequiredArgsConstructor
-
 public class DocGia {
 
     @Id

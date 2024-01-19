@@ -31,6 +31,10 @@ public interface ISachService {
 
     public Sach themSach(ThemSachDto sachDto);
 
+    public Sach addNewSach(ThemSachDto sachDto);
+
+    public Sach deleteBook(int id);
+
     public Sach xoaSach(int id);
 
     public Sach capNhap(int id, ThemSachDto sachDto);

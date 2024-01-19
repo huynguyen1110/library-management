@@ -1,11 +1,15 @@
 package com.example.library.code.services.serviceimp;
 
+import com.example.library.code.config.ModelMapperConfig;
 import com.example.library.code.data.sach.GetChiTietSachDto;
 import com.example.library.code.data.sach.ThemSachDto;
+import com.example.library.code.models.entities.NhaXuatBan;
 import com.example.library.code.models.entities.Sach;
 import com.example.library.code.models.entities.TacGia;
+import com.example.library.code.models.entities.TheLoai;
 import com.example.library.code.repositories.SachRepository;
 import com.example.library.code.services.iservices.ISachService;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -23,6 +27,9 @@ public class SachService implements ISachService {
 
     @Autowired
     private SachRepository sachRepository;
+
+    @Autowired
+    private  ModelMapper mapper;
 
     @Override
     public List<Sach> timSachMoi(LocalDate ngayBatDau) {
@@ -43,15 +50,8 @@ public class SachService implements ISachService {
     @Override
     public List<Sach> timTatCa() {
         List<Sach> tatCaSach = sachRepository.findAllByMaSachIsNotNull();
-        List<Sach> results = new ArrayList<>();
-        if (tatCaSach != null && tatCaSach.size() != 0 && tatCaSach.size() >=8) {
-            for (int i = 0; i < 8; i++) {
-                results.add(tatCaSach.get(i));
-            }
-        } else {
-            return tatCaSach;
-        }
-        return  results;
+
+        return  tatCaSach;
     }
 
     @Override
@@ -111,6 +111,27 @@ public class SachService implements ISachService {
     }
 
     @Override
+    public Sach addNewSach(ThemSachDto sachDto) {
+        Sach sach = mapper.map(sachDto, Sach.class);
+
+        sach = sachRepository.save(sach);
+
+        return sach;
+    }
+
+    @Override
+    public Sach deleteBook(int id) {
+        Sach sach = sachRepository.timSachTheoId(id);
+        if (sach != null) {
+            sach.isDeleted = true;
+            sachRepository.save(sach);
+            return sach;
+        }
+        return null;
+    }
+
+
+    @Override
     public Sach xoaSach(int id) {
         Optional<Sach> sach = sachRepository.findById(id);
         sachRepository.delete(sach.get());
@@ -119,17 +140,25 @@ public class SachService implements ISachService {
 
     @Override
     public Sach capNhap(int id, ThemSachDto sachDto) {
-        Optional<Sach> sach = sachRepository.findById(id);
-        sach.get().setTenSach(sachDto.tenSach);
-        sach.get().setSoLuong(sachDto.soLuong);
-        sach.get().setNgayXuatBan(sachDto.ngayXuatBan);
-        sach.get().setGiaTien(sachDto.giaTien);
-        sach.get().setTheLoai(sachDto.theLoai);
-        sach.get().setNhaXuatBan(sachDto.nhaXuatBan);
-        sach.get().setImage(sachDto.image);
-        sach.get().setTacGia(sachDto.tacGia);
-        sachRepository.save(sach.get());
-        return sach.get();
+        Optional<Sach> optionalSach = sachRepository.findById(id);
+
+        if (optionalSach.isPresent()) {
+            Sach sach = optionalSach.get();
+
+            sach.setTenSach(sachDto.tenSach);
+            sach.setSoLuong(sachDto.soLuong);
+            sach.setNgayXuatBan(sachDto.ngayXuatBan);
+            sach.setGiaTien(sachDto.giaTien);
+            sach.setTheLoai(sachDto.theLoai);
+            sach.setNhaXuatBan(sachDto.nhaXuatBan);
+            sach.setImage(sachDto.image);
+            sach.setTacGia(sachDto.tacGia);
+
+            sachRepository.save(sach);
+            return sach;
+        } else {
+            return null; // Trả về null nếu không tìm thấy sách với ID tương ứng
+        }
     }
 
     @Override

@@ -44,5 +44,4 @@ public interface SachRepository extends JpaRepository<Sach, Integer> {
     Page<Sach> findAllByTheLoai_TenTheLoaiOrderByNgayXuatBanAsc (String theLoai, Pageable pageable);
 
     Page<Sach> findAllByTheLoai_TenTheLoaiOrderByGiaTienAsc (String theLoai, Pageable pageable);
-
 }

@@ -23,12 +23,12 @@ public class Sach {
     public Integer soLuong;
     public LocalDate ngayXuatBan;
     public Double giaTien;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     public TheLoai theLoai;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     public NhaXuatBan nhaXuatBan;
     public String image;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn()
     public TacGia tacGia;
     @ToString.Exclude
@@ -43,4 +43,5 @@ public class Sach {
     @JsonIgnore
     @ManyToMany(mappedBy = "sachs")
     public Set<GioHang> gioHangs = new HashSet<>();
+    public boolean isDeleted;
 }

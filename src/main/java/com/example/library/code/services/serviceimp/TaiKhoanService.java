@@ -49,14 +49,16 @@ public class TaiKhoanService implements ITaiKhoanService {
     @Override
     public TaiKhoan loginTaiKhoan(LoginTaiKhoanDto loginTaiKhoanDto) {
         TaiKhoan taiKhoan = taiKhoanRepository.findByTenTk(loginTaiKhoanDto.tenTk);
-        String tenTk = taiKhoan.tenTk;
-        DocGia docGia = docGiaRepository.findByTen(tenTk);
-        if (docGia != null) {
-            docGia.taiKhoan = taiKhoan;
-            docGiaRepository.save(docGia);
-        }
-        if (taiKhoan != null && taiKhoan.matKhau.equals(loginTaiKhoanDto.matKhau)) {
-            return taiKhoan;
+        if (taiKhoan != null) {
+            String tenTk = taiKhoan.tenTk;
+            DocGia docGia = docGiaRepository.findByTen(tenTk);
+            if (docGia != null) {
+                docGia.taiKhoan = taiKhoan;
+                docGiaRepository.save(docGia);
+            }
+            if (taiKhoan != null && taiKhoan.matKhau.equals(loginTaiKhoanDto.matKhau)) {
+                return taiKhoan;
+            }
         }
         return null;
     }

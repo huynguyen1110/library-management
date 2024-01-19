@@ -1,5 +1,6 @@
 package com.example.library.code.controllers;
 
+import com.example.library.code.data.sach.CapNhapSachDto;
 import com.example.library.code.data.sach.GetChiTietSachDto;
 import com.example.library.code.data.sach.ThemSachDto;
 import com.example.library.code.models.entities.NhaXuatBan;
@@ -34,6 +35,7 @@ import java.util.Random;
 
 @RestController
 @RequestMapping("/api/v1/")
+@CrossOrigin("*")
 public class SachController {
 
     private static String UPLOADED_FOLDER = "E:\\Tai_lieu\\Ky_hai_nam_ba\\cong_nghe_phan_mem\\do_an\\code\\src\\main\\resources\\static\\image\\";
@@ -57,7 +59,7 @@ public class SachController {
     public List<Sach> sachMoi() {
         LocalDate ngayKetThuc = LocalDate.now();
         LocalDate ngayBatDau = ngayKetThuc.minusDays(10);
-        return  sachService.timSachMoi(ngayBatDau);
+        return sachService.timSachMoi(ngayBatDau);
     }
 
     @GetMapping("tat-ca")
@@ -72,11 +74,11 @@ public class SachController {
 
     @GetMapping("chi-tiet-sach")
     public GetChiTietSachDto timSachTheoId(@RequestParam("id") int id) {
-            return sachService.timSachTheoId(id);
+        return sachService.timSachTheoId(id);
     }
 
     @GetMapping("admin/them-sach")
-    public ModelAndView formThemSach(){
+    public ModelAndView formThemSach() {
         ModelAndView modelAndView = new ModelAndView("/books/addBook");
         List<TheLoai> theLoais = theLoaiService.danhSachTheLoai();
         List<NhaXuatBan> nhaXuatBans = nhaXuatBanService.danhSachNhaXuatBan();
@@ -87,6 +89,30 @@ public class SachController {
         modelAndView.addObject("nhaxuatBans", nhaXuatBans);
         modelAndView.addObject("tacGias", tacGias);
         return modelAndView;
+    }
+
+    @PostMapping("/them-sach")
+    public Sach addBook(@RequestBody ThemSachDto sachDto) {
+        Sach sach = sachService.addNewSach(sachDto);
+        return sach;
+    }
+
+    @DeleteMapping("/xoa-sach")
+    public Sach deleteBook(@RequestParam int id) {
+        Sach sach = sachService.deleteBook(id);
+        if (sach != null) {
+            return sach;
+        }
+        return null;
+    }
+
+    @PutMapping("/cap-nhat-sach")
+    private Sach updateBook(@RequestBody ThemSachDto sachDto, @RequestParam int id) {
+        Sach sach = sachService.capNhap(id, sachDto);
+        if (sach != null) {
+            return sach;
+        }
+        return null;
     }
 
     @PostMapping("admin/them-sach")
@@ -133,15 +159,15 @@ public class SachController {
     }
 
     @GetMapping("admin/danh-sach")
-    private ModelAndView danhSach(){
+    private ModelAndView danhSach() {
         ModelAndView model = new ModelAndView("books/listBook");
         List<Sach> books = sachService.adminTimTatCaSach();
         model.addObject("books", books);
         return model;
     }
 
-    @GetMapping ("admin/xoa-sach/{id}")
-    private ModelAndView xoaSach(@PathVariable("id") int id){
+    @GetMapping("admin/xoa-sach/{id}")
+    private ModelAndView xoaSach(@PathVariable("id") int id) {
         Sach sach = sachService.xoaSach(id);
         ModelAndView model = new ModelAndView("books/listBook");
         List<Sach> books = sachService.timTatCa();
@@ -150,7 +176,7 @@ public class SachController {
     }
 
     @GetMapping("admin/capnhap-sach/{id}")
-    private ModelAndView giaoDienCapNhap(@PathVariable("id") int id){
+    private ModelAndView giaoDienCapNhap(@PathVariable("id") int id) {
         GetChiTietSachDto sach = sachService.timSachTheoId(id);
         List<TheLoai> theLoais = theLoaiService.danhSachTheLoai();
         List<NhaXuatBan> nhaXuatBans = nhaXuatBanService.danhSachNhaXuatBan();

@@ -1,12 +1,8 @@
 package com.example.library.code.services.serviceimp;
 
-import com.example.library.code.config.ModelMapperConfig;
 import com.example.library.code.data.sach.GetChiTietSachDto;
 import com.example.library.code.data.sach.ThemSachDto;
-import com.example.library.code.models.entities.NhaXuatBan;
 import com.example.library.code.models.entities.Sach;
-import com.example.library.code.models.entities.TacGia;
-import com.example.library.code.models.entities.TheLoai;
 import com.example.library.code.repositories.SachRepository;
 import com.example.library.code.services.iservices.ISachService;
 import org.modelmapper.ModelMapper;
@@ -49,7 +45,7 @@ public class SachService implements ISachService {
 
     @Override
     public List<Sach> timTatCa() {
-        List<Sach> tatCaSach = sachRepository.findAllByMaSachIsNotNull();
+        List<Sach> tatCaSach = sachRepository.findAllValidBooks();
 
         return  tatCaSach;
     }

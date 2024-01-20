@@ -14,4 +14,5 @@ public class ThemTaiKhoanDto {
     public String tenTk;
     public String matKhau;
     public String nhapLaiMk;
+    public String role;
 }

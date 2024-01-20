@@ -32,7 +32,7 @@ public class TaiKhoanService implements ITaiKhoanService {
             TaiKhoan taiKhoan = new TaiKhoan();
             taiKhoan.tenTk = themTaiKhoanDto.tenTk;
             taiKhoan.matKhau = themTaiKhoanDto.matKhau;
-            taiKhoan.role = Role.NGUOI_DUNG;
+            taiKhoan.role = Role.valueOf(themTaiKhoanDto.role);
             taiKhoanRepository.save(taiKhoan);
 
             DocGia docGia = new DocGia();

@@ -1,5 +1,6 @@
 package com.example.library.code.data.docgia;
 
+import com.example.library.code.models.entities.TaiKhoan;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,4 +19,5 @@ public class UpdateDocGiaDto {
     public String sdt;
     public String email;
     public String diaChi;
+    public TaiKhoan taiKhoan;
 }

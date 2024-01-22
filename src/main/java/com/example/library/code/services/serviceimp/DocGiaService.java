@@ -49,6 +49,7 @@ public class DocGiaService implements IDocGiaService {
         getDocGiaInfoDto.sdt = docGia.sdt;
         getDocGiaInfoDto.email = docGia.email;
         getDocGiaInfoDto.diaCHi = docGia.diaCHi;
+        getDocGiaInfoDto.taiKhoan = docGia.taiKhoan;
         return getDocGiaInfoDto;
     }
 

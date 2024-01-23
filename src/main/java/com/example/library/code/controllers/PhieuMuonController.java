@@ -22,6 +22,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/")
+@CrossOrigin("*")
 public class PhieuMuonController {
 
     @Autowired
@@ -82,6 +83,24 @@ public class PhieuMuonController {
         phieuTraService.taoPhieuTra(phieuTra);
 
         return ResponseEntity.ok().body(phieuMuonDto);
+    }
+
+    @GetMapping("/admin/get-all-phieu-muon")
+    public List<PhieuMuon> getAllPhieuMuon() {
+        List<PhieuMuon> issues = phieuMuonService.danhSachPhieuMuon();
+        return  issues;
+    }
+
+    @GetMapping("/admin/get-phieu-muon")
+    public PhieuMuon getAllPhieuMuonByid(@RequestParam int id) {
+        PhieuMuon phieuMuon = phieuMuonService.timPhieuMuonId(id);
+        return phieuMuon;
+    }
+
+    @GetMapping("/admin/get-all-phieu-tra")
+    public List<PhieuTra> getAllPhieuTra() {
+        List<PhieuTra> issues = phieuTraService.danhSachPhieuTra();
+        return  issues;
     }
 
     @GetMapping("admin/phieu-muon/danh-sach")

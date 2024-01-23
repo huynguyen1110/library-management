@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/")
+@CrossOrigin("*")
 public class PhieuTraController {
 
     @Autowired
@@ -43,5 +44,14 @@ public class PhieuTraController {
         }
         phieuTraService.taoPhieuTra(phieuTra);
         return ResponseEntity.ok().body(sachTraDto);
+    }
+
+    @GetMapping("/admin/get-phieu-tra")
+    public PhieuTra getPhieuTraById(@RequestParam int id) {
+        PhieuTra phieuTra = phieuTraService.timPhieuTraId(id);
+        if (phieuTra != null) {
+            return phieuTra;
+        }
+        return null;
     }
 }

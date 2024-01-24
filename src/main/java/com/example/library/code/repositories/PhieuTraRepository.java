@@ -13,4 +13,6 @@ public interface PhieuTraRepository extends JpaRepository<PhieuTra, Integer> {
 
     @Query("SELECT pt FROM PhieuTra pt  WHERE pt.docGia.maDocGia = :maDocGia")
     List<PhieuTra> findByMaDocGiaWithSach(int maDocGia);
+
+    PhieuTra findPhieuTraByMaPhieuTra(String maPhieuTra);
 }

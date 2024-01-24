@@ -14,10 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Service
 public class CheckOutService implements ICheckOutService {
@@ -39,9 +36,12 @@ public class CheckOutService implements ICheckOutService {
 
     @Override
     public PhieuMuon taoPhieuMuon(int maTk) {
+        UUID uuid = UUID.randomUUID();
+        String randomUUIDString = uuid.toString();
         DocGia docGia = docGiaRepository.findByMaTk(maTk);
         LayGioHangDto layGioHangDto = gioHangService.layGioHangTheoMaTk(maTk);
         PhieuMuon phieuMuon = new PhieuMuon();
+        phieuMuon.maPhieuMuon = randomUUIDString;
         phieuMuon.ngayMuon = LocalDateTime.now();
         phieuMuon.tongTien = layGioHangDto.tongTien;
         phieuMuon.soLuong = layGioHangDto.sachList.size();
@@ -53,15 +53,16 @@ public class CheckOutService implements ICheckOutService {
             phieuMuon.getSachs().add(sachTrongGioHang);
         }
         phieuMuonRepository.save(phieuMuon);
-        taoPhieuTra(maTk);
+        taoPhieuTra(maTk, randomUUIDString);
         return phieuMuon;
     }
 
     @Override
-    public PhieuTra taoPhieuTra(int maTk) {
+    public PhieuTra taoPhieuTra(int maTk, String maPhieuMuon) {
         DocGia docGia = docGiaRepository.findByMaTk(maTk);
         LayGioHangDto layGioHangDto = gioHangService.layGioHangTheoMaTk(maTk);
         PhieuTra phieuTra = new PhieuTra();
+        phieuTra.maPhieuTra = maPhieuMuon;
         phieuTra.ngayTra = LocalDateTime.now().plusDays(14) ;
         phieuTra.tongTien = layGioHangDto.tongTien;
         phieuTra.soLuong = 0;

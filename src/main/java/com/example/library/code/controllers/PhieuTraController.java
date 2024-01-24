@@ -47,7 +47,7 @@ public class PhieuTraController {
     }
 
     @GetMapping("/admin/get-phieu-tra")
-    public PhieuTra getPhieuTraById(@RequestParam int id) {
+    public PhieuTra getPhieuTraById(@RequestParam String id) {
         PhieuTra phieuTra = phieuTraService.timPhieuTraId(id);
         if (phieuTra != null) {
             return phieuTra;

@@ -18,9 +18,12 @@ import java.util.Set;
 @Setter
 @RequiredArgsConstructor
 public class PhieuTra {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Integer maPhieuTra;
+    private Long id;
+    @Column(length = 255)
+    public String maPhieuTra;
     public LocalDateTime ngayTra;
     @Enumerated(EnumType.STRING)
     public HinhThucThanhToan hinhThucThanhToan;

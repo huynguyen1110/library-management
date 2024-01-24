@@ -32,8 +32,8 @@ public class PhieuMuonService implements IPhieuMuonService {
     }
 
     @Override
-    public PhieuMuon timPhieuMuonId(int id) {
-        return phieuMuonRepository.findById(id).get();
+    public PhieuMuon timPhieuMuonId(String id) {
+        return phieuMuonRepository.findPhieuMuonByMaPhieuMuon(id);
     }
 
 }

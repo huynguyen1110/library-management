@@ -92,7 +92,7 @@ public class PhieuMuonController {
     }
 
     @GetMapping("/admin/get-phieu-muon")
-    public PhieuMuon getAllPhieuMuonByid(@RequestParam int id) {
+    public PhieuMuon getAllPhieuMuonByid(@RequestParam String id) {
         PhieuMuon phieuMuon = phieuMuonService.timPhieuMuonId(id);
         return phieuMuon;
     }

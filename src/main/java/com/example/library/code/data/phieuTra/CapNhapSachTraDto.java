@@ -11,9 +11,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class CapNhapSachTraDto {
 
-    public int maPhieuTra;
+    public String maPhieuTra;
 
-    public int maPhieuMuon;
+    public String maPhieuMuon;
 
     public int[] idSachs;
 }

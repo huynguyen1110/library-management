@@ -66,7 +66,7 @@ public class DocGiaService implements IDocGiaService {
 
     @Override
     public List<GetDocGiaInfoDto> getDocGiaInfoDtos() {
-        List<DocGia> docGias = docGiaRepository.findAll();
+        List<DocGia> docGias = docGiaRepository.findByDaXoaNullOrFalse();
         List<GetDocGiaInfoDto> docGiaInfoDtos = docGias.stream()
                 .map(docGia -> mapper.map(docGia, GetDocGiaInfoDto.class))
                 .collect(Collectors.toList());

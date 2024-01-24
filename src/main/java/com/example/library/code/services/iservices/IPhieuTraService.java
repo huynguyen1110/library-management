@@ -11,7 +11,7 @@ public interface IPhieuTraService {
 
     List<PhieuTra> danhSachPhieuTra();
 
-    PhieuTra timPhieuTraId(int id);
+    PhieuTra timPhieuTraId(String id);
 
 
 }

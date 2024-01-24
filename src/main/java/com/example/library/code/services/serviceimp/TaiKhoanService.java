@@ -10,6 +10,7 @@ import com.example.library.code.repositories.GioHangRepository;
 import com.example.library.code.repositories.TaiKhoanRepository;
 import com.example.library.code.services.iservices.ITaiKhoanService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -32,7 +33,11 @@ public class TaiKhoanService implements ITaiKhoanService {
             TaiKhoan taiKhoan = new TaiKhoan();
             taiKhoan.tenTk = themTaiKhoanDto.tenTk;
             taiKhoan.matKhau = themTaiKhoanDto.matKhau;
-            taiKhoan.role = Role.valueOf(themTaiKhoanDto.role);
+            if (themTaiKhoanDto.role == null) {
+                themTaiKhoanDto.role = "NGUOI_DUNG";
+            } else {
+                taiKhoan.role = Role.valueOf(themTaiKhoanDto.role);
+            }
             taiKhoanRepository.save(taiKhoan);
 
             DocGia docGia = new DocGia();

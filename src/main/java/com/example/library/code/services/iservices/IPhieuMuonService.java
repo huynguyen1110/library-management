@@ -11,6 +11,6 @@ public interface IPhieuMuonService {
 
     List<PhieuMuon> danhSachPhieuMuon();
 
-    PhieuMuon timPhieuMuonId(int id);
+    PhieuMuon timPhieuMuonId(String id);
 
 }

@@ -21,14 +21,14 @@ import java.util.Set;
 @Component
 public class LayPhieuMuonTraDto {
 
-    public Integer maPhieuMuon;
+    public String maPhieuMuon;
     public LocalDateTime ngayMuon;
     public Double tongTien;
     public Integer soLuong;
     public DocGia docGia;
     private Set<Sach> sachMuon = new HashSet<>();
     public String trangThaiMuon;
-    public Integer maPhieuTra;
+    public String maPhieuTra;
     public LocalDateTime ngayTra;
     public Integer soLuongTra;
     private Set<Sach> sachTra = new HashSet<>();

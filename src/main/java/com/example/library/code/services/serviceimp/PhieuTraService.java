@@ -26,7 +26,7 @@ public class PhieuTraService implements IPhieuTraService {
     }
 
     @Override
-    public PhieuTra timPhieuTraId(int id) {
-        return phieuTraRepository.findById(id).get();
+    public PhieuTra timPhieuTraId(String id) {
+        return phieuTraRepository.findPhieuTraByMaPhieuTra(id);
     }
 }

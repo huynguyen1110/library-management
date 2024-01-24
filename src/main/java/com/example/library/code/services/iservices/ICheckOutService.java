@@ -13,7 +13,7 @@ public interface ICheckOutService {
 
     PhieuMuon taoPhieuMuon(int maTk);
 
-    PhieuTra taoPhieuTra(int maTk);
+    PhieuTra taoPhieuTra(int maTk, String maPhieuMuon);
 
     List<LayPhieuMuonTraDto> layPhieuMuonTraInfo(int maTk);
 }

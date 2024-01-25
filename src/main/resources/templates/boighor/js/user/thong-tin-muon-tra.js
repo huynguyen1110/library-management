@@ -78,7 +78,7 @@ function xemChiTietBtn(maPhieuMuon, maPhieuTra) {
                                 <td>${sachMuon.maSach}</td>
                                 <td>${sachMuon.tenSach}</td>
                                 <td>${sachMuon.giaTien}</td>
-                                <td>${sachMuon.theLoai.tenTheLoai}</td>
+                                <td>${sachMuon.theLoai.giaTien}</td>
                                 <td>${sachMuon.nhaXuatBan.tenNhaXuatBan}</td>
                                 <td>${sachMuon.tacGia.ten}</td>
                               </tr>`

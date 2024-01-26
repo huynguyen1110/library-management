@@ -215,8 +215,9 @@ public class SachController {
     }
 
     @GetMapping("lay-sach-phantrang")
-    public Page<Sach> laySachCoPhanTrang(@RequestParam(defaultValue = "0") int pageNumber, @RequestParam(defaultValue = "tenSach") String orderBy) {
-        return sachService.timTatCaSachCoPhanTrang(pageNumber, orderBy);
+    public Page<Sach> laySachCoPhanTrang(@RequestParam(defaultValue = "0") int pageNumber, @RequestParam(defaultValue = "tenSach") String orderBy,
+                                         @RequestParam(defaultValue = "12") int pageSize) {
+        return sachService.timTatCaSachCoPhanTrang(pageNumber, orderBy, pageSize);
     }
 
     @GetMapping("lay-sach-phantrang-theo-theloai")

@@ -169,16 +169,20 @@ public class SachService implements ISachService {
 
 
     @Override
-    public Page<Sach> timTatCaSachCoPhanTrang(int pageNumber, String orderBy) {
-        Pageable pageable = PageRequest.of(pageNumber, 12, Sort.by(orderBy).ascending());
-        if (orderBy == "tenSach") {
-            return sachRepository.findAllByOrderByTenSachAsc(pageable);
+    public Page<Sach> timTatCaSachCoPhanTrang(int pageNumber, String orderBy, int pageSize) {
+        Pageable pageable;
+
+        if (orderBy.equals("")) {
+            pageable = PageRequest.of(pageNumber, pageSize, Sort.by("tenSach").ascending());
+        } else if (orderBy.equals("ngayXuatBan")) {
+            pageable = PageRequest.of(pageNumber, pageSize, Sort.by("ngayXuatBan").ascending());
+        } else if (orderBy.equals("giaTien")) {
+            pageable = PageRequest.of(pageNumber, pageSize, Sort.by("giaTien").ascending());
+        } else {
+            pageable = PageRequest.of(pageNumber, pageSize, Sort.by("tenSach").ascending());
         }
-        if (orderBy == "ngayXuatBan") {
-            return sachRepository.findAllByOrderByNgayXuatBanAsc(pageable);
-        } else  {
-            return sachRepository.findAllByOrderByGiaTienAsc(pageable);
-        }
+
+        return sachRepository.findAll(pageable);
     }
 
     @Override

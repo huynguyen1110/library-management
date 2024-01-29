@@ -23,6 +23,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -221,8 +222,9 @@ public class SachController {
     }
 
     @GetMapping("lay-sach-phantrang-theo-theloai")
-    public Page<Sach> laySachCoPhanTrangTheoTheLoai(@RequestParam(defaultValue = "0") int pageNumber, @RequestParam(defaultValue = "tenSach") String orderBy, @RequestParam String theLoai) {
-        return sachService.laySachTheoTheLoaiCoPhanTrang(pageNumber, theLoai, orderBy);
+    public Page<Sach> laySachCoPhanTrangTheoTheLoai( @RequestParam(defaultValue = "0") int pageNumber, @RequestParam(defaultValue = "tenSach") String orderBy, @RequestParam String theLoai,
+                                                     @RequestParam(defaultValue = "12") int pageSize) throws UnsupportedEncodingException {
+        return sachService.laySachTheoTheLoaiCoPhanTrang(pageNumber, theLoai, orderBy, pageSize);
     }
 
     @GetMapping("admin/them-the-loai")

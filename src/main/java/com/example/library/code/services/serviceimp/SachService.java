@@ -13,6 +13,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -186,15 +189,30 @@ public class SachService implements ISachService {
     }
 
     @Override
-    public Page<Sach> laySachTheoTheLoaiCoPhanTrang(int pageNumber, String theLoai, String orderBy) {
-        Pageable pageable = PageRequest.of(pageNumber, 12, Sort.by(orderBy).ascending());
-        if ("tenSach".equals(orderBy)) {
-            return sachRepository.findAllByTheLoai_TenTheLoaiOrderByTenSachAsc(theLoai, pageable);
-        }
+    public Page<Sach> laySachTheoTheLoaiCoPhanTrang(int pageNumber, String theLoai, String orderBy, int pageSize) throws UnsupportedEncodingException {
+        Sort sort;
+        String decodedTheLoai = URLDecoder.decode(theLoai, StandardCharsets.UTF_8.toString());
+
         if ("ngayXuatBan".equals(orderBy)) {
-            return sachRepository.findAllByTheLoai_TenTheLoaiOrderByNgayXuatBanAsc(theLoai ,pageable);
-        } else  {
-            return sachRepository.findAllByTheLoai_TenTheLoaiOrderByGiaTienAsc(theLoai ,pageable);
+            sort = Sort.by(orderBy).ascending();
+        } else if ("giaTien".equals(orderBy)) {
+            sort = Sort.by(orderBy).ascending();
+        } else {
+            sort = Sort.by("tenSach").ascending();
+        }
+
+        Pageable pageable = PageRequest.of(pageNumber, pageSize, sort);
+
+        switch (orderBy) {
+            case "tenSach":
+                return sachRepository.findAllByTheLoai_TenTheLoaiOrderByTenSachAsc(theLoai, pageable);
+            case "ngayXuatBan":
+                return sachRepository.findAllByTheLoai_TenTheLoaiOrderByNgayXuatBanAsc(theLoai, pageable);
+            case "giaTien":
+                return sachRepository.findAllByTheLoai_TenTheLoaiOrderByGiaTienAsc(theLoai, pageable);
+            default:
+                return sachRepository.findAllByTheLoai_TenTheLoaiOrderByTenSachAsc(theLoai, pageable);
         }
     }
+
 }

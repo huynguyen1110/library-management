@@ -7,6 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.io.UnsupportedEncodingException;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -27,7 +28,7 @@ public interface ISachService {
 
     Page<Sach> timTatCaSachCoPhanTrang(int pageNumber, String orderBy, int pageSize);
 
-    Page<Sach> laySachTheoTheLoaiCoPhanTrang(int pageNumber, String theLoai, String orderBy);
+    Page<Sach> laySachTheoTheLoaiCoPhanTrang(int pageNumber, String theLoai, String orderBy, int pageSize) throws UnsupportedEncodingException;
 
     public Sach themSach(ThemSachDto sachDto);
 

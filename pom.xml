@@ -10,11 +10,11 @@
     </parent>
     <groupId>com.example.library</groupId>
     <artifactId>code</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.1</version>
     <name>code</name>
     <description>code</description>
     <properties>
-        <java.version>16</java.version>
+        <java.version>17</java.version>
     </properties>
     <dependencies>
         <dependency>
@@ -87,6 +87,8 @@
                 </configuration>
             </plugin>
         </plugins>
+
     </build>
+
 
 </project>
